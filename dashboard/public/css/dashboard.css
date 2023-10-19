@@ -1,0 +1,16 @@
+/* Dashboard Content Styles */
+.dashboard-content {
+    background-color: #f4f4f4;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Heading Styles */
+h2 {
+    color: #0e8add; 
+}
+
+/* Text Styles */
+p {
+    color: #666;
+}
