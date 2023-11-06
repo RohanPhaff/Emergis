@@ -11,14 +11,14 @@
 
             <!-- Sidebar Menu -->
             <ul class="custom-menu">
-                <a class="custom-menu-link active" href="#">
+                <a class="custom-menu-link active" href="/dashboard">
                     <li class="custom-menu-item">
 
                         <img src="{{ asset('images/dashboard.svg') }}" alt="Dashboard" class="icon">
 
                     </li>
                 </a>
-                <a class="custom-menu-link" href="#">
+                <a class="custom-menu-link" href="/projects">
                     <li class="custom-menu-item">
                         <img src="{{ asset('images/overzicht.svg') }}" alt="Overzicht" class="icon">
                     </li>

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->id();
             $table->string('name');
             $table->string('code')->nullable()->unique();
             $table->string('description');
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('program')->nullable();
             $table->string('community_link')->nullable();
             $table->string('project_status')->nullable();
+            $table->integer('progress');
             $table->boolean('check_discussion_RvB')->nullable();
             $table->timestamps();
         });

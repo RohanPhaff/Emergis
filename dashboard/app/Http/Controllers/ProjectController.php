@@ -13,7 +13,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        //database
+        $projects = project::all();
+        return view('projects/index', [
+            'projects' => $projects
+        ]);
     }
 
     /**
@@ -37,7 +41,9 @@ class ProjectController extends Controller
      */
     public function show(project $project)
     {
-        //
+        return view('projects/show', [
+            'project' => $project
+        ]);
     }
 
     /**
