@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('risks', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('risk_id')->unique();
+            $table->string('task_id')->unique();
             $table->string('name');
             $table->string('description');
-            $table->integer('risk_level');
+            $table->string('user')->nullable();
             $table->string('status');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('risks');
+        Schema::dropIfExists('tasks');
     }
 };
