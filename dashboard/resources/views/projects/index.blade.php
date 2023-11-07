@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             @foreach ($projects as $project)
-                <tr data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');" style="cursor: pointer;">
+                <tr data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');">
                     <td>{{ $project->name }}</a></td>
                     <td>{{ $project->program }}</td>
                     <td>{{ $project->start_date }}</td>

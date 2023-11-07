@@ -39,7 +39,7 @@ class ProjectFactory extends Factory
             'program' => $this->faker->word,
             'community_link' => $this->faker->url,
             'project_status' => $this->faker->word,
-            'progress' => $this->faker->randomNumber(0, 100),
+            'progress' => $this->faker->randomNumber(1, 100),
             'check_discussion_RvB' => $this->faker->boolean,
         ];
     }

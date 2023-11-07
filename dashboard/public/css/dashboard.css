@@ -7,7 +7,7 @@
 
 /* Heading Styles */
 h2 {
-    color: #0e8add; 
+    color: #0e8add;
 }
 
 /* Text Styles */
@@ -21,7 +21,8 @@ table {
     border-collapse: collapse;
 }
 
-table td, table th {
+table td,
+table th {
     padding: 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 14px;
@@ -33,6 +34,32 @@ table th {
     text-align: left;
 }
 
+table tr {
+    cursor: pointer;
+}
+
 table tr:hover {
     background-color: #ddd;
-} 
+}
+
+.content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin-left: 10px;
+}
