@@ -2,9 +2,14 @@
 
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <div class="content">
     <h1>List of Projects</h1>
+
+    <div>
+        <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
+    </div>
 
     <table>
         <thead>
@@ -27,7 +32,7 @@
                     <td>{{ $project->program }}</td>
                     <td>{{ $project->start_date }}</td>
                     <td>{{ $project->end_date }}</td>
-                    <td>nan</td>
+                    <td>{{ $project->progress }}</td>
                     <td>{{ $project->project_status }}</td>
                     <td>{{ $project->portfolio_holder }}</td>
                     <td>nan</td>

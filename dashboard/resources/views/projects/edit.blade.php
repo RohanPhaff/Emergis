@@ -1,104 +1,140 @@
 @extends('layouts.dashboard')
 
 @section('dashboard-content')
-<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet"> 
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<div class="content">
-    <h1>Project {{ $project->name }}</h1>
+<div class="content"> <h1>Project {{ $project->name }}</h1>
 
+@if ($errors->any())
+<div class="alert alert-danger">
+<ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+    </ul>
+    </div>
+    @endif
 
-    <form method="POST" action="{{ route('projects.update', ['project' => $project->id]) }}">
-        @csrf
-        @method('PUT')
+    <form method="POST" action="{{ route('projects.update', ['project' => $project->id]) }}"
+    enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 
     <div class="item">
-        <span class="label">Project code:</span>
-        <input type="text" class="form-control" id="code" name="code" value="{{ $project->code }}" required>
+        <span class="label">Project naam:</span>
+        <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $project->name) }}"
+        required>
     </div>
 
     <div class="item">
-        <span class="label">Man hours:</span>
-        <input type="text" class="form-control" id="man_hours" name="man_hours" value="{{ $project->man_hours }}" required>
+    <span class="label">Project code:</span>
+    <input type="number" class="form-control" id="code" name="code" value="{{ old('code', $project->code) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Budget:</span>
-        <input type="text" class="form-control" id="budget" name="budget" value="{{ $project->budget }}" required>
+    <span class="label">Beschrijving:</span>
+    <input type="text" class="form-control" id="description" name="description"
+        value="{{ old('description', $project->description) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Expected costs:</span>
-        <input type="text" class="form-control" id="expected_costs" name="expected_costs" value="{{ $project->expected_costs }}" required>
+        <span class="label">Man uren:</span>
+        <input type="number" class="form-control" id="man_hours" name="man_hours" value="{{ old('man_hours',
+        $project->man_hours) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Duration:</span>
-        <input type="text" class="form-control" id="start_date" name="start_date" value="{{ $project->start_date }}" required>
-        to
-        <input type="text" class="form-control" id="end_date" name="end_date" value="{{ $project->end_date }}" required>
+    <span class="label">Budget:</span>
+    <input type="number" class="form-control" id="budget" name="budget" value="{{ old('budget', $project->budget) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Alternative project leader:</span>
-        <input type="text" class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ $project->alt_projectleader }}" required>
+    <span class="label">Verwachte kosten:</span>
+    <input type="number" class="form-control" id="expected_costs" name="expected_costs"
+        value="{{ old('expected_costs', $project->expected_costs) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Initiator:</span>
-        <input type="text" class="form-control" id="initiator" name="initiator" value="{{ $project->initiator }}" required>
-    </div>
+        <span class="label">Duur:</span>
+        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date',
+        $project->start_date) }}" required>
+        tot
+        <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date',
+        $project->end_date) }}" required>
+        </div>
 
-    <div class="item">
+        <div class="item">
+        <span class="label">Alternatieve project leider:</span>
+        <input type="text" class="form-control" id="alt_projectleader" name="alt_projectleader"
+            value="{{ old('alt_projectleader', $project->alt_projectleader) }}" required>
+        </div>
+
+        <div class="item">
+            <span class="label">Initiator:</span>
+            <input type="text" class="form-control" id="initiator" name="initiator" value="{{ old('initiator',
+            $project->initiator) }}" required>
+        </div>
+
+        <div class="item">
         <span class="label">Actor:</span>
-        <input type="text" class="form-control" id="actor" name="actor" value="{{ $project->actor }}" required>
+        <input type="text" class="form-control" id="actor" name="actor" value="{{ old('actor', $project->actor) }}"
+        required>
+        </div>
+
+        <div class="item">
+        <span class="label">Portfolio houder:</span>
+        <input type="text" class="form-control" id="portfolio_holder" name="portfolio_holder"
+            value="{{ old('portfolio_holder', $project->portfolio_holder) }}" required>
+        </div>
+
+        <div class="item">
+            <span class="label">Beredenering project:</span>
+            <input type="text" class="form-control" id="reasoning" name="reasoning" value="{{ old('reasoning',
+            $project->reasoning) }}" required>
+        </div>
+
+        <div class="item">
+        <span class="label">Documenten:</span>
+        <input type="file" class="form-control" id="uploaded_document_start" name="uploaded_document_start">
+        <input type="file" class="form-control" id="uploaded_document_planning" name="uploaded_document_planning">
     </div>
 
     <div class="item">
-        <span class="label">Portfolio holder:</span>
-        <input type="text" class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ $project->portfolio_holder }}" required>
+        <span class="label">Programma:</span>
+        <input type="text" class="form-control" id="program" name="program"
+            value="{{ old('program', $project->program) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Reasoning:</span>
-        <input type="text" class="form-control" id="reasoning" name="reasoning" value="{{ $project->reasoning }}" required>
-    </div>
-
-    <div class="item">
-        <span class="label">Documents:</span>
-        <input type="text" class="form-control" id="uploaded_document_start" name="uploaded_document_start" value="{{ $project->uploaded_document_start }}" required>
-        <input type="text" class="form-control" id="uploaded_document_planning" name="uploaded_document_planning" value="{{ $project->uploaded_document_planning }}" required>
-    </div>
-
-    <div class="item">
-        <span class="label">Program:</span>
-        <input type="text" class="form-control" id="program" name="program" value="{{ $project->program }}" required>
+        <span class="label">Community link:</span>
+        <input type="url" class="form-control" id="community_link" name="community_link"
+            value="{{ old('community_link', $project->community_link) }}" required>
     </div>
 
     <div class="item">
         <span class="label">Status:</span>
-        <input type="text" class="form-control" id="project_status" name="project_status" value="{{ $project->project_status }}" required>
+        <input type="text" class="form-control" id="project_status" name="project_status"
+            value="{{ old('project_status', $project->project_status) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Check discussion RvB:</span>
-        <input type="text" class="form-control" id="check_discussion_RvB" name="check_discussion_RvB" value="{{ $project->check_discussion_RvB }}" required>
+        <span class="label">Progressie:</span>
+        <input type="number" class="form-control" id="progress" name="progress"
+            value="{{ old('progress', $project->progress) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Created at:</span>
-        <input type="text" class="form-control" id="created_at" name="created_at" value="{{ $project->created_at }}" required>
-    </div>
-
-    <div class="item">
-        <span class="label">Updated at:</span>
-        <input type="text" class="form-control" id="updated_at" name="updated_at" value="{{ $project->updated_at }}" required>
+        <span class="label">Check discussie RvB:</span>
+        <input type="hidden" name="check_discussion_RvB" value="0">
+        <input type="checkbox" class="form-control" id="check_discussion_RvB" name="check_discussion_RvB" value="1" {{ old('check_discussion_RvB', $project->check_discussion_RvB) ? 'checked' : '' }}>
     </div>
 
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{ route('projects.index') }}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="light-blue-button">Aanpassen</button>
+        <a href="{{ route('projects.index') }}" class="light-blue-button">Annuleren</a>
     </div>
     </form>
-
 </div>
+
 @endsection

@@ -11,7 +11,7 @@ class StoreprojectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return true; // snelle oplossing voor rechten, moet nog aangepast worden!!!!!
     }
 
     /**

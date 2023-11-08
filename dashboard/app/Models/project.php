@@ -10,7 +10,9 @@ class project extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'code',
+        'description',
         'man_hours',
         'budget',
         'expected_costs',
@@ -24,11 +26,12 @@ class project extends Model
         'uploaded_document_start',
         'uploaded_document_planning',
         'program',
+        'community_link',
         'project_status',
+        'progress',
         'check_discussion_RvB',
-        // Add all other fields here
     ];
-    
+
     public function path()
     {
         return route('projects.show', $this);
