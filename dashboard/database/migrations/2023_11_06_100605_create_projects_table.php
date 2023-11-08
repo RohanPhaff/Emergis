@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
+            $table->string('project_id')->unique();
             $table->string('name');
             $table->string('code')->nullable()->unique();
             $table->string('description');
@@ -20,8 +21,8 @@ return new class extends Migration
             $table->integer('budget')->nullable();
             $table->integer('expected_costs')->nullable();
 
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
 
             $table->string('alt_projectleader')->nullable();
             $table->string('initiator')->nullable();
@@ -36,6 +37,11 @@ return new class extends Migration
             $table->string('project_status')->nullable();
             $table->integer('progress');
             $table->boolean('check_discussion_RvB')->nullable();
+
+            $table->string('risk_ids')->nullable();
+            $table->string('task_ids')->nullable();
+            $table->string('user_ids')->nullable();
+
             $table->timestamps();
         });
     }

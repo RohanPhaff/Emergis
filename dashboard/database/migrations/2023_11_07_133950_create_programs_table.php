@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('risks', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('risk_id')->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('description');
-            $table->integer('risk_level');
-            $table->string('status');
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('risks');
+        Schema::dropIfExists('programs');
     }
 };

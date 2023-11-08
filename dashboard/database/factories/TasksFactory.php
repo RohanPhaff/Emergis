@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\risks>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\tasks>
  */
-class RisksFactory extends Factory
+class TasksFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,10 @@ class RisksFactory extends Factory
     public function definition(): array
     {
         return [
-            'risk_id' => $this->faker->unique()->word,
+            'task_id' => $this->faker->unique()->word,
             'name' => $this->faker->word,
             'description' => $this->faker->word,
-            'risk_level' => $this->faker->randomNumber(1, 5),
+            'user' => $this->faker->optional()->word,
             'status' => $this->faker->word,
 
             'start_date' => $this->faker->date,
