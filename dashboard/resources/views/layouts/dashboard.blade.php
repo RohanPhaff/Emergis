@@ -42,12 +42,26 @@
 
         <!-- Top Menu -->
         <nav class="custom-top-menu">
-            <ul class="custom-top-menu-ul">
-                <li class="custom-top-menu-item">
-                    <a class="custom-top-menu-link" href="#">Profile</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="px-4" style="position: relative;">
+            <div id="user-name" style="cursor: pointer; color: white;">{{ Auth::user()->name }}</div>
+            <div class="mt-3 space-y-1" id="dropdown-menu" style="display: none; position: absolute; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
+                <a href="{{ route('profile.edit') }}">
+                    {{ __('Profile') }}
+                </a>
+
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
 
         <!-- Main Content -->
         <main class="custom-main-content">
@@ -59,4 +73,27 @@
         </main>
     </div>
 </div>
+
+
+<script>
+    var userName = document.getElementById('user-name');
+    var dropdownMenu = document.getElementById('dropdown-menu');
+
+    userName.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click event from bubbling up
+
+        if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+            dropdownMenu.style.display = 'block';
+        } else {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+
+    // Close the dropdown when clicking anywhere on the page except the name and menu
+    document.addEventListener('click', function (e) {
+        if (e.target !== userName && e.target !== dropdownMenu) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+</script>
 </main>
