@@ -2,11 +2,7 @@
 
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-<script src="{{ asset('js/delimiterProcessing.js') }}"></script>
-
-<script>
-    console.log(delimiterJoin(["Rohan", "Levi", "Senna"], ";"));
-</script>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <div class="content">
     <h1>Project {{ $project->name }}</h1>
