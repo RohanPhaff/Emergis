@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
 
+            $table->string('projectleader');
             $table->string('alt_projectleader')->nullable();
             $table->string('initiator')->nullable();
             $table->string('actor')->nullable();

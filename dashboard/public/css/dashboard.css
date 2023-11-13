@@ -42,24 +42,122 @@ table tr:hover {
     background-color: #ddd;
 }
 
-.content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.item {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
 .label {
     font-weight: bold;
 }
 
-.value {
-    margin-left: 10px;
+#progressValue,
+#RvBValue {
+    display:none;
+}
+
+#rvb {
+    color: black;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #ccc;
+    height: 30px;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .progress-bar {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    border-radius: 15px;
+  }
+
+  .red {
+    background-color: red;
+  }
+
+  .orange {
+    background-color: orange;
+  }
+
+  .green {
+    background-color: green;
+  }
+
+  @keyframes slide {
+    0% { width: 0; }
+  }
+
+.showDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.showManHours,
+.showBudget,
+.showExpectedCosts,
+.showDuration {
+    flex: 1;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.project-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.showName {
+    text-transform: capitalize;
+    margin-top: -10px;
+}
+
+.showLeader {
+    margin-top: -20px;
+}
+
+.showCode {
+    margin-top: 40px;
+}
+
+.showLink {
+    margin-top: -20px;
+    margin-bottom: -10px;
+}
+
+.left-box {
+    flex: 8;
+    padding: 20px;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.right-box {
+    flex: 1.5;
+    padding: 20px;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showRoles {
+    color: black;
 }
