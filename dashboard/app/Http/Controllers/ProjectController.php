@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project;
-use App\Http\Requests\StoreprojectRequest;
-use App\Http\Requests\UpdateprojectRequest;
+use App\Models\Project;
+use App\Models\Users;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -25,7 +27,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $users = Users::all();
+    
+        return view('projects.create', [
+            'projects' => $users
+        ]);
     }
 
     /**
