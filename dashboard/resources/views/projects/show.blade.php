@@ -16,7 +16,7 @@
     </div>
     <div class="right-box">
         <p class="showRoles"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-        <p class="showRoles"><strong>Alt. projectleider:</strong> {{ $project->alt_projectleader }}</p>
+        <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
         <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
         <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
         <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $project->portfolio_holder }}</p>
@@ -26,7 +26,7 @@
 
     <div class="showDetails">
         <div class="showManHours">
-            <h1>Man uren</h1>
+            <h1>Mens uren</h1>
             <p>{{ $project->man_hours }}</p>
         </div>
         <div class="showBudget">

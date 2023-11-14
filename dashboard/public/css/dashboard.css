@@ -77,7 +77,6 @@ table tr:hover {
     width: 100%;
     background-color: #ccc;
     height: 30px;
-    position: relative;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
@@ -85,7 +84,6 @@ table tr:hover {
   .progress-bar {
     width: 0;
     height: 100%;
-    position: absolute;
     text-align: center;
     line-height: 30px;
     color: #fff;
