@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
 
+            $table->string('projectleader')->nullable();
             $table->string('alt_projectleader')->nullable();
             $table->string('initiator')->nullable();
             $table->string('actor')->nullable();
