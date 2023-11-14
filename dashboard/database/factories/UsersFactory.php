@@ -17,12 +17,11 @@ class UsersFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->unique()->word,
             'name' => $this->faker->word,
-            'role' => $this->faker->word,
-            'email' => $this->faker->safeEmail,
+            'role' => 'Guest',
+            'email' => $this->faker->unique->safeEmail,
             'password' => $this->faker->word,
-            'phone_number' => $this->faker->word,
+            'phone_number' => $this->faker->unique->word,
         ];
     }
 }
