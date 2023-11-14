@@ -29,7 +29,7 @@ class ProjectController extends Controller
         $users = Users::all();
     
         return view('projects.create', [
-            'projects' => $users
+            'users' => $users
         ]);
     }
 
