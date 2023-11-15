@@ -15,7 +15,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = users::all();
+        
+        return view('admin.index', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -54,8 +58,14 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateusersRequest $request, users $users)
-    {
-        //
+    {              
+        $users->update([
+            "role" => $request->role,
+        ]);
+
+        $users = users::all();
+
+        return Redirect::route('admin.index')->with('success', 'User updated successfully!');
     }
 
     /**
@@ -64,28 +74,5 @@ class UsersController extends Controller
     public function destroy(users $users)
     {
         //
-    }
-
-    public function admin()
-    {
-        $users = users::all();
-        
-        return view('admin.admin', [
-            'users' => $users,
-        ]);
-    }
-
-    public function adminUpdate(UpdateusersRequest $user): RedirectResponse
-    {
-        $user->update([
-            'role' => $user->role,
-        ]);
-
-        $users = users::all();
-
-        return Redirect::route('admin.admin')
-            ->with('success', 'User updated')
-            ->with(['users' => $users,
-        ]);
     }
 }

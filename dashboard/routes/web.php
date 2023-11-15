@@ -25,15 +25,13 @@ Route::get('/dashboard', function () {
 
 Route::resource('/projects', App\Http\Controllers\ProjectController::class);
 
+Route::put('/admin/{users}', [UsersController::class, 'update'])->name('admin.update');
+Route::get('/admin', [UsersController::class, 'index'])->name('admin.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/admin', [UsersController::class, 'admin'])->name('admin.admin');
-    Route::patch('/admin', [UsersController::class, 'adminUpdate'])->name('admin.adminUpdate');
 });
 
 require __DIR__.'/auth.php';

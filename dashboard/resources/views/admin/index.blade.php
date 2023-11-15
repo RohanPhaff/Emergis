@@ -3,15 +3,15 @@
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
-@if ($success = Session::get('success'))
+<!-- @if ($success = Session::get('success'))
 <div class="alert alert-success">
     {{ $success }}
 </div>
-@endif
+@endif -->
 
 <div class="dashboard-content">
     @foreach ($users as $user)
-    <form method="POST" action="{{ route('admin.adminUpdate', ['user' => $user->id]) }}">
+    <form method="POST" action="{{ route('admin.update', ['users' => $user->id]) }}">
         @csrf
         @method('PUT')
         <div class="item">
@@ -26,6 +26,7 @@
             </select>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
+    </form>
     @endforeach
 </div>
 @endsection
