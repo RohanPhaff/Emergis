@@ -1,5 +1,8 @@
+@import url(https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular); 
+
 body {
     margin: 0;
+    font-family: "Averta-Regular",Helvetica,Arial,sans-serif;
 }
 
 .custom-sidebar {
@@ -11,20 +14,55 @@ body {
     left: 0;
     bottom: 0;
     overflow-y: auto;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.custom-sidebar:hover {
+    width: 160px;
+}
+
+.custom-menu-item .menu-text {
+    display: none;
+    margin-left: 15px;
+    transition: margin-left 0.3s ease;
+}
+
+.custom-sidebar:hover .custom-menu-item .menu-text {
+    display: block;
 }
 
 /* Logo */
 .custom-logo-container {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
     height: 60px;
+    margin-left: 7px;
 }
 
 .custom-logo {
     width: 45px;
     height: 45px;
+    transition: margin-left 0.3s ease;
+}
+
+.custom-sidebar:hover .custom-logo {
+    margin-left: 90px;
+    transition: margin-left 0.3s ease;
+}
+
+.custom-logo-text {
+    position: absolute;
+    width: 90px;
+    margin-left: 8px;
+    opacity: 0;
+    display: none;
+}
+
+.custom-sidebar:hover .custom-logo-text {
+    display: block;
+    animation: fadeIn 0.2s ease-in forwards;
 }
 
 /* Sidebar Menu */
@@ -40,7 +78,6 @@ body {
 .custom-menu-item {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
     height: 60px;
 }
@@ -59,6 +96,11 @@ body {
 .icon {
     height: 30px;
     width: 30px;
+    margin-left: 14px;
+}
+
+.menu-text {
+    animation: fadeIn 0.2s ease-in forwards;
 }
 
 /* Main Content */
@@ -70,7 +112,6 @@ body {
 /* Top Menu */
 .custom-top-menu {
     background-color: #232323;
-    position: relative;
     z-index: 1;
     display: flex;
     justify-content: flex-end;
@@ -92,4 +133,13 @@ body {
 
 .custom-top-menu-link:hover {
     text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0; /* Start with opacity 0 */
+    }
+    to {
+      opacity: 1; /* End with opacity 1 */
+    }
 }

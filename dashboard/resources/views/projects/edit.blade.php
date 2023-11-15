@@ -29,13 +29,12 @@
 
     <div class="item">
     <span class="label">Project code:</span>
-    <input type="number" class="form-control" id="code" name="code" value="{{ old('code', $project->code) }}" required>
+    <input type="text" class="form-control" id="code" name="code" value="{{ old('code', $project->code) }}" required>
     </div>
 
     <div class="item">
     <span class="label">Beschrijving:</span>
-    <input type="text" class="form-control" id="description" name="description"
-        value="{{ old('description', $project->description) }}" required>
+    <textarea class="form-control auto-resize" id="description" name="description" style="height: 200px; width: 100%;" required>{{ old('description', $project->description) }}</textarea>
     </div>
 
     <div class="item">
@@ -114,8 +113,7 @@
 
         <div class="item">
             <span class="label">Beredenering project:</span>
-            <input type="text" class="form-control" id="reasoning" name="reasoning" value="{{ old('reasoning',
-            $project->reasoning) }}" required>
+            <textarea class="form-control auto-resize" id="reasoning" name="reasoning" style="height: 200px; width: 100%;" required>{{ old('reasoning', $project->reasoning) }}</textarea>
         </div>
 
         <div class="item">

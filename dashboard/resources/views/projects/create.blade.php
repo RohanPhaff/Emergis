@@ -21,18 +21,20 @@
 
         <div class="item">
         <span class="label">Project naam:</span>
-        <input type="text" class="form-control" id="name" name="name" placeholder="project naam" value="{{ old('name') }}" required>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Project naam" value="{{ old('name') }}" required>
         </div>
 
         <div class="item">
             <span class="label">Project code:</span>
-            <input type="number" class="form-control" id="code" name="code" placeholder="12345" value="{{ old('code') }}" required>
+            <input type="text" class="form-control" id="code" name="code" placeholder="12345" value="{{ old('code') }}" required>
         </div>
 
         <div class="item">
-            <span class="label">Beschrijving:</span>
-            <input type="text" class="form-control" id="description" name="description" placeholder="beschrijving" value="{{ old('description') }}" required>
+            <span class="label">Beschrijving:</span><br>
+            <textarea class="form-control auto-resize" id="description" name="description" placeholder="Beschrijving" style="height: 200px; width: 100%;" required>{{ old('description') }}</textarea>
         </div>
+
+
 
         <div class="item">
             <span class="label">Man uren:</span>
@@ -98,7 +100,7 @@
 
         <div class="item">
             <span class="label">Aanleiding project:</span>
-            <input type="text" class="form-control" id="reasoning" name="reasoning" placeholder="aanleiding project" value="{{ old('reasoning') }}" required>
+            <textarea class="form-control auto-resize" id="reasoning" name="reasoning" placeholder="Aanleiding project" style="height: 200px; width: 100%;" required>{{ old('reasoning') }}</textarea>
         </div>
 
         <div class="item">
@@ -109,6 +111,7 @@
 
         <div class="item">
             <span class="label">Programma:</span>
+
             <select class="form-control" id="program" name="program" required>
             <option value="">Kies een programma</option>
                 @foreach ($programs as $program)
@@ -117,22 +120,13 @@
                     </option>
                     @endforeach
             </select>
+
         </div>
 
 
         <div class="item">
             <span class="label">Community link:</span>
             <input type="url" class="form-control" id="community_link" name="community_link" placeholder="https://www.community.nl" value="https://{{ old('community_link') }}" required>
-        </div>
-
-        <div class="item">
-            <span class="label">Status:</span>
-            <input type="text" class="form-control" id="project_status" name="project_status" placeholder="op schema" value="{{ old('project_status') }}" required>
-        </div>
-
-        <div class="item">
-            <span class="label">Progressie:</span>
-            <input type="number" class="form-control" id="progress" name="progress" placeholder="0 > 100" value="{{ old('progress') }}" required>
         </div>
 
         <div class="item">

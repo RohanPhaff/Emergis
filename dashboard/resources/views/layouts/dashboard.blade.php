@@ -6,6 +6,7 @@
         <!-- Left Sidebar -->
         <nav id="sidebar" class="custom-sidebar">
             <div class="custom-logo-container">
+            <img src="{{ asset('images/emergis.png') }}" alt="Logo" class="custom-logo-text">
                 <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="custom-logo">
             </div>
 
@@ -13,28 +14,26 @@
             <ul class="custom-menu">
                 <a class="custom-menu-link active" href="/dashboard">
                     <li class="custom-menu-item">
-
                         <img src="{{ asset('images/dashboard.svg') }}" alt="Dashboard" class="icon">
-
+                        <span class="menu-text">Dashboard</span>
                     </li>
                 </a>
                 <a class="custom-menu-link" href="/projects">
                     <li class="custom-menu-item">
                         <img src="{{ asset('images/overzicht.svg') }}" alt="Overzicht" class="icon">
+                        <span class="menu-text">Projecten</span>
                     </li>
                 </a>
                 <a class="custom-menu-link" href="#">
                     <li class="custom-menu-item">
-
                         <img src="{{ asset('images/contacts.svg') }}" alt="Contacts" class="icon">
-
+                        <span class="menu-text">Contacten</span>
                     </li>
                 </a>
                 <a class="custom-menu-link" href="#">
                     <li class="custom-menu-item">
-
                         <img src="{{ asset('images/calendar.svg') }}" alt="Calendar" class="icon">
-
+                        <span class="menu-text">Kalender</span>
                     </li>
                 </a>
                 @if (Auth::user()->role == 'Admin')
@@ -63,7 +62,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); this.closest('form').submit();">
+                        onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </a>
                 </form>
