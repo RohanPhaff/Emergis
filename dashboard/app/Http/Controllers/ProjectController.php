@@ -56,10 +56,17 @@ class ProjectController extends Controller
             'uploaded_document_planning' => 'required|file|mimes:pdf,doc,docx',
             'program' => 'required|string',
             'community_link' => 'required|url',
-            'project_status' => 'required|string',
-            'progress' => 'required|numeric',
+            'project_status' => 'filled|string',
+            'progress' => 'filled|numeric',
             'check_discussion_RvB' => 'required|boolean',
         ]);
+
+        if (empty($validatedData['project_status'])) {
+            $validatedData['project_status'] = 'Op schema';
+        }
+        if (empty($validatedData['progress'])) {
+            $validatedData['progress'] = '0';
+        }
 
         // upload documents as blobs
         $pdfDataStart = $request->file('uploaded_document_start')->get();

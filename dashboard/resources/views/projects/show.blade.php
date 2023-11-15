@@ -8,7 +8,7 @@
 <div class="left-box">
         <h1 class="showName">{{ $project->name }}</h1>
         <p class="showLeader"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-        <p class="showLeader"><strong>Programma:</strong> {{ $project->program }}</p>
+        <p class="showProgram"><strong>Programma:</strong> {{ $project->program }}</p>
         <p class="showDescription">{{ $project->description }}</p>
         <p class="showDescription">{{ $project->reasoning }}</p>
         <p class="showCode"><strong>Projectcode:</strong> {{ $project->code }}</p>
@@ -87,7 +87,7 @@
       progressBar.innerText = value + '%';
 
       // Determine the color class based on the value
-      let colorClass = 'blue'; // Default to green
+      let colorClass = 'blue'; // Default to blue
       if (projectStatus == "Afgelast") {
         colorClass = 'red';
       } else if (projectStatus == "Vertraagd") {

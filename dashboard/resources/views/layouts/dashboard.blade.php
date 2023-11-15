@@ -6,6 +6,7 @@
         <!-- Left Sidebar -->
         <nav id="sidebar" class="custom-sidebar">
             <div class="custom-logo-container">
+            <img src="{{ asset('images/emergis.png') }}" alt="Logo" class="custom-logo-text">
                 <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="custom-logo">
             </div>
 

@@ -9,6 +9,7 @@
 
     <div>
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
+        <br><br>
     </div>
 
     <table>

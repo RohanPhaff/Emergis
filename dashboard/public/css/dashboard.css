@@ -1,3 +1,9 @@
+@import url(https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular);
+
+button {
+    font-family: "Averta-Regular",Helvetica,Arial,sans-serif;
+}
+
 /* Dashboard Content Styles */
 .dashboard-content {
     background-color: #f4f4f4;
@@ -58,6 +64,7 @@ table tr:hover {
 
 .label {
     font-weight: bold;
+    top: 50%;
 }
 
 .value {
@@ -91,15 +98,15 @@ table tr:hover {
   }
 
   .red {
-    background-color: red;
+    background-color: #E63A4E;
   }
 
   .orange {
-    background-color: orange;
+    background-color: #F5A04C;
   }
 
   .green {
-    background-color: green;
+    background-color: #ACD084;
   }
 
   @keyframes slide {
@@ -144,6 +151,10 @@ p {
 }
 
 .showLeader {
+    margin-top: -15px;
+}
+
+.showProgram {
     margin-top: -20px;
 }
 
@@ -176,4 +187,87 @@ p {
 
 .showRoles {
     color: black;
+}
+
+select {
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    border: 1px solid #ccc;
+}
+
+select:focus {
+    border: 1px solid #555;
+}
+
+/* Styling for both input and textarea */
+input[type=text],
+input[type=url],
+input[type=date],
+input[type=file] {
+    font-family: "Averta-Regular", Helvetica, Arial, sans-serif;
+    padding: 12px 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    overflow: auto;
+    resize: both;
+    min-width: 150px; /* Set a minimum width */
+}
+
+/* Focus styles */
+input[type=text]:focus,
+input[type=url]:focus,
+input[type=date]:focus,
+input[type=file]:focus {
+    border: 1px solid #555;
+}
+
+input[type=number] {
+    /*for absolutely positioning spinners*/
+    font-family: "Averta-Regular",Helvetica,Arial,sans-serif;
+    padding: 12px 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+input[type=number]:focus {
+    outline: none;
+    border: 1px solid #555;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+input[type=number]::-webkit-outer-spin-button, 
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: inner-spin-button !important;
+    width: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+textarea {
+    font-family: "Averta-Regular", Helvetica, Arial, sans-serif;
+    padding: 12px 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    outline: none;
+    overflow: hidden;
+    resize: vertical;
+}
+
+textarea:focus {
+    border: 1px solid #555;
 }
