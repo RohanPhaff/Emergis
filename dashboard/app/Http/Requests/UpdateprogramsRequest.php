@@ -11,7 +11,7 @@ class UpdateprogramsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // snelle oplossing voor rechten, moet nog aangepast worden!!!!!
     }
 
     /**

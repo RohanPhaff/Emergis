@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Program;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
@@ -27,10 +28,8 @@ class ProjectController extends Controller
     public function create()
     {
         $users = Users::all();
-    
-        return view('projects.create', [
-            'users' => $users
-        ]);
+        $programs = Program::all();
+        return view('projects.create', compact('users', 'programs'));
     }
 
     /**
@@ -90,9 +89,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', [
-            'project' => $project
-        ]);
+        $users = Users::all();
+        return view('projects.edit', compact('project', 'users'));
     }
 
     /**

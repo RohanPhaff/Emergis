@@ -12,6 +12,6 @@ class ProgramsSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\programs::factory(10)->create();
+        \App\Models\program::factory(10)->create();
     }
 }

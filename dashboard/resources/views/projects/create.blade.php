@@ -58,42 +58,42 @@
 
         <div class="item">
             <span class="label">Alternatieve projectleider:</span>
-            <select>
+            <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}" required>
                 <option value="">Kies een Alternatieve Projectleider</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
-            </select type="text" class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}" required>
+            </select>
         </div>
 
         <div class="item">
             <span class="label">Initiator:</span>
-            <select>
+            <select class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}" required>
                 <option value="">Kies een Initiator</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
-            </select type="text" class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}" required>
+            </select>
         </div>
 
         <div class="item">
             <span class="label">Actor:</span>
-            <select>
+            <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}" required>
                 <option value="">Kies een Actor</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
-            </select type="text" class="form-control" id="actor" name="actor" value="{{ old('actor') }}" required>
+            </select>
         </div>
 
         <div class="item">
             <span class="label">Portfolio houder:</span>
-            <select>
-                <option value="">Kies een Portfolio houder</option>
+            <select class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ old('portfolio_holder') }}" required>
+            <option value="">Kies een Portfolio houder</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
-            </select type="text" class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ old('portfolio_holder') }}" required>
+            </select>
         </div>
 
         <div class="item">
@@ -109,8 +109,16 @@
 
         <div class="item">
             <span class="label">Programma:</span>
-            <input type="text" class="form-control" id="program" name="program" placeholder="programma" value="{{ old('program') }}" required>
+            <select class="form-control" id="program" name="program" required>
+            <option value="">Kies een programma</option>
+                @foreach ($programs as $program)
+                    <option value="{{ $program->name }}">
+                        {{ $program->name }}
+                    </option>
+                    @endforeach
+            </select>
         </div>
+
 
         <div class="item">
             <span class="label">Community link:</span>

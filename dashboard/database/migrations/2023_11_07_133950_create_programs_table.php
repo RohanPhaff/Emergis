@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->unique();
             $table->string('name')->unique();
             $table->string('description');
+            $table->string('portfolio_holder');
             $table->timestamps();
         });
     }
