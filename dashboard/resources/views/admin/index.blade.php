@@ -15,7 +15,7 @@
         @csrf
         @method('PUT')
         <div class="item">
-            <p>{{$user->name}}</p>
+            <p><strong>{{$user->name}}</strong></p>
 
             <p>{{$user->email}}</p>
 

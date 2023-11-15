@@ -24,10 +24,10 @@
                         <span class="menu-text">Projecten</span>
                     </li>
                 </a>
-                <a class="custom-menu-link" href="#">
+                <a class="custom-menu-link" href="/programs">
                     <li class="custom-menu-item">
-                        <img src="{{ asset('images/contacts.svg') }}" alt="Contacts" class="icon">
-                        <span class="menu-text">Contacten</span>
+                        <img src="{{ asset('images/programs.png') }}" alt="Programs" class="icon">
+                        <span class="menu-text">Programma's</span>
                     </li>
                 </a>
                 <a class="custom-menu-link" href="#">
@@ -40,7 +40,8 @@
                 <a class="custom-menu-link" href="/admin">
                     <li class="custom-menu-item">
 
-                        <img src="{{ asset('images/admin-icon.jpg') }}" alt="Admin" class="icon"> 
+                        <img src="{{ asset('images/admin.png') }}" alt="Admin" class="icon"> 
+                        <span class="menu-text">Admin</span>
 
                     </li>
                 </a>

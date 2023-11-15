@@ -19,7 +19,7 @@ body {
 }
 
 .custom-sidebar:hover {
-    width: 160px;
+    width: 175px;
 }
 
 .custom-menu-item .menu-text {
@@ -48,14 +48,14 @@ body {
 }
 
 .custom-sidebar:hover .custom-logo {
-    margin-left: 90px;
+    margin-left: 95px;
     transition: margin-left 0.3s ease;
 }
 
 .custom-logo-text {
     position: absolute;
     width: 90px;
-    margin-left: 8px;
+    margin-left: 13px;
     opacity: 0;
     display: none;
 }
