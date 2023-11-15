@@ -40,7 +40,7 @@
                 <a class="custom-menu-link" href="/admin">
                     <li class="custom-menu-item">
 
-                        <img src="{{ asset('images/admin.png') }}" alt="Admin" class="icon"> 
+                        <img src="{{ asset('images/admin.png') }}" style="width: 27px; alt="Admin" class="icon"> 
                         <span class="menu-text">Admin</span>
 
                     </li>

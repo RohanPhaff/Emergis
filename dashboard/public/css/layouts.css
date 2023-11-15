@@ -48,14 +48,14 @@ body {
 }
 
 .custom-sidebar:hover .custom-logo {
-    margin-left: 95px;
+    margin-left: 96px;
     transition: margin-left 0.3s ease;
 }
 
 .custom-logo-text {
     position: absolute;
-    width: 90px;
-    margin-left: 13px;
+    width: 89px;
+    margin-left: 15px;
     opacity: 0;
     display: none;
 }
