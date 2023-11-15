@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\programs>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\program>
  */
-class ProgramsFactory extends Factory
+class ProgramFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,8 @@ class ProgramsFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            'description' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'portfolio_holder' => $this->faker->name,
         ];
     }
 }

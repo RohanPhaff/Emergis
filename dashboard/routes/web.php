@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/projects', App\Http\Controllers\ProjectController::class);
+Route::resource('/programs', App\Http\Controllers\ProgramController::class);
+
+Route::put('/admin/{users}', [UsersController::class, 'update'])->name('admin.update');
+Route::get('/admin', [UsersController::class, 'index'])->name('admin.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
