@@ -37,6 +37,15 @@
 
                     </li>
                 </a>
+                @if (Auth::user()->role == 'Admin')
+                <a class="custom-menu-link" href="/admin">
+                    <li class="custom-menu-item">
+
+                        <img src="{{ asset('images/admin-icon.jpg') }}" alt="Admin" class="icon"> 
+
+                    </li>
+                </a>
+                @endif
             </ul>
         </nav>
 

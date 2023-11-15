@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\users;
 use App\Http\Requests\StoreusersRequest;
 use App\Http\Requests\UpdateusersRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
 {
@@ -62,5 +64,28 @@ class UsersController extends Controller
     public function destroy(users $users)
     {
         //
+    }
+
+    public function admin()
+    {
+        $users = users::all();
+        
+        return view('admin.admin', [
+            'users' => $users,
+        ]);
+    }
+
+    public function adminUpdate(UpdateusersRequest $user): RedirectResponse
+    {
+        $user->update([
+            'role' => $user->role,
+        ]);
+
+        $users = users::all();
+
+        return Redirect::route('admin.admin')
+            ->with('success', 'User updated')
+            ->with(['users' => $users,
+        ]);
     }
 }
