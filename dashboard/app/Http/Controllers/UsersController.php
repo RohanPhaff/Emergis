@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\users;
 use App\Http\Requests\StoreusersRequest;
 use App\Http\Requests\UpdateusersRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
 {
@@ -13,7 +15,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = users::all();
+        
+        return view('admin.index', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -52,8 +58,14 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateusersRequest $request, users $users)
-    {
-        //
+    {              
+        $users->update([
+            "role" => $request->role,
+        ]);
+
+        $users = users::all();
+
+        return Redirect::route('admin.index')->with('success', 'User updated successfully!');
     }
 
     /**
