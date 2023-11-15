@@ -276,3 +276,7 @@ textarea:focus {
     color: red;
     font-size: 1.2em;
 }
+
+table {
+    margin-top: 20px;
+}
