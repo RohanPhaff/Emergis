@@ -38,7 +38,7 @@
     </div>
 
     <div class="item">
-        <span class="label">Man uren:</span>
+        <span class="label">Mens uren:</span>
         <input type="number" class="form-control" id="man_hours" name="man_hours" value="{{ old('man_hours',
         $project->man_hours) }}" required>
     </div>
@@ -49,13 +49,13 @@
     </div>
 
     <div class="item">
-    <span class="label">Verwachte kosten:</span>
+    <span class="label">Gemaakte kosten:</span>
     <input type="number" class="form-control" id="expected_costs" name="expected_costs"
         value="{{ old('expected_costs', $project->expected_costs) }}" required>
     </div>
 
     <div class="item">
-        <span class="label">Duur:</span>
+        <span class="label">Verwachtte duur:</span>
         <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date',
         $project->start_date) }}" required>
         tot
@@ -64,7 +64,7 @@
         </div>
 
         <div class="item">
-            <span class="label">Alternatieve projectleider:</span>
+            <span class="label">2e projectleider:</span>
             <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}" required>
                 <option value="">Kies een Alternatieve Projectleider</option>
                 @foreach ($users as $user)
