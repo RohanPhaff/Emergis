@@ -24,7 +24,7 @@ body {
 
 .custom-menu-item .menu-text {
     display: none;
-    margin-left: 20px;
+    margin-left: 15px;
     transition: margin-left 0.3s ease;
 }
 
