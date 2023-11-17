@@ -2,7 +2,6 @@
 
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <!-- Table sorting -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery CDN MUST be loaded first -->

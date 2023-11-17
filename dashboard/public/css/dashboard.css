@@ -280,3 +280,13 @@ textarea:focus {
 table {
     margin-top: 20px;
 }
+
+.light-blue-button {
+    background-color: rgb(0, 146, 191);
+    color: #fff;
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    text-decoration: none;
+    cursor: pointer;
+}

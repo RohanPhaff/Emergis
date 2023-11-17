@@ -2,7 +2,6 @@
 
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet"> 
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <div class="content"> <h1>Nieuw programma</h1>
 
