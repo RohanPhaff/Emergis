@@ -37,8 +37,6 @@
             <textarea class="form-control auto-resize" id="description" name="description" placeholder="Beschrijving" style="height: 200px; width: 100%;" required>{{ old('description') }}</textarea>
         </div>
 
-
-
         <div class="item">
             <span class="label">Mens uren:</span>
             <input type="number" class="form-control" id="man_hours" name="man_hours" placeholder="75" value="{{ old('man_hours') }}">
@@ -47,6 +45,11 @@
         <div class="item">
             <span class="label">Budget:</span>
             <input type="number" class="form-control" id="budget" name="budget" placeholder="12500" value="{{ old('budget') }}">
+        </div>
+
+        <div class="item">
+            <span class="label">Gemaakte kosten:</span>
+            <input type="number" class="form-control" id="spent_costs" name="spent_costs" placeholder="10000" value="{{ old('spent_costs') }}">
         </div>
 
         <div class="item">
@@ -59,18 +62,18 @@
         <div class="item">
             <span class="required">*</span>
             <span class="label">Projectleider:</span>
-            <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}" required>
+            <select class="form-control" id="projectleader" name="projectleader" value="{{ old('projectleader') }}" required>
                 <option value="">Projectleider</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}" @if ($user->name == Auth::user()->name) selected @endif>{{ $user->name }}</option>
+                    <option value="{{ $user->name }}" @if ($user->name == Auth::user()->name) selected @endif>{{ $user->name }}</option>
                 @endforeach
             </select>
         </div>
         
         <div class="item">
             <span class="label">2e projectleider:</span>
-            <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}">
-                <option value="">Kies een Alternatieve Projectleider</option>
+            <select class="form-control" id="second_projectleader" name="second_projectleader" value="{{ old('second_projectleader') }}">
+                <option value="">Kies een 2e Projectleider</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
@@ -95,17 +98,7 @@
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-        </div>
-
-        <div class="item">
-            <span class="label">Portfolio houder:</span>
-            <select class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ old('portfolio_holder') }}">
-            <option value="">Kies een Portfolio houder</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->name }}">{{ $user->name }}</option>
-                @endforeach
-            </select>
-        </div>
+        </div> 
 
         <div class="item">
             <span class="required">*</span>
@@ -126,18 +119,16 @@
             <select class="form-control" id="program" name="program" required>
             <option value="">Kies een programma</option>
                 @foreach ($programs as $program)
-                    <option value="{{ $program->name }}">
+                    <option value="{{ $program->name }}" {{ old('program', $program->name) == $program->name ? 'selected' : '' }}>
                         {{ $program->name }}
                     </option>
                     @endforeach
             </select>
-
         </div>
-
 
         <div class="item">
             <span class="label">Community link:</span>
-            <input type="url" class="form-control" id="community_link" name="community_link" placeholder="https://www.community.nl" value="https://{{ old('community_link') }}">
+            <input type="url" class="form-control" id="community_link" name="community_link" placeholder="https://www.community.nl" value="https://{{ str_replace('https://', '', old('community_link')) }}">
         </div>
 
         <div class="item">
