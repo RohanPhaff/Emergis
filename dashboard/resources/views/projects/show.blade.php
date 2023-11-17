@@ -12,14 +12,14 @@
         <p class="showDescription">{{ $project->description }}</p>
         <p class="showDescription">{{ $project->reasoning }}</p>
         <p class="showCode"><strong>Projectcode:</strong> {{ $project->code }}</p>
-        <p class="showLink"><strong>Community Link:</strong> {{ $project->community_link }}</p>
+        <p class="showLink"><strong>Community Link:</strong> <a href="{{ $project->community_link }}">{{ $project->community_link }}</a></p>
     </div>
     <div class="right-box">
         <p class="showRoles"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-        <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
+        <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->second_projectleader }}</p>
         <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
         <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
-        <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $project->portfolio_holder }}</p>
+        <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $program->portfolio_holder }}</p>
     </div>
 </div>
 
@@ -34,8 +34,8 @@
             <p>{{ $project->budget }}</p>
         </div>
         <div class="showExpectedCosts">
-            <h1>Verwachte kosten</h1>
-            <p>{{ $project->expected_costs }}</p>
+            <h1>Gemaakte kosten</h1>
+            <p>{{ $project->spent_costs }}</p>
         </div>
         <div class="showDuration">
             <h1>Duratie</h1>
@@ -64,7 +64,7 @@
     </div>
     
     <div>
-        <span class="label">GeÃ¼pdatet op:</span>
+        <span class="label">Geüpdatet op:</span>
         <span class="value">{{ $project->updated_at }}</span>
     </div>
 </div>

@@ -22,19 +22,23 @@
     @method('PUT')
 
     <div class="item">
+        <span class="required">*</span>
         <span class="label">Project naam:</span>
         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $project->name) }}"
         required>
     </div>
 
     <div class="item">
-    <span class="label">Project code:</span>
-    <input type="text" class="form-control" id="code" name="code" value="{{ old('code', $project->code) }}" required>
+        <span class="required">*</span>
+        <span class="label">Project code:</span>
+        <input type="text" class="form-control" id="code" name="code" value="{{ old('code', $project->code) }}" 
+        required>
     </div>
 
     <div class="item">
-    <span class="label">Beschrijving:</span>
-    <textarea class="form-control auto-resize" id="description" name="description" style="height: 200px; width: 100%;" required>{{ old('description', $project->description) }}</textarea>
+        <span class="required">*</span>
+        <span class="label">Beschrijving:</span>
+        <textarea class="form-control auto-resize" id="description" name="description" style="height: 200px; width: 100%;" required>{{ old('description', $project->description) }}</textarea>
     </div>
 
     <div class="item">
@@ -61,6 +65,17 @@
         tot
         <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date',
         $project->end_date) }}">
+        </div>
+
+        <div class="item">
+            <span class="required">*</span>
+            <span class="label">Projectleider:</span>
+            <select class="form-control" id="projectleader" name="projectleader" value="{{ old('projectleader') }}" required>
+                <option value="">Projectleider</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->name }}" {{ old('projectleader', $project->projectleader) == $user->name ? 'selected' : '' }}>{{ $user->name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="item">
@@ -100,6 +115,7 @@
         </div>
 
         <div class="item">
+            <span class="required">*</span>
             <span class="label">Beredenering project:</span>
             <textarea class="form-control auto-resize" id="reasoning" name="reasoning" style="height: 200px; width: 100%;" required>{{ old('reasoning', $project->reasoning) }}</textarea>
         </div>
@@ -111,10 +127,18 @@
     </div>
 
     <div class="item">
-        <span class="label">Programma:</span>
-        <input type="text" class="form-control" id="program" name="program"
-            value="{{ old('program', $project->program) }}" required>
-    </div>
+            <span class="required">*</span>
+            <span class="label">Programma:</span>
+
+            <select class="form-control" id="program" name="program" required>
+            <option value="">Kies een programma</option>
+                @foreach ($programs as $program)
+                    <option value="{{ $program->name }}" {{ old('program', $program->name) == $program->name ? 'selected' : '' }}>
+                        {{ $program->name }}
+                    </option>
+                    @endforeach
+            </select>
+        </div>
 
     <div class="item">
         <span class="label">Community link:</span>

@@ -43,14 +43,13 @@ class ProjectController extends Controller
             'description' => 'required|max:255',
             'man_hours' => 'numeric|nullable',
             'budget' => 'numeric|nullable',
-            'expected_costs' => 'numeric|nullable',
+            'spent_costs' => 'numeric|nullable',
             'start_date' => 'date|nullable',
             'end_date' => 'date|nullable',
             'projectleader' => 'required|string',
-            'alt_projectleader' => 'string|nullable',
+            'second_projectleader' => 'string|nullable',
             'initiator' => 'string|nullable',
             'actor' => 'string|nullable',
-            'portfolio_holder' => 'string|nullable',
             'reasoning' => 'required|string',
             'uploaded_document_start' => 'file|mimes:pdf,doc,docx|nullable',
             'uploaded_document_planning' => 'file|mimes:pdf,doc,docx|nullable',
@@ -92,18 +91,19 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('projects.show', [
-            'project' => $project
-        ]);
+        $program = Program::where('name', $project->program)->first();
+        
+        return view('projects.show', compact('project', 'program'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Project $project)
-    {
+    {    
         $users = Users::all();
-        return view('projects.edit', compact('project', 'users'));
+        $programs = Program::all();
+        return view('projects.edit', compact('project', 'users', 'programs'));
     }
 
     /**
@@ -112,26 +112,26 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:projects|max:50',
-            'code' => 'required|unique:projects|max:50',
+            'name' => 'required|unique:projects,name,' . $project->id . '|max:50',
+            'code' => 'required|unique:projects,code,' . $project->id . '|max:50',
             'description' => 'required|max:255',
-            'man_hours' => 'required|numeric',
-            'budget' => 'required|numeric',
-            'expected_costs' => 'required|numeric',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'alt_projectleader' => 'required|string',
-            'initiator' => 'required|string',
-            'actor' => 'required|string',
-            'portfolio_holder' => 'required|string',
+            'man_hours' => 'nullable|numeric',
+            'budget' => 'nullable|numeric',
+            'spent_costs' => 'nullable|numeric',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'projectleader' => 'required|string',
+            'second_projectleader' => 'nullable|string',
+            'initiator' => 'nullable|string',
+            'actor' => 'nullable|string',
             'reasoning' => 'required|string',
-            'uploaded_document_start' => 'required|file|mimes:pdf,doc,docx',
-            'uploaded_document_planning' => 'required|file|mimes:pdf,doc,docx',
+            'uploaded_document_start' => 'nullable|file|mimes:pdf,doc,docx',
+            'uploaded_document_planning' => 'nullable|file|mimes:pdf,doc,docx',
             'program' => 'required|string',
-            'community_link' => 'required|url',
-            'project_status' => 'required|string',
-            'progress' => 'required|numeric',
-            'check_discussion_RvB' => 'required|boolean',
+            'community_link' => 'nullable|url',
+            'project_status' => 'nullable|string',
+            'progress' => 'nullable|numeric',
+            'check_discussion_RvB' => 'boolean',
         ]);
 
     // Check if 'uploaded_document_start' file was uploaded
