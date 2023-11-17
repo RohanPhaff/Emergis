@@ -44,9 +44,16 @@
     </div>
     <h1>Voortgang</h1>
     <h1 id="progressValue">{{ $project->progress }}</h1>
-  <div class="progress-container">
-    <div class="progress-bar"></div>
-  </div>
+    <div class="container">
+        <div class="progress-container">
+          <div class="progress" id="progress"> </div>
+          <div class="circle">1</div>
+          <div class="circle">2</div>
+          <div class="circle">3</div>
+          <div class="circle">4</div>
+          <div class="circle">5</div>
+        </div>
+    </div>
 <p id="projectStatus">{{ $project->project_status }}</p>
 
     <h1 id="RvBValue">{{ $project->check_discussion_RvB }}</h1>
@@ -70,49 +77,45 @@
 </div>
 
 <script>
-    // JavaScript to update the progress bar and its color based on the h1 element value
-    const progressValue = document.getElementById('progressValue');
-    const progressBar = document.querySelector('.progress-bar');
+  const progress = document.getElementById("progress");
+  const stepCircles = document.querySelectorAll(".circle");
+  
+  const progressValue = document.getElementById('progressValue').innerHTML;
+  const projectStatus = document.getElementById('projectStatus').innerHTML;
+  const rvb = document.getElementById('RvBValue').innerHTML;
 
-    const projectStatus = document.getElementById('projectStatus').innerHTML;
-    const animationDuration = 1; // Fixed animation duration in seconds
+  let currentActive = 1;
 
-    const rvb = document.getElementById('RvBValue').innerHTML;
+  const updateValue = Math.floor(progressValue / 20);
+  
+  update(updateValue);
 
-    function updateProgressBar() {
-      const value = parseInt(progressValue.innerText, 10);
-      const width = value + '%';
-      progressBar.style.animation = 'none'; // Disable the animation
-      progressBar.style.width = width;
-      progressBar.innerText = value + '%';
-
-      // Determine the color class based on the value
-      let colorClass = 'blue'; // Default to blue
-      if (projectStatus == "Afgelast") {
-        colorClass = 'red';
-      } else if (projectStatus == "Vertraagd") {
-        colorClass = 'orange';
-      } else if (projectStatus == "Op schema") {
-        colorClass = 'green';
+  function update(currentActive) {
+    stepCircles.forEach((circle, i) => {
+      if (i < currentActive && projectStatus == "Op schema") {
+        circle.classList.add("active_on_track");
+        progress.style.background = "var(--line-border-on-track-lighter)";
+      } else if (i < currentActive && projectStatus == "Vertraagd") {
+        circle.classList.add("active_delayed");
+        progress.style.background = "var(--line-border-delayed-lighter)";
+      } else if (i < currentActive && projectStatus == "Afgelast") {
+        circle.classList.add("active_cancelled");
+        progress.style.background = "var(--line-border-cancelled-lighter)";
+      } else {
+        circle.classList.remove("active");
       }
+    });
+  
+  const activeCircles = document.querySelectorAll(".active_delayed, .active_cancelled, .active_on_track");
+  progress.style.width =
+    ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%"; 
+  }
 
-      progressBar.className = `progress-bar ${colorClass}`; // Apply the appropriate color class
-
-      // Re-enable the animation with a fixed duration
-      setTimeout(() => {
-        progressBar.style.animation = `slide ${animationDuration}s ease-in-out forwards`;
-      }, 0);
-    }
-
-    updateProgressBar(); // Initial update
-
-    console.log(rvb)
-
-    if (rvb == "1") {
-        document.getElementById("rvb").style.display = "block";
-    } else {
-        document.getElementById("rvb").style.display = "none";
-    }
+  if (rvb == "1") {
+      document.getElementById("rvb").style.display = "block";
+  } else {
+      document.getElementById("rvb").style.display = "none";
+  }
   </script>
 
 @endsection

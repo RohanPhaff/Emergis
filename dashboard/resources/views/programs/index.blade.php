@@ -4,6 +4,7 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+<div class="dashboard-content">
 <div class="content">
     <h1>List of Programs</h1>
 
@@ -29,5 +30,6 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 @endsection

@@ -12,7 +12,7 @@
 
             <!-- Sidebar Menu -->
             <ul class="custom-menu">
-                <a class="custom-menu-link active" href="/dashboard">
+                <a class="custom-menu-link dashboard" href="/dashboard">
                     <li class="custom-menu-item">
                         <img src="{{ asset('images/dashboard.svg') }}" alt="Dashboard" class="icon">
                         <span class="menu-text">Dashboard</span>
@@ -40,7 +40,7 @@
                 <a class="custom-menu-link" href="/admin">
                     <li class="custom-menu-item">
 
-                        <img src="{{ asset('images/admin.png') }}" style="width: 27px; alt="Admin" class="icon"> 
+                        <img src="{{ asset('images/admin.png') }}" style="width: 27px;" alt="Admin" class="icon"> 
                         <span class="menu-text">Admin</span>
 
                     </li>
@@ -54,7 +54,7 @@
     <div class="pt-4 pb-1 border-t border-gray-200">
         <div class="px-4" style="position: relative;">
             <div id="user-name" style="cursor: pointer; color: white;">{{ Auth::user()->name }}</div>
-            <div class="mt-3 space-y-1" id="dropdown-menu" style="display: none; position: absolute; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
+            <div class="mt-3 space-y-1" id="dropdown-menu" style="z-index: 5; display: none; position: absolute; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
                 <a href="{{ route('profile.edit') }}">
                     {{ __('Profile') }}
                 </a>
@@ -88,6 +88,9 @@
     var userName = document.getElementById('user-name');
     var dropdownMenu = document.getElementById('dropdown-menu');
 
+    const menuLinks = document.querySelectorAll('.custom-menu-link');
+    const sidebar = document.querySelector('.sidebar');
+
     userName.addEventListener('click', function (e) {
         e.stopPropagation(); // Prevent the click event from bubbling up
 
@@ -103,6 +106,19 @@
         if (e.target !== userName && e.target !== dropdownMenu) {
             dropdownMenu.style.display = 'none';
         }
+    });
+
+    const currentPath = window.location.pathname;
+
+    menuLinks.forEach(item => {
+    // Get the href attribute of each menu item
+    const href = item.getAttribute('href');
+
+    // Check if the href value matches the current path
+    if (href === currentPath) {
+        // Add the 'active' class to the menu item
+        item.classList.add('active');
+    }
     });
 </script>
 </main>
