@@ -3,7 +3,6 @@
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
-<div class="dashboard-content">
 <div class="project-container">
 <div class="left-box">
         <h1 class="showName">{{ $project->name }}</h1>
@@ -74,6 +73,14 @@
         <span class="label">GeÃ¼pdatet op:</span>
         <span class="value">{{ $project->updated_at }}</span>
     </div>
+
+    <div class="actions-container">
+      <div class="edit">
+        <p class="edit-text">Project Wijzigen</p>
+      </div>
+      <div class="delete">
+      <p class="delete-text">Project Verwijderen</p>
+      </div>
 </div>
 
 <script>

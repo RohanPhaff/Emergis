@@ -3,7 +3,6 @@
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
-<div class="dashboard-content">
 <div class="project-container">
 <div class="left-box">
         <h1 class="showName">{{ $program->name }}</h1>
