@@ -38,7 +38,7 @@
     </div>
 
     <div class="item">
-        <span class="label">Man uren:</span>
+        <span class="label">Mens uren:</span>
         <input type="number" class="form-control" id="man_hours" name="man_hours" value="{{ old('man_hours',
         $project->man_hours) }}" required>
     </div>
@@ -49,9 +49,9 @@
     </div>
 
     <div class="item">
-    <span class="label">Verwachte kosten:</span>
-    <input type="number" class="form-control" id="expected_costs" name="expected_costs"
-        value="{{ old('expected_costs', $project->expected_costs) }}" required>
+    <span class="label">Gespendeerde kosten:</span>
+    <input type="number" class="form-control" id="spent_costs" name="spent_costs"
+        value="{{ old('spent_costs', $project->spent_costs) }}" required>
     </div>
 
     <div class="item">
@@ -64,11 +64,11 @@
         </div>
 
         <div class="item">
-            <span class="label">Alternatieve projectleider:</span>
-            <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}" required>
-                <option value="">Kies een Alternatieve Projectleider</option>
+            <span class="label">2e projectleider:</span>
+            <select class="form-control" id="second_projectleader" name="second_projectleader" value="{{ old('second_projectleader') }}" required>
+                <option value="">Kies een 2e Projectleider</option>
                 @foreach ($users as $user)
-                <option value="{{ $user->name }}" {{ old('alt_projectleader', $project->alt_projectleader) == $user->name ? 'selected' : '' }}>
+                <option value="{{ $user->name }}" {{ old('second_projectleader', $project->second_projectleader) == $user->name ? 'selected' : '' }}>
                     {{ $user->name }}
                 </option>
                 @endforeach

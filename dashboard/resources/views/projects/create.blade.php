@@ -37,7 +37,7 @@
 
 
         <div class="item">
-            <span class="label">Man uren:</span>
+            <span class="label">Mens uren:</span>
             <input type="number" class="form-control" id="man_hours" name="man_hours" placeholder="75" value="{{ old('man_hours') }}" required>
         </div>
 
@@ -47,8 +47,8 @@
         </div>
 
         <div class="item">
-            <span class="label">Verwachte kosten:</span>
-            <input type="number" class="form-control" id="expected_costs" name="expected_costs" placeholder="10000" value="{{ old('expected_costs') }}" required>
+            <span class="label">Gespendeerde kosten:</span>
+            <input type="number" class="form-control" id="spent_costs" name="spent_costs" placeholder="10000" value="{{ old('spent_costs') }}" required>
         </div>
 
         <div class="item">
