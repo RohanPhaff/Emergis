@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\users;
+use App\Models\Roles;
 use App\Http\Requests\StoreusersRequest;
 use App\Http\Requests\UpdateusersRequest;
 use Illuminate\Http\RedirectResponse;
@@ -16,10 +17,9 @@ class UsersController extends Controller
     public function index()
     {
         $users = users::all();
+        $roles = Roles::all();
         
-        return view('admin.index', [
-            'users' => $users,
-        ]);
+        return view('admin.index', compact('users', 'roles'));
     }
 
     /**
