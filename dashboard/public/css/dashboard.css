@@ -271,3 +271,12 @@ textarea {
 textarea:focus {
     border: 1px solid #555;
 }
+
+.required {
+    color: red;
+    font-size: 1.2em;
+}
+
+table {
+    margin-top: 20px;
+}

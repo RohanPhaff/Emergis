@@ -20,16 +20,19 @@
         @csrf
 
         <div class="item">
-        <span class="label">Project naam:</span>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Project naam" value="{{ old('name') }}" required>
+            <span class="required">*</span>
+            <span class="label">Project naam:</span>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Project naam" value="{{ old('name') }}" required>
         </div>
 
         <div class="item">
+            <span class="required">*</span>
             <span class="label">Project code:</span>
             <input type="text" class="form-control" id="code" name="code" placeholder="12345" value="{{ old('code') }}" required>
         </div>
 
         <div class="item">
+            <span class="required">*</span>
             <span class="label">Beschrijving:</span><br>
             <textarea class="form-control auto-resize" id="description" name="description" placeholder="Beschrijving" style="height: 200px; width: 100%;" required>{{ old('description') }}</textarea>
         </div>
@@ -38,24 +41,23 @@
 
         <div class="item">
             <span class="label">Mens uren:</span>
-            <input type="number" class="form-control" id="man_hours" name="man_hours" placeholder="75" value="{{ old('man_hours') }}" required>
+            <input type="number" class="form-control" id="man_hours" name="man_hours" placeholder="75" value="{{ old('man_hours') }}">
         </div>
 
         <div class="item">
             <span class="label">Budget:</span>
-            <input type="number" class="form-control" id="budget" name="budget" placeholder="12500" value="{{ old('budget') }}" required>
+            <input type="number" class="form-control" id="budget" name="budget" placeholder="12500" value="{{ old('budget') }}">
         </div>
 
         <div class="item">
             <span class="label">Gespendeerde kosten:</span>
-            <input type="number" class="form-control" id="spent_costs" name="spent_costs" placeholder="10000" value="{{ old('spent_costs') }}" required>
+            <input type="number" class="form-control" id="spent_costs" name="spent_costs" placeholder="10000" value="{{ old('spent_costs') }}">
         </div>
 
         <div class="item">
-            <span class="label">Duur:</span>
-            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}" required>
-            tot
-            <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date') }}" required>
+            <span class="label">Verwachtte duur:</span>
+            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}">
+            <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date') }}">
         </div>
 
         <div class="item">
@@ -81,7 +83,7 @@
 
         <div class="item">
             <span class="label">Initiator:</span>
-            <select class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}" required>
+            <select class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}">
                 <option value="">Kies een Initiator</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
@@ -91,26 +93,28 @@
 
         <div class="item">
             <span class="label">Actor:</span>
-            <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}" required>
+            <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}">
                 <option value="">Kies een Actor</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> 
 
         <div class="item">
+            <span class="required">*</span>
             <span class="label">Aanleiding project:</span>
             <textarea class="form-control auto-resize" id="reasoning" name="reasoning" placeholder="Aanleiding project" style="height: 200px; width: 100%;" required>{{ old('reasoning') }}</textarea>
         </div>
 
         <div class="item">
             <span class="label">Documenten:</span>
-            <input type="file" class="form-control" id="uploaded_document_start" name="uploaded_document_start" value="{{ old('uploaded_document_start') }}" required>
-            <input type="file" class="form-control" id="uploaded_document_planning" name="uploaded_document_planning" value="{{ old('uploaded_document_planning') }}" required>
+            <input type="file" class="form-control" id="uploaded_document_start" name="uploaded_document_start" value="{{ old('uploaded_document_start') }}">
+            <input type="file" class="form-control" id="uploaded_document_planning" name="uploaded_document_planning" value="{{ old('uploaded_document_planning') }}">
         </div>
 
         <div class="item">
+            <span class="required">*</span>
             <span class="label">Programma:</span>
 
             <select class="form-control" id="program" name="program" required>

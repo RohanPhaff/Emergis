@@ -9,21 +9,18 @@
 
     <div>
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
-        <br><br>
     </div>
 
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Program</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Progress</th>
+                <th>Naam</th>
+                <th>Programma</th>
+                <th>Start Datum</th>
+                <th>Eind Datum</th>
+                <th>Progressie</th>
                 <th>Project Status</th>
-                <th>Portfolio Holder</th>
-                <th>Impact (per area)</th>
-                <th>Phase</th>
+                <th>Projectleider</th>
             </tr>
         </thead>
         <tbody>
@@ -35,9 +32,7 @@
                     <td>{{ $project->end_date }}</td>
                     <td>{{ $project->progress }}</td>
                     <td>{{ $project->project_status }}</td>
-                    <td>{{ $project->portfolio_holder }}</td>
-                    <td>nan</td>
-                    <td>nan</td>
+                    <td>{{ $project->projectleader }}</td>
                 </tr>
             @endforeach
         </tbody>

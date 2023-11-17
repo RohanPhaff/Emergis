@@ -40,32 +40,32 @@
     <div class="item">
         <span class="label">Mens uren:</span>
         <input type="number" class="form-control" id="man_hours" name="man_hours" value="{{ old('man_hours',
-        $project->man_hours) }}" required>
+        $project->man_hours) }}">
     </div>
 
     <div class="item">
     <span class="label">Budget:</span>
-    <input type="number" class="form-control" id="budget" name="budget" value="{{ old('budget', $project->budget) }}" required>
+    <input type="number" class="form-control" id="budget" name="budget" value="{{ old('budget', $project->budget) }}">
     </div>
 
     <div class="item">
-    <span class="label">Gespendeerde kosten:</span>
+    <span class="label">Gemaakte kosten:</span>
     <input type="number" class="form-control" id="spent_costs" name="spent_costs"
-        value="{{ old('spent_costs', $project->spent_costs) }}" required>
+        value="{{ old('spent_costs', $project->spent_costs) }}">
     </div>
 
     <div class="item">
-        <span class="label">Duur:</span>
+        <span class="label">Verwachtte duur:</span>
         <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date',
-        $project->start_date) }}" required>
+        $project->start_date) }}">
         tot
         <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date',
-        $project->end_date) }}" required>
+        $project->end_date) }}">
         </div>
 
         <div class="item">
             <span class="label">2e projectleider:</span>
-            <select class="form-control" id="second_projectleader" name="second_projectleader" value="{{ old('second_projectleader') }}" required>
+            <select class="form-control" id="second_projectleader" name="second_projectleader" value="{{ old('second_projectleader') }}">
                 <option value="">Kies een 2e Projectleider</option>
                 @foreach ($users as $user)
                 <option value="{{ $user->name }}" {{ old('second_projectleader', $project->second_projectleader) == $user->name ? 'selected' : '' }}>
@@ -77,7 +77,7 @@
 
         <div class="item">
             <span class="label">Initiator:</span>
-            <select class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}" required>
+            <select class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}">
                 <option value="">Kies een Initiator</option>
                 @foreach ($users as $user)
                 <option value="{{ $user->name }}" {{ old('initiator', $project->initiator) == $user->name ? 'selected' : '' }}>
@@ -89,22 +89,10 @@
 
         <div class="item">
             <span class="label">Actor:</span>
-            <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}" required>
+            <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}">
                 <option value="">Kies een Actor</option>
                 @foreach ($users as $user)
                 <option value="{{ $user->name }}" {{ old('actor', $project->actor) == $user->name ? 'selected' : '' }}>
-                    {{ $user->name }}
-                </option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="item">
-            <span class="label">Portfolio houder:</span>
-            <select class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ old('portfolio_holder') }}" required>
-            <option value="">Kies een Portfolio houder</option>
-                @foreach ($users as $user)
-                <option value="{{ $user->name }}" {{ old('portfolio_holder', $project->portfolio_holder) == $user->name ? 'selected' : '' }}>
                     {{ $user->name }}
                 </option>
                 @endforeach
@@ -131,19 +119,19 @@
     <div class="item">
         <span class="label">Community link:</span>
         <input type="url" class="form-control" id="community_link" name="community_link"
-            value="{{ old('community_link', $project->community_link) }}" required>
+            value="{{ old('community_link', $project->community_link) }}">
     </div>
 
     <div class="item">
         <span class="label">Status:</span>
         <input type="text" class="form-control" id="project_status" name="project_status"
-            value="{{ old('project_status', $project->project_status) }}" required>
+            value="{{ old('project_status', $project->project_status) }}">
     </div>
 
     <div class="item">
         <span class="label">Progressie:</span>
         <input type="number" class="form-control" id="progress" name="progress"
-            value="{{ old('progress', $project->progress) }}" required>
+            value="{{ old('progress', $project->progress) }}">
     </div>
 
     <div class="item">
