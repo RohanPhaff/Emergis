@@ -20,13 +20,13 @@
         @csrf
 
         <div class="item">
-        <span class="label">Program naam:</span>
-        <input type="text" class="form-control" id="name" name="name" placeholder="program naam" value="{{ old('name') }}" required>
+        <span class="label">Programma naam:</span>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Programma naam" value="{{ old('name') }}" required>
         </div>
 
         <div class="item">
-            <span class="label">Beschrijving:</span>
-            <input type="text" class="form-control" id="description" name="description" placeholder="beschrijving" value="{{ old('description') }}" required>
+            <span class="label">Beschrijving:</span><br>
+            <textarea class="form-control auto-resize" id="description" name="description" placeholder="Beschrijving" style="height: 200px; width: 100%;" required>{{ old('description') }}</textarea>
         </div>
 
         <div class="item">

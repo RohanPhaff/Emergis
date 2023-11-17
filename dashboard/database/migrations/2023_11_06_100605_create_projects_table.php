@@ -19,16 +19,15 @@ return new class extends Migration
             $table->string('description');
             $table->integer('man_hours')->nullable();
             $table->integer('budget')->nullable();
-            $table->integer('expected_costs')->nullable();
+            $table->integer('spent_costs')->nullable();
 
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
 
-            $table->string('projectleader')->nullable();
-            $table->string('alt_projectleader')->nullable();
+            $table->string('projectleader');
+            $table->string('second_projectleader')->nullable();
             $table->string('initiator')->nullable();
             $table->string('actor')->nullable();
-            $table->string('portfolio_holder');
 
             $table->string('reasoning');
             $table->binary('uploaded_document_start')->nullable();

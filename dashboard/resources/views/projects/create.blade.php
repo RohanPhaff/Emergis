@@ -59,9 +59,20 @@
         </div>
 
         <div class="item">
-            <span class="label">Alternatieve projectleider:</span>
-            <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}" required>
-                <option value="">Kies een Alternatieve Projectleider</option>
+            <span class="required">*</span>
+            <span class="label">Projectleider:</span>
+            <select class="form-control" id="projectleader" name="projectleader" value="{{ old('projectleider') }}" required>
+                <option value="">Projectleider</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}" @if ($user->name == Auth::user()->name) selected @endif>{{ $user->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        
+        <div class="item">
+            <span class="label">2e projectleider:</span>
+            <select class="form-control" id="alt_projectleader" name="alt_projectleader" value="{{ old('alt_projectleader') }}">
+                <option value="">Kies een 2e Projectleider</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
@@ -82,16 +93,6 @@
             <span class="label">Actor:</span>
             <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}" required>
                 <option value="">Kies een Actor</option>
-                @foreach ($users as $user)
-                    <option value="{{ $user->name }}">{{ $user->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="item">
-            <span class="label">Portfolio houder:</span>
-            <select class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ old('portfolio_holder') }}" required>
-            <option value="">Kies een Portfolio houder</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
@@ -123,10 +124,9 @@
 
         </div>
 
-
         <div class="item">
             <span class="label">Community link:</span>
-            <input type="url" class="form-control" id="community_link" name="community_link" placeholder="https://www.community.nl" value="https://{{ old('community_link') }}" required>
+            <input type="url" class="form-control" id="community_link" name="community_link" placeholder="https://www.community.nl" value="https://{{ str_replace('https://', '', old('community_link')) }}">
         </div>
 
         <div class="item">

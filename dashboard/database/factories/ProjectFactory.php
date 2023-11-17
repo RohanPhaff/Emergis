@@ -23,16 +23,15 @@ class ProjectFactory extends Factory
             'description' => $this->faker->realText($maxNbChars = 255),
             'man_hours' => $this->faker->numberBetween($min = 100, $max = 500),
             'budget' => $this->faker->numberBetween($min = 8000, $max = 20000),
-            'expected_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),
+            'spent_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),
 
             'start_date' => $this->faker->date,
             'end_date' => $this->faker->date,
 
             'projectleader' => $this->faker->name,
-            'alt_projectleader' => $this->faker->name,
+            'second_projectleader' => $this->faker->name,
             'initiator' => $this->faker->name,
             'actor' => $this->faker->name,
-            'portfolio_holder' => $this->faker->name,
 
             'reasoning' => $this->faker->realText($maxNbChars = 100),
             'uploaded_document_start' => $this->faker->optional()->text, // Assuming binary data is stored as text

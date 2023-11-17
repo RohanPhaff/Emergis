@@ -67,13 +67,18 @@ class ProjectController extends Controller
             $validatedData['progress'] = '0';
         }
 
-        // upload documents as blobs
-        $pdfDataStart = $request->file('uploaded_document_start')->get();
-        $pdfDataPlanning = $request->file('uploaded_document_planning')->get();
-
         $project = new Project($validatedData);
-        $project->uploaded_document_start = $pdfDataStart;
-        $project->uploaded_document_planning = $pdfDataPlanning;
+        
+        // upload documents as blobs
+        if ($request->hasFile('uploaded_document_start')) {
+            $pdfDataStart = $request->file('uploaded_document_start')->get();
+            $project->uploaded_document_start = $pdfDataStart;
+        }
+        
+        if($request->hasFile('uploaded_document_planning')) {
+            $pdfDataPlanning = $request->file('uploaded_document_planning')->get();
+            $project->uploaded_document_planning = $pdfDataPlanning;
+        }
     
         $project->save();
     
