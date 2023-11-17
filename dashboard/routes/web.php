@@ -17,23 +17,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('/projects', App\Http\Controllers\ProjectController::class);
-Route::resource('/programs', App\Http\Controllers\ProgramController::class);
+Route::resource('/projects', App\Http\Controllers\ProjectController::class)->middleware(['auth', 'verified']);
+Route::resource('/programs', App\Http\Controllers\ProgramController::class)->middleware(['auth', 'verified']);
 
-Route::put('/admin/{users}', [UsersController::class, 'update'])->name('admin.update');
-Route::get('/admin', [UsersController::class, 'index'])->name('admin.index');
+Route::put('/admin/{users}', [UsersController::class, 'update'])->middleware(['auth', 'verified'])->name('admin.update');
+Route::get('/admin', [UsersController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['auth', 'verified'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

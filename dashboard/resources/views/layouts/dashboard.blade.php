@@ -12,7 +12,7 @@
 
             <!-- Sidebar Menu -->
             <ul class="custom-menu">
-                <a class="custom-menu-link" href="/dashboard">
+                <a class="custom-menu-link" href="/">
                     <li class="custom-menu-item">
                         <img src="{{ asset('images/dashboard.svg') }}" alt="Dashboard" class="icon">
                         <span class="menu-text">Dashboard</span>
