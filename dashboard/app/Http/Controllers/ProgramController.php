@@ -13,7 +13,7 @@ class ProgramController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    { 
         $programs = Program::all();
         return view('programs.index', [
             'programs' => $programs
