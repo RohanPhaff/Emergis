@@ -1,14 +1,7 @@
 @import url(https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular);
 
 button {
-    font-family: "Averta-Regular",Helvetica,Arial,sans-serif;
-}
-
-/* Dashboard Content Styles */
-.dashboard-content {
-    background-color: #f4f4f4;
-    padding: 20px;
-    min-height: 100vh;
+    font-family: "Averta-Regular", Helvetica, Arial, sans-serif;
 }
 
 /* Heading Styles */
@@ -49,9 +42,18 @@ table tr:hover {
 }
 
 .content {
-    padding: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.box3 {
+    grid-column: 1 / span 2;
 }
 
 .item {
@@ -73,7 +75,7 @@ table tr:hover {
 
 #progressValue,
 #RvBValue {
-    display:none;
+    display: none;
 }
 
 #rvb {
@@ -86,32 +88,34 @@ table tr:hover {
     height: 30px;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+}
 
-  .progress-bar {
+.progress-bar {
     width: 0;
     height: 100%;
     text-align: center;
     line-height: 30px;
     color: #fff;
     border-radius: 15px;
-  }
+}
 
-  .red {
+.red {
     background-color: #E63A4E;
-  }
+}
 
-  .orange {
+.orange {
     background-color: #F5A04C;
-  }
+}
 
-  .green {
+.green {
     background-color: #ACD084;
-  }
+}
 
-  @keyframes slide {
-    0% { width: 0; }
-  }
+@keyframes slide {
+    0% {
+        width: 0;
+    }
+}
 
 .showDetails {
     display: flex;
@@ -217,7 +221,8 @@ input[type=file] {
     outline: none;
     overflow: auto;
     resize: both;
-    min-width: 150px; /* Set a minimum width */
+    min-width: 150px;
+    /* Set a minimum width */
 }
 
 /* Focus styles */
@@ -230,7 +235,7 @@ input[type=file]:focus {
 
 input[type=number] {
     /*for absolutely positioning spinners*/
-    font-family: "Averta-Regular",Helvetica,Arial,sans-serif;
+    font-family: "Averta-Regular", Helvetica, Arial, sans-serif;
     padding: 12px 12px;
     margin: 8px 0;
     border: 1px solid #ccc;
@@ -248,7 +253,7 @@ input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
 }
 
-input[type=number]::-webkit-outer-spin-button, 
+input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: inner-spin-button !important;
     width: 25px;
@@ -279,4 +284,136 @@ textarea:focus {
 
 table {
     margin-top: 20px;
+}
+
+.charts {
+    display: flex;
+    gap: 24px;
+    height: calc(100% - 100px);
+}
+
+.charts-left {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    margin-bottom: 20px;
+}
+
+.small-chart {
+    background-color: #ededed;
+    padding: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 8px;
+}
+
+.small-chart canvas {
+    max-width: 200px !important;
+    max-height: 150px !important;
+}
+
+.chart-text-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8px;
+}
+
+.charts-right {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    position: relative;
+    max-width: 180px;
+    width: 100%;
+}
+
+.big-chart {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    margin: 16px 48px;
+}
+
+.big-chart-text-container {
+    position: relative;
+    margin-bottom: auto;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.big-chart canvas {
+    aspect-ratio: 1/1 !important;
+    max-width: 320px !important;
+    max-height: 320px !important;
+}
+
+.big-chart-container {
+    position: relative;
+    margin: 48px 32px 0 0;
+    display: flex;
+}
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+}
+
+.big-chart-text {
+    font-size: 1.8em;
+    font-weight: bold;
+    line-height: 40px;
+    z-index: -1;
+}
+
+.legend-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    margin-left: 16px;
+}
+
+.legend-item::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: 0;
+    margin-top: 7px;
+    border-radius: 50%;
+}
+
+.legend-item:nth-child(1)::before {
+    background-color: #1890FF;
+}
+
+.legend-item:nth-child(2)::before {
+    background-color: #13C2C2;
+}
+
+.legend-item:nth-child(3)::before {
+    background-color: #52C41A;
+}
+
+.legend-item:nth-child(4)::before {
+    background-color: #FADB14;
+}
+
+.legend-item:nth-child(5)::before {
+    background-color: #FF4D4F;
+}
+
+.legend-item:nth-child(6)::before {
+    background-color: #722ED1;
 }

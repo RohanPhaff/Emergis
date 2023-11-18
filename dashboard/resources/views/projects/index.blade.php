@@ -4,7 +4,7 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<div class="content">
+<div class="content1">
     <h1>List of Projects</h1>
 
     <div>
