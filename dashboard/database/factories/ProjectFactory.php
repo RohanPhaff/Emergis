@@ -39,7 +39,7 @@ class ProjectFactory extends Factory
             'program' => $this->faker->word,
             'community_link' => $this->faker->url,
             'project_status' => $this->faker->randomElement($array = array ('Op schema','Vertraagd','Afgelast')),
-            'progress' => $this->faker->numberBetween($min = 10, $max = 100),
+            'progress' => $this->faker->numberBetween($min = 20, $max = 100),
             'check_discussion_RvB' => $this->faker->boolean,
         ];
     }

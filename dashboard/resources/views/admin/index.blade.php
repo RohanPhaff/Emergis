@@ -9,7 +9,6 @@
 </div>
 @endif -->
 
-<div class="dashboard-content">
     @foreach ($users as $user)
     <form method="POST" action="{{ route('admin.update', ['users' => $user->id]) }}">
         @csrf
@@ -28,5 +27,4 @@
         </div>
     </form>
     @endforeach
-</div>
 @endsection

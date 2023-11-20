@@ -1,23 +1,34 @@
 @import url(https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular);
 
-button {
-    font-family: "Averta-Regular", Helvetica, Arial, sans-serif;
+:root {
+    --line-border-fill: #3498db;
+    --line-border-empty: #e0e0e0;
+    --line-border-on-track: #acd084;
+    --line-border-on-track-lighter: #c3d3b1;
+    --line-border-delayed: #f5a04c;
+    --line-border-delayed-lighter: #f4c596;
+    --line-border-cancelled: #e63a4e;
+    --line-border-cancelled-lighter: #e88b96;
 }
 
-/* Heading Styles */
+button {
+    font-family: "Averta-Regular",Helvetica,Arial,sans-serif;
+}
+
 h2 {
     color: #0e8add;
 }
 
-/* Text Styles */
 p {
     color: #666;
 }
 
-/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 table td,
@@ -26,6 +37,10 @@ table th {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 14px;
 }
+
+table tr:last-child td {
+    border-bottom: 0;
+  }
 
 table th {
     font-weight: bold;
@@ -42,18 +57,9 @@ table tr:hover {
 }
 
 .content {
+    padding: 20px;
     display: flex;
     flex-direction: column;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-}
-
-.box3 {
-    grid-column: 1 / span 2;
 }
 
 .item {
@@ -82,58 +88,10 @@ table tr:hover {
     color: black;
 }
 
-.progress-container {
-    width: 100%;
-    background-color: #ccc;
-    height: 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.progress-bar {
-    width: 0;
-    height: 100%;
-    text-align: center;
-    line-height: 30px;
-    color: #fff;
-    border-radius: 15px;
-}
-
-.red {
-    background-color: #E63A4E;
-}
-
-.orange {
-    background-color: #F5A04C;
-}
-
-.green {
-    background-color: #ACD084;
-}
-
-@keyframes slide {
-    0% {
-        width: 0;
-    }
-}
-
 .showDetails {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.showManHours,
-.showBudget,
-.showExpectedCosts,
-.showDuration {
-    flex: 1;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    text-align: center;
-    margin: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -173,24 +131,37 @@ p {
 
 .left-box {
     flex: 8;
-    padding: 20px;
-    margin: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .right-box {
     flex: 1.5;
-    padding: 20px;
-    margin: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showManHours,
+.showBudget,
+.showExpectedCosts,
+.showDuration {
+    flex: 1;
+    text-align: center;
 }
 
 .showRoles {
     color: black;
+}
+
+.left-box,
+.right-box,
+.showManHours,
+.showBudget,
+.showExpectedCosts,
+.showDuration,
+.item {
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    background-color: white;
+    margin: 10px;
+    padding: 20px;
 }
 
 select {
@@ -207,7 +178,6 @@ select:focus {
     border: 1px solid #555;
 }
 
-/* Styling for both input and textarea */
 input[type=text],
 input[type=url],
 input[type=date],
@@ -222,10 +192,8 @@ input[type=file] {
     overflow: auto;
     resize: both;
     min-width: 150px;
-    /* Set a minimum width */
 }
 
-/* Focus styles */
 input[type=text]:focus,
 input[type=url]:focus,
 input[type=date]:focus,
@@ -234,7 +202,6 @@ input[type=file]:focus {
 }
 
 input[type=number] {
-    /*for absolutely positioning spinners*/
     font-family: "Averta-Regular", Helvetica, Arial, sans-serif;
     padding: 12px 12px;
     margin: 8px 0;
@@ -416,4 +383,90 @@ table {
 
 .legend-item:nth-child(6)::before {
     background-color: #722ED1;
+}
+  
+.container {
+    margin-top: 15px;
+    text-align: center;
+}
+  
+.progress-container::before {
+    content: "";
+    background: var(--line-border-empty);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    z-index: -1;
+}
+  
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 100%;
+    width: 500px;
+}
+  
+.progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+  
+.circle {
+    background: #fff;
+    color: black;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--line-border-empty);
+    transition: .4s ease;
+}
+  
+.circle.active_on_track {
+    border-color: var(--line-border-on-track);
+}
+
+.circle.active_delayed {
+    border-color: var(--line-border-delayed);
+}
+
+.circle.active_cancelled {
+    border-color: var(--line-border-cancelled);
+}
+
+.circle.active {
+    border-color: var(--line-border-fill);
+}
+
+.actions-container {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.delete-text {
+    color: red;
+}
+
+.edit,
+.delete {
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    background-color: white;
+    margin-top: 50px;
+    width: 20%;
+    text-align: center;
 }
