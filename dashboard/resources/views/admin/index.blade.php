@@ -28,8 +28,9 @@
                 <td>{{$user->email}}</td>
                 <td>
                     <select name="role" id="role">
-                        <option value="Admin" @if ($user->role == 'Admin') selected @endif>Admin</option>
-                        <option value="Guest" @if ($user->role == 'Guest') selected @endif>Guest</option>
+                        @foreach ($roles as $role)
+                        <option value="{{ $role->name }}" title="{{ $role->description }}" @if ($user->role == $role->name) selected @endif>{{ $role->name }}</option>
+                        @endforeach
                     </select>
                 </td>
                 <td>

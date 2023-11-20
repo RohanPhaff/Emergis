@@ -25,7 +25,7 @@
 
         <div class="item">
             <span class="label">Beschrijving:</span><br>
-            <textarea class="form-control auto-resize" id="description" name="description" placeholder="Beschrijving" style="height: 200px; width: 100%;" required>{{ old('description') }}</textarea>
+            <textarea class="form-control auto-resize" id="description" name="description" placeholder="Beschrijving" style="height: 200px; width: 100%;" value="{{ old('description') }}" required></textarea>
         </div>
 
         <div class="item">

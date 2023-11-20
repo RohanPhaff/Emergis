@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\users;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\program>
@@ -19,7 +20,7 @@ class ProgramFactory extends Factory
         return [
             'name' => $this->faker->unique()->word,
             'description' => $this->faker->sentence,
-            'portfolio_holder' => $this->faker->name,
+            'portfolio_holder' => users::all()->random()->name,
         ];
     }
 }

@@ -7,7 +7,6 @@
 <div class="left-box">
         <h1 class="showName">{{ $program->name }}</h1>
         <p class="showDescription">{{ $program->description }}</p>
-        <p class="showDescription">{{ $program->reasoning }}</p>
     </div>
     <div class="right-box">
         <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $program->portfolio_holder }}</p>
@@ -19,7 +18,7 @@
     </div>
     
     <div>
-        <span class="label">GeÃ¼pdatet op:</span>
+        <span class="label">Geüpdatet op:</span>
         <span class="value">{{ $program->updated_at }}</span>
     </div>
 </div>
