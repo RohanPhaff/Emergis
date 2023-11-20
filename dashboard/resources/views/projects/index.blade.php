@@ -11,9 +11,9 @@
 <script src="{{ asset('js/dataTables.js') }}"></script> <!-- DataTables custom js -->
 
 <div class="content1">
-    <h1>List of Projects</h1>
 
-    <div>
+    <div class="header">
+        <h1>List of Projects</h1>
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
     </div>
 
@@ -31,15 +31,15 @@
         </thead>
         <tbody>
             @foreach ($projects as $project)
-                <tr data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');">
-                    <td>{{ $project->name }}</a></td>
-                    <td>{{ $project->program }}</td>
-                    <td>{{ $project->start_date }}</td>
-                    <td>{{ $project->end_date }}</td>
-                    <td>{{ $project->progress }}</td>
-                    <td>{{ $project->project_status }}</td>
-                    <td>{{ $project->projectleader }}</td>
-                </tr>
+            <tr data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');">
+                <td>{{ $project->name }}</a></td>
+                <td>{{ $project->program }}</td>
+                <td>{{ $project->start_date }}</td>
+                <td>{{ $project->end_date }}</td>
+                <td>{{ $project->progress }}</td>
+                <td>{{ $project->project_status }}</td>
+                <td>{{ $project->projectleader }}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>

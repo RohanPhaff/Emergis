@@ -480,3 +480,9 @@ table {
     text-decoration: none;
     cursor: pointer;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

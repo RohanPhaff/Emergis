@@ -11,10 +11,10 @@
 <script src="{{ asset('vendor/DataTables-1.13.8/js/dataTables.bootstrap4.js') }}"></script> <!-- DataTables bootstrap js -->
 <script src="{{ asset('js/dataTables.js') }}"></script> <!-- DataTables custom js -->
 
-<div class="content">
-    <h1>List of Programs</h1>
+<div class="content1">
 
-    <div>
+    <div class="header">
+        <h1>List of Programs</h1>
         <a href="{{ route('programs.create') }}" class="light-blue-button">Nieuw programma</a>
     </div>
 
@@ -28,11 +28,11 @@
         </thead>
         <tbody>
             @foreach ($programs as $program)
-                <tr data-href="{{ route('programs.show', $program) }}" onclick="window.location.href = this.getAttribute('data-href');">
-                    <td>{{ $program->name }}</a></td>
-                    <td>{{ $program->description }}</td>
-                    <td>{{ $program->portfolio_holder }}</td>
-                </tr>
+            <tr data-href="{{ route('programs.show', $program) }}" onclick="window.location.href = this.getAttribute('data-href');">
+                <td>{{ $program->name }}</a></td>
+                <td>{{ $program->description }}</td>
+                <td>{{ $program->portfolio_holder }}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>
