@@ -13,7 +13,7 @@
 <div class="content1">
 
     <div class="header">
-        <h1>List of Projects</h1>
+        <h1>Lijst van Projecten</h1>
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
     </div>
 

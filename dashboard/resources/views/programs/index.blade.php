@@ -14,7 +14,7 @@
 <div class="content1">
 
     <div class="header">
-        <h1>List of Programs</h1>
+        <h1>Lijst van Programmas</h1>
         <a href="{{ route('programs.create') }}" class="light-blue-button">Nieuw programma</a>
     </div>
 

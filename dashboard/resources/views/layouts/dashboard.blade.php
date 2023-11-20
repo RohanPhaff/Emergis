@@ -55,13 +55,13 @@
                     <div id="user-name" style="cursor: pointer; color: white;">{{ Auth::user()->name }}</div>
                     <div class="mt-3 space-y-1" id="dropdown-menu" style="z-index: 5; display: none; position: absolute; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
                         <a href="{{ route('profile.edit') }}">
-                            {{ __('Profile') }}
+                            {{ __('Profiel') }}
                         </a>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Log Uit') }}
                             </a>
                         </form>
                     </div>

@@ -9,12 +9,14 @@
 <script src="{{ asset('vendor/DataTables-1.13.8/js/dataTables.bootstrap4.js') }}"></script>
 <script src="{{ asset('js/dataTables.js') }}"></script>
 
+<h1>Admin pagina</h1>
+
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Naam</th>
             <th>Email</th>
-            <th>Role</th>
+            <th>Rol</th>
             <th></th>
         </tr>
     </thead>
@@ -34,7 +36,7 @@
                     </select>
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">Wijzigen</button>
                 </td>
             </form>
         </tr>
