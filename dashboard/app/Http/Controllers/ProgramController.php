@@ -47,7 +47,7 @@ class ProgramController extends Controller
         $program->save();
     
         return redirect()->route('programs.index')
-            ->with('success', 'Program created successfully');
+            ->with('newProgram', $program);
     }
 
     /**
@@ -83,7 +83,7 @@ class ProgramController extends Controller
         $program->update($validatedData);
 
         return redirect()->route('programs.show', ['program' => $program->id])
-            ->with('success', 'Program updated successfully');
+            ->with('updatedProgram', $program);
     }
 
     /**

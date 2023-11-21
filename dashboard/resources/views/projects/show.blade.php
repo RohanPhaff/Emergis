@@ -3,11 +3,17 @@
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
+@if ($updatedProject = Session::get('updatedProject'))
+  <div class="alert alert-success">
+      <p class="successUpdate">Project: "{{ $updatedProject->name }}" has successfully been updated!</p>
+  </div>
+@endif
+
 <div class="project-container">
   <div class="left-box">
     <h1 class="showName">{{ $project->name }}</h1>
     <p class="showLeader"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-    <p class="showProgram"><strong>Programma:</strong> {{ $project->program }}</p>
+    <p class="showProgram"><strong>Programma:</strong> {{ $program->name }}</p>
     <p class="showDescription">{{ $project->description }}</p>
     <p class="showDescription">{{ $project->reasoning }}</p>
     <p class="showCode"><strong>Projectcode:</strong> {{ $project->code }}</p>
@@ -18,7 +24,7 @@
     <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
     <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
     <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
-    <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $project->portfolio_holder }}</p>
+    <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $program->portfolio_holder }}</p>
   </div>
 </div>
 

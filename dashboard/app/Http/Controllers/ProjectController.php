@@ -83,7 +83,7 @@ class ProjectController extends Controller
         $project->save();
     
         return redirect()->route('projects.index')
-            ->with('success', 'Project created successfully');
+            ->with('newProject', $project);
     }
 
     /**
@@ -149,7 +149,7 @@ class ProjectController extends Controller
     $project->update($validatedData);
 
         return redirect()->route('projects.show', ['project' => $project->id])
-            ->with('success', 'Project updated successfully');
+            ->with('updatedProject', $project);
     }
 
     /**
@@ -160,6 +160,6 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect()->route('projects.index')
-            ->with('success', 'Project deleted successfully');
+            ->with('deletedProject', $project);
     }
 }
