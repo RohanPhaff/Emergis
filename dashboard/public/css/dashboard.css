@@ -486,3 +486,22 @@ table {
     justify-content: space-between;
     align-items: center;
 }
+
+.successAdd {
+    color: green;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.successUpdate {
+    color: blue;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.successDelete {
+    color: red;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
