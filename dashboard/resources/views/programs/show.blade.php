@@ -21,5 +21,17 @@
         <span class="label">Geüpdatet op:</span>
         <span class="value">{{ $program->updated_at }}</span>
     </div>
+
+    <div class="edit">
+        <a href="{{ route('programs.edit', ['program' => $program->id]) }}" class="actions-container">
+            <p class="edit-text">Program Wijzigen</p>
+        </a>
+    </div>
+
+    <div class="delete">
+        <a href="{{ route('programs.destroy', ['program' => $program->id]) }}" class="actions-container">
+            <p class="delete-text">Program Verwijderen</p>
+        </a>
+    </div>
 </div>
 @endsection

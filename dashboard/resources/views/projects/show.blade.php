@@ -73,13 +73,16 @@
   <span class="value">{{ $project->updated_at }}</span>
 </div>
 
-<div class="actions-container">
-  <div class="edit">
+<div class="edit">
+  <a href="{{ route('projects.edit', ['project' => $project->id]) }}" class="actions-container">
     <p class="edit-text">Project Wijzigen</p>
-  </div>
-  <div class="delete">
+  </a>
+</div>
+
+<div class="delete">
+  <a href="{{ route('projects.destroy', ['project' => $project->id]) }}" class="actions-container">
     <p class="delete-text">Project Verwijderen</p>
-  </div>
+  </a>
 </div>
 
 <script>
