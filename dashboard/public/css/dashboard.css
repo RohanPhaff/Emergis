@@ -454,6 +454,7 @@ table {
     display: flex;
     justify-content: center;
     gap: 32px;
+    text-decoration: none;
 }
 
 .delete-text {
@@ -469,6 +470,14 @@ table {
     margin-top: 50px;
     width: 20%;
     text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.edit a,
+.delete a {
+    text-decoration: none;
 }
 
 .light-blue-button {
@@ -485,4 +494,18 @@ table {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.action-button {
+    background: transparent;
+    border: none;
+    margin: none;
+}
+
+.delete-text {
+    font-size: 1.4em;
+}
+
+form {
+    margin: 0;
 }

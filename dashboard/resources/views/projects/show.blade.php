@@ -29,11 +29,11 @@
   </div>
   <div class="showBudget">
     <h1>Budget</h1>
-    <p>{{ $project->budget }}</p>
+    <p>€{{ $project->budget }}</p>
   </div>
   <div class="showExpectedCosts">
-    <h1>Verwachte kosten</h1>
-    <p>{{ $project->spent_costs }}</p>
+    <h1>Gemaakte kosten</h1>
+    <p>€{{ $project->spent_costs }}</p>
   </div>
   <div class="showDuration">
     <h1>Duratie</h1>
@@ -69,20 +69,27 @@
 </div>
 
 <div>
-  <span class="label">GeÃ¼pdatet op:</span>
+  <span class="label">Geüpdatet op:</span>
   <span class="value">{{ $project->updated_at }}</span>
 </div>
 
-<div class="edit">
-  <a href="{{ route('projects.edit', ['project' => $project->id]) }}" class="actions-container">
-    <p class="edit-text">Project Wijzigen</p>
-  </a>
-</div>
+<div class="actions-container">
+  <div class="edit">
+    <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
+      <p class="edit-text">Project Wijzigen</p>
+    </a>
+  </div>
 
-<div class="delete">
-  <a href="{{ route('projects.destroy', ['project' => $project->id]) }}" class="actions-container">
-    <p class="delete-text">Project Verwijderen</p>
-  </a>
+  <div class="delete">
+    <form action="{{ route('projects.destroy', ['project' => $project->id]) }}" method="post">
+      @csrf
+      @method('DELETE')
+
+      <button type="submit" class="action-button">
+        <p class="delete-text">Project Verwijderen</p>
+      </button>
+    </form>
+  </div>
 </div>
 
 <script>

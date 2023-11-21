@@ -30,12 +30,6 @@
                         <span class="menu-text">Programma's</span>
                     </li>
                 </a>
-                <a class="custom-menu-link" href="#">
-                    <li class="custom-menu-item">
-                        <img src="{{ asset('images/calendar.svg') }}" alt="Calendar" class="icon">
-                        <span class="menu-text">Kalender</span>
-                    </li>
-                </a>
                 @if (Auth::user()->role == 'Admin')
                 <a class="custom-menu-link" href="/admin">
                     <li class="custom-menu-item">
