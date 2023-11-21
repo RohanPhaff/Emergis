@@ -3,6 +3,12 @@
 @section('dashboard-content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
+@if ($updatedProgram = Session::get('updatedProgram'))
+    <div class="alert alert-success">
+        <p class="successUpdate">Program: "{{ $updatedProgram->name }}" has successfully been updated!</p>
+    </div>
+@endif
+
 <div class="project-container">
 <div class="left-box">
         <h1 class="showName">{{ $program->name }}</h1>

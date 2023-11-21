@@ -12,6 +12,11 @@
 <script src="{{ asset('js/dataTables.js') }}"></script> <!-- DataTables custom js -->
 
 <div class="content1">
+    @if ($newProgram = Session::get('newProgram'))
+    <div class="alert alert-success">
+        <p class="successAdd">Program: "{{ $newProgram->name }}" has successfully been created!</p>
+    </div>
+    @endif
 
     <div class="header">
         <h1>Lijst van Programmas</h1>
