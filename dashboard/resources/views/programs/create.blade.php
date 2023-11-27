@@ -32,9 +32,9 @@
 
         <div class="item">
             <span class="required">*</span>
-            <span class="label">Portfolio houder:</span>
+            <span class="label">Portefeuillehouder:</span>
             <select class="form-control" id="portfolio_holder" name="portfolio_holder" value="{{ old('portfolio_holder') }}" required>
-            <option value="">Kies een Portfolio houder</option>
+            <option value="">Kies een Portefeuillehouder</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach

@@ -27,8 +27,8 @@
             <tr>
                 <th>Naam</th>
                 <th>Programma</th>
-                <th>Start Datum</th>
-                <th>Eind Datum</th>
+                <th>Verwachte Start Datum</th>
+                <th>Verwachte Eind Datum</th>
                 <th>Progressie</th>
                 <th>Project Status</th>
                 <th>Projectleider</th>

@@ -4,16 +4,15 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 @if ($updatedProject = Session::get('updatedProject'))
-  <div class="alert alert-success">
-      <p class="successUpdate">Project: "{{ $updatedProject->name }}" has successfully been updated!</p>
-  </div>
+<div class="alert alert-success">
+  <p class="successUpdate">Project: "{{ $updatedProject->name }}" has successfully been updated!</p>
+</div>
 @endif
 
 <div class="project-container">
   <div class="left-box">
     <h1 class="showName">{{ $project->name }}</h1>
     <p class="showLeader"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-    <p class="showProgram"><strong>Programma:</strong> {{ $program->name }}</p>
     <p class="showDescription">{{ $project->description }}</p>
     <p class="showDescription">{{ $project->reasoning }}</p>
     <p class="showCode"><strong>Projectcode:</strong> {{ $project->code }}</p>
@@ -24,6 +23,9 @@
     <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
     <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
     <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
+  </div>
+  <div class="right-box">
+    <p class="showRoles"><strong>Programma:</strong> {{ $program->name }}</p>
     <p class="showRoles"><strong>Portefeuillehouder:</strong> {{ $program->portfolio_holder }}</p>
   </div>
 </div>
@@ -42,11 +44,11 @@
     <p>€{{ $project->spent_costs }}</p>
   </div>
   <div class="showDuration">
-    <h1>Duratie</h1>
+    <h1>Verwachte looptijd</h1>
     <p>{{ $project->start_date }} tot {{ $project->end_date }}</p>
   </div>
 </div>
-<h1>Voortgang</h1>
+<h1>Progressie</h1>
 <h1 id="progressValue">{{ $project->progress }}</h1>
 <div class="container">
   <div class="progress-container">

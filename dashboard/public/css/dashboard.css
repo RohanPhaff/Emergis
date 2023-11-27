@@ -321,6 +321,7 @@ table {
     aspect-ratio: 1/1 !important;
     max-width: 320px !important;
     max-height: 320px !important;
+    z-index: 2;
 }
 
 .big-chart-container {
@@ -526,4 +527,3 @@ form {
     font-size: 1.4em;
     font-weight: bold;
 }
-

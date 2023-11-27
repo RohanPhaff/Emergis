@@ -14,7 +14,7 @@
             </div>
             <div class="chart-text-container">
                 <h3>Afgeronde projecten</h3>
-                <p>test</p>
+                <p>{{ $smallChart1->getCompletedProjectsCount() }} van de {{ $smallChart1->getTotalProjectsCount() }} projecten</p>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
             </div>
             <div class="chart-text-container">
                 <h3>Budget verbruikt</h3>
-                <p>test</p>
+                <p>€{{ $smallChart2->getTotalExpectedCosts() }} van de €{{ $smallChart2->getTotalBudget() }}</p>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
             </div>
             <div class="chart-text-container">
                 <h3>Uitgelopen projecten</h3>
-                <p>test</p>
+                <p>{{ $smallChart3->getDelayedCount() }} van de {{ $smallChart3->getTotalProjects() }} projecten</p>
             </div>
         </div>
     </div>

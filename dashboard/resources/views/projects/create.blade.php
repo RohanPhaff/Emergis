@@ -53,7 +53,7 @@
         </div>
 
         <div class="item">
-            <span class="label">Verwachtte duur:</span>
+            <span class="label">Verwachtte looptijd:</span>
             <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}">
             tot
             <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date') }}">
@@ -102,8 +102,8 @@
 
         <div class="item">
             <span class="required">*</span>
-            <span class="label">Aanleiding project:</span>
-            <textarea class="form-control auto-resize" id="reasoning" name="reasoning" placeholder="Aanleiding project" style="height: 200px; width: 100%;" required>{{ old('reasoning') }}</textarea>
+            <span class="label">Beredenering project:</span>
+            <textarea class="form-control auto-resize" id="reasoning" name="reasoning" placeholder="Beredenering project" style="height: 200px; width: 100%;" required>{{ old('reasoning') }}</textarea>
         </div>
 
         <div class="item">

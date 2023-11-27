@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 class DelayedProjectsChart extends Chart
 {
     protected $percentageDelayed;
+    protected $totalProjects;
+    protected $delayedCount;
 
     public function __construct()
     {
@@ -17,10 +19,10 @@ class DelayedProjectsChart extends Chart
 
         $statusCounts = $statusData->countBy('project_status')->toArray();
 
-        $totalProjects = $statusData->count();
+        $this->totalProjects = $statusData->count();
 
-        $delayedCount = $statusCounts['Vertraagd'] ?? 0;
-        $this->percentageDelayed = number_format(($delayedCount / $totalProjects) * 100, 1);
+        $this->delayedCount = $statusCounts['Vertraagd'] ?? 0;
+        $this->percentageDelayed = number_format(($this->delayedCount / $this->totalProjects) * 100, 1);
 
         $remainingPercentage = 100 - $this->percentageDelayed;
 
@@ -52,5 +54,15 @@ class DelayedProjectsChart extends Chart
     public function getPercentageDelayed()
     {
         return $this->percentageDelayed;
+    }
+
+    public function getTotalProjects()
+    {
+        return $this->totalProjects;
+    }
+
+    public function getDelayedCount()
+    {
+        return $this->delayedCount;
     }
 }

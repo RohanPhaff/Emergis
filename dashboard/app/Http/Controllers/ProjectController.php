@@ -103,7 +103,8 @@ class ProjectController extends Controller
     {    
         $users = Users::all();
         $programs = Program::all();
-        return view('projects.edit', compact('project', 'users', 'programs'));
+        $projects = Project::all();
+        return view('projects.edit', compact('project', 'users', 'programs', 'projects'));
     }
 
     /**

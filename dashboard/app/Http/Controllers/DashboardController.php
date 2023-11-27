@@ -21,7 +21,8 @@ class DashboardController extends Controller
 
         $labels = $bigChart->getLabels();
 
-        $recentProjects = Project::orderBy('start_date', 'desc')
+        $recentProjects = Project::where('start_date', '<=', date('Y-m-d'))
+            ->orderByRaw('ABS(DATEDIFF(start_date, CURDATE()))')
             ->take(3)
             ->get();
 
