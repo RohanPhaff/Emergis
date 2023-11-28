@@ -48,7 +48,7 @@
     <p>{{ $project->start_date }} tot {{ $project->end_date }}</p>
   </div>
 </div>
-<h1>Progressie</h1>
+<h1>Voortgang</h1>
 <h1 id="progressValue">{{ $project->progress }}</h1>
 <div class="container">
   <div class="progress-container">

@@ -29,7 +29,7 @@
                 <th>Programma</th>
                 <th>Verwachte Start Datum</th>
                 <th>Verwachte Eind Datum</th>
-                <th>Progressie</th>
+                <th>Voortgang</th>
                 <th>Project Status</th>
                 <th>Projectleider</th>
             </tr>
@@ -41,7 +41,7 @@
                 <td>{{ $project->program }}</td>
                 <td>{{ $project->start_date }}</td>
                 <td>{{ $project->end_date }}</td>
-                <td>{{ $project->progress }}</td>
+                <td>{{ $project->progress }}%</td>
                 <td>{{ $project->project_status }}</td>
                 <td>{{ $project->projectleader }}</td>
             </tr>

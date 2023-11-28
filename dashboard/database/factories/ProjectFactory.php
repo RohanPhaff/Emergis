@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\users;
 use App\Models\Program;
@@ -23,6 +24,7 @@ class ProjectFactory extends Factory
             'name' => $this->faker->word,
             'code' => $this->faker->bothify('##??#?'),
             'description' => $this->faker->realText($maxNbChars = 255),
+            'department' => department::all()->random()->name,
             'man_hours' => $this->faker->numberBetween($min = 100, $max = 500),
             'budget' => $this->faker->numberBetween($min = 8000, $max = 20000),
             'spent_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),

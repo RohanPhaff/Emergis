@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\ProgramChart;
 use App\Charts\CompletedProjectsChart;
 use App\Charts\BudgetChart;
 use App\Charts\DelayedProjectsChart;
+use App\Charts\DepartmentChart;
+use App\Charts\OnScheduleChart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
@@ -14,10 +15,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $bigChart = new ProgramChart;
-        $smallChart1 = new CompletedProjectsChart;
-        $smallChart2 = new BudgetChart;
-        $smallChart3 = new DelayedProjectsChart;
+        $bigChart = new DepartmentChart;
+        $completedProjectsChart = new CompletedProjectsChart;
+        $budgetChart = new BudgetChart;
+        $delayedProjectsChart = new DelayedProjectsChart;
+        $onScheduleChart = new OnScheduleChart;
 
         $labels = $bigChart->getLabels();
 
@@ -26,6 +28,6 @@ class DashboardController extends Controller
             ->take(3)
             ->get();
 
-        return view('dashboard', compact('smallChart1', 'smallChart2', 'smallChart3', 'bigChart', 'labels', 'recentProjects'));
+        return view('dashboard', compact('completedProjectsChart', 'budgetChart', 'delayedProjectsChart', 'onScheduleChart', 'bigChart', 'labels', 'recentProjects'));
     }
 }
