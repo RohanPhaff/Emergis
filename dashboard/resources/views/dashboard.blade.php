@@ -4,41 +4,74 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
+<script>
+    function showGraphs(category) {
+        document.querySelectorAll('.small-chart').forEach(chart => {
+            chart.style.display = 'none';
+        });
+
+        document.querySelectorAll(`.small-chart.${category}`).forEach(chart => {
+            chart.style.display = 'flex';
+        });
+    }
+
+    window.onload = function() {
+        showGraphs('projecten');
+    };
+</script>
+
 <div class="charts">
     <div class="charts-left">
-        <div class="small-chart">
+        <div class="charts-filter">
+            <button class="charts-button" onclick="showGraphs('projecten')">Projecten</button>
+            <button class="charts-button" onclick="showGraphs('kosten')">Kosten</button>
+        </div>
+
+        <div class="small-chart projecten">
             <div class="chart-container">
-                {!! $smallChart1->container() !!}
-                {!! $smallChart1->script() !!}
-                <div class="center-text">{{ $smallChart1->getPercentageCompleted() }}%</div>
+                {!! $onScheduleChart->container() !!}
+                {!! $onScheduleChart->script() !!}
+                <div class="center-text">{{ $onScheduleChart->getPercentageOnSchedule() }}%</div>
+            </div>
+            <div class="chart-text-container">
+                <h3>Op schema projecten</h3>
+                <p>{{ $onScheduleChart->getOnScheduleCount() }} van de {{ $onScheduleChart->getTotalProjects() }} projecten</p>
+            </div>
+        </div>
+
+        <div class="small-chart projecten">
+            <div class="chart-container">
+                {!! $delayedProjectsChart->container() !!}
+                {!! $delayedProjectsChart->script() !!}
+                <div class="center-text">{{ $delayedProjectsChart->getPercentageDelayed() }}%</div>
+            </div>
+            <div class="chart-text-container">
+                <h3>Vertraagde projecten</h3>
+                <p>{{ $delayedProjectsChart->getDelayedCount() }} van de {{ $delayedProjectsChart->getTotalProjects() }} projecten</p>
+            </div>
+        </div>
+
+        <div class="small-chart projecten">
+            <div class="chart-container">
+                {!! $completedProjectsChart->container() !!}
+                {!! $completedProjectsChart->script() !!}
+                <div class="center-text">{{ $completedProjectsChart->getPercentageCompleted() }}%</div>
             </div>
             <div class="chart-text-container">
                 <h3>Afgeronde projecten</h3>
-                <p>{{ $smallChart1->getCompletedProjectsCount() }} van de {{ $smallChart1->getTotalProjectsCount() }} projecten</p>
+                <p>{{ $completedProjectsChart->getCompletedProjectsCount() }} van de {{ $completedProjectsChart->getTotalProjectsCount() }} projecten</p>
             </div>
         </div>
 
-        <div class="small-chart">
+        <div class="small-chart kosten">
             <div class="chart-container">
-                {!! $smallChart2->container() !!}
-                {!! $smallChart2->script() !!}
-                <div class="center-text">{{ $smallChart2->getPercentageExpectedCosts() }}%</div>
+                {!! $budgetChart->container() !!}
+                {!! $budgetChart->script() !!}
+                <div class="center-text">{{ $budgetChart->getPercentageExpectedCosts() }}%</div>
             </div>
             <div class="chart-text-container">
                 <h3>Budget verbruikt</h3>
-                <p>€{{ $smallChart2->getTotalExpectedCosts() }} van de €{{ $smallChart2->getTotalBudget() }}</p>
-            </div>
-        </div>
-
-        <div class="small-chart">
-            <div class="chart-container">
-                {!! $smallChart3->container() !!}
-                {!! $smallChart3->script() !!}
-                <div class="center-text">{{ $smallChart3->getPercentageDelayed() }}%</div>
-            </div>
-            <div class="chart-text-container">
-                <h3>Uitgelopen projecten</h3>
-                <p>{{ $smallChart3->getDelayedCount() }} van de {{ $smallChart3->getTotalProjects() }} projecten</p>
+                <p>€{{ $budgetChart->getTotalExpectedCosts() }} van de €{{ $budgetChart->getTotalBudget() }}</p>
             </div>
         </div>
     </div>
@@ -51,19 +84,21 @@
                 <div class="center-text big-chart-text">Verdeling<br>projecten</div>
             </div>
             <div class="big-chart-text-container">
-                @foreach($labels as $label)
+                @foreach($labels as $index => $label)
                 @php
                 list($program, $percentage) = explode(' ', $label);
                 @endphp
-                <div class="legend-item">
+                <a @if($index < count($labels) - 1) href="/projects?{{ $program }}" @endif class="legend-item">
                     <span class="label">{{ $program }}</span>
                     <span class="percentage">{{ $percentage }}</span>
-                </div>
+                </a>
                 @endforeach
             </div>
         </div>
 
         <div>
+            <h3>Opkomende projecten</h3>
+
             <table>
                 <thead>
                     <tr>

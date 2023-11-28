@@ -152,7 +152,7 @@
         </div>
 
         <div class="item">
-            <span class="label">Progressie:</span>
+            <span class="label">Voortgang:</span>
             <input type="number" class="form-control" id="progress" name="progress" value="{{ old('progress', $project->progress) }}">
         </div>
 
