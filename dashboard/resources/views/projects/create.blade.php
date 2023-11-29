@@ -43,8 +43,8 @@
                     <span class="label">Afdeling:</span>
                     <select class="form-control" id="department" name="departments[]" value="{{ old('department') }}">
                         <option value="">Kies een afdeling</option>
-                        @foreach ($programs as $program)
-                        <option value="{{ $program->name }}">{{ $program->name }}</option>
+                        @foreach ($departments as $department)
+                        <option value="{{ $department->name }}">{{ $department->name }}</option>
                         @endforeach
                     </select>
                     <span class="label">Mens uren:</span>
@@ -55,7 +55,7 @@
             <button type="button" id="add-department-btn">Extra afdeling toevoegen</button>
         </div>
 
-        <script> let departments = <?php echo json_encode($programs); ?>; </script>
+        <script> let departments = <?php echo json_encode($departments); ?>; </script>
         <script src="\js\manHoursMenu.js"></script>
 
         <div class="item">

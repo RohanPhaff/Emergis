@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Program;
+use App\Models\Department;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
@@ -29,7 +30,8 @@ class ProjectController extends Controller
     {
         $users = Users::all();
         $programs = Program::all();
-        return view('projects.create', compact('users', 'programs'));
+        $departments = Department::all();
+        return view('projects.create', compact('users', 'programs', 'departments'));
     }
 
     /**
