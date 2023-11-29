@@ -41,7 +41,9 @@ class ProjectController extends Controller
             'name' => 'required|max:50',
             'code' => 'required|unique:projects|max:50',
             'description' => 'required|max:255',
-            'man_hours' => 'numeric|nullable',
+            'department' => 'string|nullable',
+            'man_hours' => 'array|nullable',
+            'departments' => 'array|nullable',
             'budget' => 'numeric|nullable',
             'spent_costs' => 'numeric|nullable',
             'start_date' => 'date|nullable',
@@ -59,6 +61,24 @@ class ProjectController extends Controller
             'progress' => 'filled|numeric|nullable',
             'check_discussion_RvB' => 'boolean',
         ]);
+
+        $departments = $request->input('departments');
+        $leftDepartment = "";
+        $manHours = $request->input('man_hours');
+
+        // Combine departments and man_hours into a string format
+        $combinedData = [];
+        foreach ($departments as $key => $department) {
+            $combinedData[] = $department . ':' . $manHours[$key];
+            $leftDepartment = $department;
+        }
+
+        // Convert the array to a string separated by ';'
+        $formattedString = implode(';', $combinedData);
+
+        $validatedData['man_hours'] = $formattedString;
+        $validatedData['department'] = $leftDepartment;
+        unset($validatedData['departments']);
 
         if (empty($validatedData['project_status'])) {
             $validatedData['project_status'] = 'Op schema';

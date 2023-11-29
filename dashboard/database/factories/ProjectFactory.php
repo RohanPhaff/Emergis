@@ -20,12 +20,26 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $departments = \App\Models\Department::all();
+        $randomIndex = $this->faker->numberBetween(0, $departments->count() - 1);
+        $finalManHours = "";
+        for ($i = 0; $i < $randomIndex; $i++) { 
+            $department = \App\Models\Department::all()->random()->name;
+            $manHours = $this->faker->numberBetween(40, 1000);
+
+            if (strlen($finalManHours) > 0) {
+                $finalManHours .= ";";
+            }
+
+            $finalManHours .= ($department . ':' . $manHours);
+        }
+
         return [
             'name' => $this->faker->word,
             'code' => $this->faker->bothify('##??#?'),
             'description' => $this->faker->realText($maxNbChars = 255),
-            'department' => department::all()->random()->name,
-            'man_hours' => $this->faker->numberBetween($min = 100, $max = 500),
+            'department' => \App\Models\Department::all()->random()->name,
+            'man_hours' => $finalManHours,
             'budget' => $this->faker->numberBetween($min = 8000, $max = 20000),
             'spent_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),
 

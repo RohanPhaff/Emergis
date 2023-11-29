@@ -13,6 +13,7 @@ class project extends Model
         'name',
         'code',
         'description',
+        'department',
         'man_hours',
         'budget',
         'spent_costs',

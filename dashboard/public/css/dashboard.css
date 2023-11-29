@@ -91,7 +91,8 @@ table tr:hover {
 .showDetails {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* Make boxes so text is centered. Boxes can have different sizes if this is on!
+    /* align-items: center; */
 }
 
 h1 {
@@ -540,4 +541,37 @@ form {
     color: red;
     font-size: 1.4em;
     font-weight: bold;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-content {
+    display: none;
+    position: absolute;
+    bottom: 100%; /* Adjust the bottom position */
+    left: 100%; /* Position at the top right of the question mark */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.tooltip-text {
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.tooltip-container:hover .tooltip-content {
+    display: block;
+}
+
+.question-mark {
+    cursor: pointer;
 }

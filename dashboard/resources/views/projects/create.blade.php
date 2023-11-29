@@ -41,14 +41,14 @@
             <div id="form-container">
                 <div id="small-container">
                     <span class="label">Afdeling:</span>
-                    <select class="form-control" id="department" name="department" value="{{ old('department') }}" required>
+                    <select class="form-control" id="department" name="departments[]" value="{{ old('department') }}">
                         <option value="">Kies een afdeling</option>
                         @foreach ($programs as $program)
                         <option value="{{ $program->name }}">{{ $program->name }}</option>
                         @endforeach
                     </select>
                     <span class="label">Mens uren:</span>
-                    <input type="number" class="form-control" id="man_hours" name="man_hours" placeholder="75" value="{{ old('man_hours') }}">
+                    <input type="number" class="form-control" id="man_hours" name="man_hours[]" placeholder="75" value="{{ old('man_hours') }}">
                 </div>
             </div>
 
