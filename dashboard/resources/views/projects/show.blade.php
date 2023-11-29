@@ -32,12 +32,12 @@
 
 <div class="showDetails">
   <div class="showManHours">
-    <h1>Mens uren</h1>
-    <p>{{ $project->man_hours }}</p>
+    <h1 id="man_hours_help">Mens uren</h1>
+    <p id="man_hours">{{ $project->man_hours }}</p>
   </div>
   <div class="showBudget">
     <h1>Budget</h1>
-    <p>€{{ $project->budget }}</p>
+    <p id="budget">€{{ $project->budget }}</p>
   </div>
   <div class="showExpectedCosts">
     <h1>Gemaakte kosten</h1>
@@ -141,5 +141,11 @@
     document.getElementById("rvb").style.display = "none";
   }
 </script>
+
+<script>
+  let manHours = <?php echo json_encode($project->man_hours); ?>;
+  let budget = <?php echo json_encode($project->budget); ?>;
+</script>
+<script src="\js\categoryHoursBudget.js"></script>
 
 @endsection

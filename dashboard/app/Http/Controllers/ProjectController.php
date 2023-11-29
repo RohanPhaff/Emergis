@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Program;
+use App\Models\Department;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
@@ -29,7 +30,8 @@ class ProjectController extends Controller
     {
         $users = Users::all();
         $programs = Program::all();
-        return view('projects.create', compact('users', 'programs'));
+        $departments = Department::all();
+        return view('projects.create', compact('users', 'programs', 'departments'));
     }
 
     /**
@@ -41,7 +43,9 @@ class ProjectController extends Controller
             'name' => 'required|max:50',
             'code' => 'required|unique:projects|max:50',
             'description' => 'required|max:255',
-            'man_hours' => 'numeric|nullable',
+            'department' => 'string|nullable',
+            'man_hours' => 'array|nullable',
+            'departments' => 'array|nullable',
             'budget' => 'numeric|nullable',
             'spent_costs' => 'numeric|nullable',
             'start_date' => 'date|nullable',
@@ -59,6 +63,26 @@ class ProjectController extends Controller
             'progress' => 'filled|numeric|nullable',
             'check_discussion_RvB' => 'boolean',
         ]);
+
+        $departments = $request->input('departments');
+        $leftDepartment = "";
+        $manHours = $request->input('man_hours');
+
+        // Combine departments and man_hours into a string format
+        $combinedData = [];
+        foreach ($departments as $key => $department) {
+            if ($department != "") {
+                $combinedData[] = $department . ':' . $manHours[$key];
+                $leftDepartment = $department;
+            }
+        }
+
+        // Convert the array to a string separated by ';'
+        $formattedString = implode(';', $combinedData);
+
+        $validatedData['man_hours'] = $formattedString;
+        $validatedData['department'] = $leftDepartment;
+        unset($validatedData['departments']);
 
         if (empty($validatedData['project_status'])) {
             $validatedData['project_status'] = 'Op schema';
@@ -104,7 +128,8 @@ class ProjectController extends Controller
         $users = Users::all();
         $programs = Program::all();
         $projects = Project::all();
-        return view('projects.edit', compact('project', 'users', 'programs', 'projects'));
+        $departments = Department::all();
+        return view('projects.edit', compact('project', 'users', 'programs', 'projects', 'departments'));
     }
 
     /**
@@ -116,7 +141,9 @@ class ProjectController extends Controller
             'name' => 'required|unique:projects,name,' . $project->id . '|max:50',
             'code' => 'required|unique:projects,code,' . $project->id . '|max:50',
             'description' => 'required|max:255',
-            'man_hours' => 'nullable|numeric',
+            'department' => 'string|nullable',
+            'man_hours' => 'array|nullable',
+            'departments' => 'array|nullable',
             'budget' => 'nullable|numeric',
             'spent_costs' => 'nullable|numeric',
             'start_date' => 'nullable|date',
@@ -135,19 +162,39 @@ class ProjectController extends Controller
             'check_discussion_RvB' => 'boolean',
         ]);
 
-    // Check if 'uploaded_document_start' file was uploaded
-    if ($request->hasFile('uploaded_document_start')) {
-        $pdfDataStart = $request->file('uploaded_document_start')->get();
-        $project->uploaded_document_start = $pdfDataStart;
-    }
+        $departments = $request->input('departments');
+        $leftDepartment = "";
+        $manHours = $request->input('man_hours');
 
-    // Check if 'uploaded_document_planning' file was uploaded
-    if ($request->hasFile('uploaded_document_planning')) {
-        $pdfDataPlanning = $request->file('uploaded_document_planning')->get();
-        $project->uploaded_document_planning = $pdfDataPlanning;
-    }
+        // Combine departments and man_hours into a string format
+        $combinedData = [];
+        foreach ($departments as $key => $department) {
+            if ($department != "") {
+                $combinedData[] = $department . ':' . $manHours[$key];
+                $leftDepartment = $department;
+            }
+        }
 
-    $project->update($validatedData);
+        // Convert the array to a string separated by ';'
+        $formattedString = implode(';', $combinedData);
+
+        $validatedData['man_hours'] = $formattedString;
+        $validatedData['department'] = $leftDepartment;
+        unset($validatedData['departments']);
+
+        // Check if 'uploaded_document_start' file was uploaded
+        if ($request->hasFile('uploaded_document_start')) {
+            $pdfDataStart = $request->file('uploaded_document_start')->get();
+            $project->uploaded_document_start = $pdfDataStart;
+        }
+
+        // Check if 'uploaded_document_planning' file was uploaded
+        if ($request->hasFile('uploaded_document_planning')) {
+            $pdfDataPlanning = $request->file('uploaded_document_planning')->get();
+            $project->uploaded_document_planning = $pdfDataPlanning;
+        }
+
+        $project->update($validatedData);
 
         return redirect()->route('projects.show', ['project' => $project->id])
             ->with('updatedProject', $project);

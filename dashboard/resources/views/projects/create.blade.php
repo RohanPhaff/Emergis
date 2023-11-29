@@ -38,9 +38,25 @@
         </div>
 
         <div class="item">
-            <span class="label">Mens uren:</span>
-            <input type="number" class="form-control" id="man_hours" name="man_hours" placeholder="75" value="{{ old('man_hours') }}">
+            <div id="form-container">
+                <div id="small-container">
+                    <span class="label">Afdeling:</span>
+                    <select class="form-control" id="department" name="departments[]" value="{{ old('department') }}">
+                        <option value="">Kies een afdeling</option>
+                        @foreach ($departments as $department)
+                        <option value="{{ $department->name }}">{{ $department->name }}</option>
+                        @endforeach
+                    </select>
+                    <span class="label">Mens uren:</span>
+                    <input type="number" class="form-control" id="man_hours" name="man_hours[]" placeholder="75" value="{{ old('man_hours') }}">
+                </div>
+            </div>
+
+            <button type="button" id="add-department-btn">Extra afdeling toevoegen</button>
         </div>
+
+        <script> let departments = <?php echo json_encode($departments); ?>; let editPage = false; </script>
+        <script src="\js\manHoursMenu.js"></script>
 
         <div class="item">
             <span class="label">Budget:</span>
