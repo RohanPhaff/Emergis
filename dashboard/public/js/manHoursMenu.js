@@ -3,6 +3,25 @@ document.addEventListener('DOMContentLoaded', function () {
         updateFunction(event, true);
     });
 
+    if (editPage) {
+        let departmentArray = manHoursString.split(";");
+        departmentArray.forEach((department, i) => {
+            let options = document.querySelectorAll('#department')[i].querySelectorAll('option');
+            options.forEach(option => {
+                if (option.value == department.split(":")[0]) {
+                    option.selected = true;
+                    document.querySelectorAll('#man_hours')[i].value = department.split(":")[1];
+                }
+            });
+
+            if (i !== (departmentArray.length - 1)) {
+                createForm();
+            }
+        });
+
+        updateFunction();
+    }
+
     function updateFunction(event, isChanged) {
         let allSelects = document.querySelectorAll('#department');
         let otherSelects = [];
