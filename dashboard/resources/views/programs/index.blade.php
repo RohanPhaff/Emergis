@@ -28,7 +28,7 @@
             <tr>
                 <th>Naam</th>
                 <th>Beschrijving</th>
-                <th>Portfolio houder</th>
+                <th>Portefeuillehouder</th>
             </tr>
         </thead>
         <tbody>

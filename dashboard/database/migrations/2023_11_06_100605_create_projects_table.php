@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code')->nullable()->unique();
             $table->string('description');
+            $table->string('department');
             $table->integer('man_hours')->nullable();
             $table->integer('budget')->nullable();
             $table->integer('spent_costs')->nullable();

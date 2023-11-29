@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 class BudgetChart extends Chart
 {
     protected $percentageExpectedCosts;
+    protected $totalBudget;
+    protected $totalExpectedCosts;
 
     public function __construct()
     {
@@ -15,10 +17,10 @@ class BudgetChart extends Chart
 
         $budgetData = DB::table('projects')->select('budget', 'spent_costs')->get();
 
-        $totalBudget = $budgetData->sum('budget');
-        $totalExpectedCosts = $budgetData->sum('spent_costs');
+        $this->totalBudget = $budgetData->sum('budget');
+        $this->totalExpectedCosts = $budgetData->sum('spent_costs');
 
-        $this->percentageExpectedCosts = number_format(($totalExpectedCosts / $totalBudget) * 100, 1);
+        $this->percentageExpectedCosts = number_format(($this->totalExpectedCosts / $this->totalBudget) * 100, 1);
         $percentageRemaining = 100 - $this->percentageExpectedCosts;
 
         $this->dataset('Budget Chart', 'doughnut', [$this->percentageExpectedCosts, $percentageRemaining])
@@ -49,5 +51,15 @@ class BudgetChart extends Chart
     public function getPercentageExpectedCosts()
     {
         return $this->percentageExpectedCosts;
+    }
+
+    public function getTotalBudget()
+    {
+        return $this->totalBudget;
+    }
+
+    public function getTotalExpectedCosts()
+    {
+        return $this->totalExpectedCosts;
     }
 }
