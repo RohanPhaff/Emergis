@@ -122,7 +122,7 @@
       } else if (i < currentActive && projectStatus == "Vertraagd") {
         circle.classList.add("active_delayed");
         progress.style.background = "var(--line-border-delayed-lighter)";
-      } else if (i < currentActive && projectStatus == "Afgelast") {
+      } else if (i < currentActive && projectStatus == "Afgewezen") {
         circle.classList.add("active_cancelled");
         progress.style.background = "var(--line-border-cancelled-lighter)";
       } else {

@@ -254,6 +254,18 @@ table {
     margin-top: 20px;
 }
 
+.grey-button {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.grey-button:hover {
+    background-color: #ddd;
+}
+
 .charts {
     display: flex;
     gap: 24px;
@@ -262,13 +274,6 @@ table {
 
 .charts-filter {
     margin-bottom: -20px;
-}
-
-.charts-button {
-    display: inline-block;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
 .charts-left {

@@ -1,22 +1,23 @@
 @extends('layouts.dashboard')
 
 @section('dashboard-content')
-<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet"> 
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<div class="content"> <h1>Nieuw project</h1>
+<div class="content">
+    <h1>Nieuw project</h1>
 
-@if ($errors->any())
-<div class="alert alert-danger">
-<ul>
-    @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-    </ul>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
     @endif
 
-        <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="item">
@@ -52,10 +53,13 @@
                 </div>
             </div>
 
-            <button type="button" id="add-department-btn">Extra afdeling toevoegen</button>
+            <button type="button" id="add-department-btn" class="grey-button">Extra afdeling toevoegen</button>
         </div>
 
-        <script> let departments = <?php echo json_encode($departments); ?>; let editPage = false; </script>
+        <script>
+            let departments = <?php echo json_encode($departments); ?>;
+            let editPage = false;
+        </script>
         <script src="\js\manHoursMenu.js"></script>
 
         <div class="item">
@@ -81,17 +85,17 @@
             <select class="form-control" id="projectleader" name="projectleader" value="{{ old('projectleader') }}" required>
                 <option value="">Projectleider</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->name }}" @if ($user->name == Auth::user()->name) selected @endif>{{ $user->name }}</option>
+                <option value="{{ $user->name }}" @if ($user->name == Auth::user()->name) selected @endif>{{ $user->name }}</option>
                 @endforeach
             </select>
         </div>
-        
+
         <div class="item">
             <span class="label">2e projectleider:</span>
             <select class="form-control" id="second_projectleader" name="second_projectleader" value="{{ old('second_projectleader') }}">
                 <option value="">Kies een 2e Projectleider</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->name }}">{{ $user->name }}</option>
+                <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -101,7 +105,7 @@
             <select class="form-control" id="initiator" name="initiator" value="{{ old('initiator') }}">
                 <option value="">Kies een Initiator</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->name }}">{{ $user->name }}</option>
+                <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -111,10 +115,10 @@
             <select class="form-control" id="actor" name="actor" value="{{ old('actor') }}">
                 <option value="">Kies een Actor</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->name }}">{{ $user->name }}</option>
+                <option value="{{ $user->name }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-        </div> 
+        </div>
 
         <div class="item">
             <span class="required">*</span>
@@ -133,12 +137,12 @@
             <span class="label">Programma:</span>
 
             <select class="form-control" id="program" name="program" required>
-            <option value="">Kies een programma</option>
+                <option value="">Kies een programma</option>
                 @foreach ($programs as $program)
-                    <option value="{{ $program->name }}" {{ old('program', $program->name) == $program->name ? 'selected' : '' }}>
-                        {{ $program->name }}
-                    </option>
-                    @endforeach
+                <option value="{{ $program->name }}" {{ old('program', $program->name) == $program->name ? 'selected' : '' }}>
+                    {{ $program->name }}
+                </option>
+                @endforeach
             </select>
         </div>
 
@@ -157,7 +161,7 @@
             <button type="submit" class="light-blue-button">Maak aan</button>
             <a href="{{ route('projects.index') }}" class="light-blue-button">Annuleer</a>
         </div>
-        </form>
+    </form>
 
-    </div>
-    @endsection
+</div>
+@endsection

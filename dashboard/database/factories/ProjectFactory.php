@@ -56,7 +56,7 @@ class ProjectFactory extends Factory
             'uploaded_document_planning' => $this->faker->optional()->text, // Assuming binary data is stored as text
             'program' => Program::all()->random()->name,
             'community_link' => $this->faker->url,
-            'project_status' => $this->faker->randomElement($array = array ('Op schema','Vertraagd','Afgelast')),
+            'project_status' => $this->faker->randomElement($array = array ('Op schema','Vertraagd','Afgewezen')),
             'progress' => $this->faker->numberBetween($min = 20, $max = 100),
             'check_discussion_RvB' => $this->faker->boolean,
         ];

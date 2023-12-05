@@ -54,10 +54,14 @@
                 </div>
             </div>
 
-            <button type="button" id="add-department-btn">Extra afdeling toevoegen</button>
+            <button type="button" id="add-department-btn" class="grey-button">Extra afdeling toevoegen</button>
         </div>
 
-        <script> let departments = <?php echo json_encode($departments); ?>; let editPage = true; let manHoursString = <?php echo json_encode($project->man_hours); ?>; </script>
+        <script>
+            let departments = <?php echo json_encode($departments); ?>;
+            let editPage = true;
+            let manHoursString = <?php echo json_encode($project->man_hours); ?>;
+        </script>
         <script src="\js\manHoursMenu.js"></script>
 
         <div class="item">
@@ -160,7 +164,7 @@
             <select class="form-control" id="project_status" name="project_status" value="{{ old('project_status', $project->project_status) }}">
                 <option value="Op schema" {{ old('project_status', $project->project_status) == 'Op schema' ? 'selected' : '' }}>Op schema</option>
                 <option value="Vertraagd" {{ old('project_status', $project->project_status) == 'Vertraagd' ? 'selected' : '' }}>Vertraagd</option>
-                <option value="Afgelast" {{ old('project_status', $project->project_status) == 'Afgelast' ? 'selected' : '' }}>Afgelast</option>
+                <option value="Afgewezen" {{ old('project_status', $project->project_status) == 'Afgewezen' ? 'selected' : '' }}>Afgewezen</option>
             </select>
         </div>
 

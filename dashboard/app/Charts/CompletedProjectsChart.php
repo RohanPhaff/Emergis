@@ -15,10 +15,10 @@ class CompletedProjectsChart extends Chart
     {
         parent::__construct();
 
-        $this->completedProjectsCount = DB::table('projects')->where('progress', 100)->count();
-        $this->totalProjectsCount = DB::table('projects')->count();
+        $this->completedProjectsCount = DB::table('projects')->whereIn('project_status', ['Op schema', 'Vertraagd'])->get()->where('progress', 100)->count();
+        $this->totalProjectsCount = DB::table('projects')->whereIn('project_status', ['Op schema', 'Vertraagd'])->get()->count();
 
-        $this->percentageCompleted = ($this->completedProjectsCount / $this->totalProjectsCount) * 100;
+        $this->percentageCompleted = number_format(($this->completedProjectsCount / $this->totalProjectsCount) * 100, 1);
         $percentageRemaining = 100 - $this->percentageCompleted;
 
         $this->dataset('Completed Projects Chart', 'doughnut', [$this->percentageCompleted, $percentageRemaining])

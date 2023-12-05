@@ -15,7 +15,7 @@ class OnScheduleChart extends Chart
     {
         parent::__construct();
 
-        $statusData = DB::table('projects')->select('project_status')->get();
+        $statusData = DB::table('projects')->select('project_status')->whereIn('project_status', ['Op schema', 'Vertraagd'])->get();
 
         $statusCounts = $statusData->countBy('project_status')->toArray();
 

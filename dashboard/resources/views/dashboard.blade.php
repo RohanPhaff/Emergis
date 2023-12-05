@@ -23,8 +23,8 @@
 <div class="charts">
     <div class="charts-left">
         <div class="charts-filter">
-            <button class="charts-button" onclick="showGraphs('projecten')">Projecten</button>
-            <button class="charts-button" onclick="showGraphs('kosten')">Kosten</button>
+            <button class="grey-button" onclick="showGraphs('projecten')">Projecten</button>
+            <button class="grey-button" onclick="showGraphs('kosten')">Kosten</button>
         </div>
 
         <div class="small-chart projecten">
