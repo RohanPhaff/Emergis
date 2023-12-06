@@ -43,8 +43,8 @@ class ProjectFactory extends Factory
             'budget' => $this->faker->numberBetween($min = 8000, $max = 20000),
             'spent_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),
 
-            'start_date' => $this->faker->date,
-            'end_date' => $this->faker->date,
+            'start_date' => $this->faker->dateTimeBetween('2020-01-01', '2024-12-31')->format('Y-m-d'),
+            'end_date' => $this->faker->dateTimeBetween('2025-01-01', '2029-12-31')->format('Y-m-d'),
 
             'projectleader' => users::all()->random()->name,
             'second_projectleader' => users::all()->random()->name,

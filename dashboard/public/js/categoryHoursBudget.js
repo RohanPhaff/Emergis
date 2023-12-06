@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    let categoryManHours = (totalManHours >= 0 && totalManHours <= 1000) ? 'Laag' : (totalManHours > 1000 && totalManHours <= 5000) ? 'Middel' : 'Hoog';
+    let categoryManHours = (totalManHours >= 0 && totalManHours <= 1000) ? 'Laag' : (totalManHours > 1000 && totalManHours <= 3000) ? 'Middel' : 'Hoog';
     let categoryBudget = (budget >= 0 && budget <= 10000) ? 'Laag' : (budget > 10000 && budget <= 50000) ? 'Middel' : 'Hoog';
 
     document.getElementById("man_hours").innerHTML = "<div class='tooltip-container'>Categorie: " + categoryManHours + "<br><i>(" + totalManHours + " uur)</i>";

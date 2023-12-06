@@ -45,7 +45,7 @@
   </div>
   <div class="showDuration">
     <h1>Verwachte looptijd</h1>
-    <p>{{ $project->start_date }} tot {{ $project->end_date }}</p>
+    <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->start_date)->format('d-m-Y') }} tot {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->end_date)->format('d-m-Y') }}</p>
   </div>
 </div>
 <h1>Voortgang</h1>

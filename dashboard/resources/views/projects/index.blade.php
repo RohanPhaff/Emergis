@@ -22,6 +22,10 @@
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
     </div>
 
+    <button id="toggleButton">
+        <img src="{{ asset('images/switch.png') }}" alt="Switch View" title="Wissel tussen tabel en blokjes weergave" class="toggleIcon">
+    </button>
+
     <table class="table">
         <thead>
             <tr>
@@ -39,8 +43,8 @@
             <tr data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');">
                 <td>{{ $project->name }}</a></td>
                 <td>{{ $project->program }}</td>
-                <td>{{ $project->start_date }}</td>
-                <td>{{ $project->end_date }}</td>
+                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->start_date)->format('d-m-Y') }}</td>
+                <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->end_date)->format('d-m-Y') }}</td>
                 <td>{{ $project->progress }}%</td>
                 <td>{{ $project->project_status }}</td>
                 <td>{{ $project->projectleader }}</td>
@@ -48,5 +52,75 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="compareDiv">
+        @foreach ($projects as $project)
+        <div class="compare" data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');">
+            <p>{{ $project->name }}</a></p>
+                <?php
+                $manHours = $project->man_hours;
+                $entries = explode(';', $manHours);
+                $sum = 0;
+            
+                foreach ($entries as $entry) {
+                    $parts = explode(':', $entry);
+                    if (count($parts) === 2 && is_numeric($parts[1])) {
+                        $sum += intval($parts[1]);
+                    }
+                }
+                $category = ($sum >= 0 && $sum <= 1000) ? 'Laag' : (($sum > 1000 && $sum <= 3000) ? 'Middel' : 'Hoog');
+
+                $spent = $project->spent_costs;
+                $budget = $project->budget;
+                $percentageBudget = ($spent / $budget) * 100;
+
+                $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $project->start_date);
+                $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $project->end_date);
+                $currentDate = \Carbon\Carbon::now();
+
+                $totalDuration = $startDate->diffInDays($endDate);
+                $elapsedDays = $startDate->diffInDays($currentDate);
+                $percentageTime = ($elapsedDays / $totalDuration) * 100;
+
+                // Ensure the percentage is within the bounds (0 to 100)
+                $percentageTime = max(0, min(100, $percentageTime));
+                ?>
+
+            <p>Mens uren: {{ $category }}</p>
+            <p>€{{ $spent }} van de €{{ $budget }} besteed</p>
+            <div class="progress-container-percentage">
+                <div class="progress-bar-percentage" style="width: {{ $percentageBudget }}%; background-color: #c3d3b1;"></div>
+            </div>
+
+            <p>Van {{ $startDate->format('d-m-Y') }} tot {{ $endDate->format('d-m-Y') }}</p>
+            <div class="progress-container-percentage">
+                <div class="progress-bar-percentage" style="width: {{ $percentageTime }}%; background-color: #3498db;"></div>
+            </div>
+            <div class="statusBar" style="background-color: 
+                @if($project->project_status === 'Op schema')
+                    #acd084;
+                @elseif($project->project_status === 'Vertraagd')
+                    #f5a04c;
+                @elseif($project->project_status === 'Afgewezen')
+                    #e63a4e;
+                @else
+                    #000000;
+                @endif">
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.compareDiv').hide();
+
+        $('#toggleButton').click(function() {
+            $('.compareDiv').toggle();
+            $('.table').toggle();
+        });
+    });
+</script>
+
 @endsection
