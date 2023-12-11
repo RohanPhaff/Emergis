@@ -24,8 +24,14 @@ Route::get('/', [DashboardController::class, 'index'])
 Route::resource('/projects', App\Http\Controllers\ProjectController::class)->middleware(['auth', 'verified']);
 Route::resource('/programs', App\Http\Controllers\ProgramController::class)->middleware(['auth', 'verified']);
 
-Route::put('/admin/{users}', [UsersController::class, 'update'])->middleware(['auth', 'verified'])->name('admin.update');
-Route::get('/admin', [UsersController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.index');
+Route::get('/admin', [UsersController::class, 'index'])
+    ->middleware(['auth', 'verified', 'can:access-admin'])
+    ->name('admin.index');
+
+Route::put('/admin/{users}', [UsersController::class, 'update'])
+    ->middleware(['auth', 'verified', 'can:access-admin'])
+    ->name('admin.update');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.edit');
