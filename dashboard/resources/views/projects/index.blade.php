@@ -22,6 +22,25 @@
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
     </div>
 
+    <div class="filter-section">
+    <label for="programFilter">Select Program:</label>
+    <select id="programFilter">
+        <option value="">All Programs</option>
+        @foreach ($programOptions as $programOption)
+            <option value="{{ $programOption }}">{{ $programOption }}</option>
+        @endforeach
+    </select>
+
+    <label for="statusFilter">Select Status:</label>
+    <select id="statusFilter">
+        <option value="">All Status</option>
+        @foreach ($statusOptions as $statusOption)
+            <option value="{{ $statusOption }}">{{ $statusOption }}</option>
+        @endforeach
+    </select>
+</div>
+
+
     <table class="table">
         <thead>
             <tr>
@@ -49,4 +68,18 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function () {
+        var table = $('.table').DataTable();
+
+        $('#programFilter, #statusFilter').on('change', function () {
+            var programFilter = $('#programFilter').val();
+            var statusFilter = $('#statusFilter').val();
+
+            table.columns(1).search(programFilter).columns(5).search(statusFilter).draw();
+        });
+    });
+</script>
+
 @endsection

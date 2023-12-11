@@ -18,11 +18,12 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('projects.index', [
-            'projects' => $projects
-        ]);
+        $programOptions = Project::distinct()->pluck('program')->toArray();
+        $statusOptions = Project::distinct()->pluck('project_status')->toArray();
+    
+        return view('projects.index', compact('projects', 'programOptions', 'statusOptions'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
