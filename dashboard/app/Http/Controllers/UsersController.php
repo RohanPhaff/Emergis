@@ -8,6 +8,7 @@ use App\Http\Requests\StoreusersRequest;
 use App\Http\Requests\UpdateusersRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
@@ -16,6 +17,8 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $this->authorize('access-admin');
+
         $users = users::all();
         $roles = Roles::all();
         
