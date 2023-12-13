@@ -101,7 +101,7 @@
         const href = item.getAttribute('href');
 
         if (href === currentPath) {
-            item.classList.add('active');
+            item.classList.add('activated');
         }
     });
 
@@ -110,7 +110,7 @@
     var dropdownMenu = document.getElementById('dropdown-menu');
 
     userName.addEventListener('click', function() {
-        dropdownMenu.classList.toggle('active');
+        dropdownMenu.classList.toggle('activated');
     });
 });
 </script>

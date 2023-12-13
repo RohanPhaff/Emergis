@@ -20,6 +20,7 @@
   cursor: pointer;
   text-decoration: none;
   color: #333;
+  background-color: white;
 }
 
 .dataTables_wrapper .dataTables_paginate ul.pagination li.active a,
