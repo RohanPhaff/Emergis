@@ -4,7 +4,9 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <!-- Table sorting -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery CDN MUST be loaded first -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" /> <!-- Select2 css -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> <!-- Select2 js -->
 <script src="{{ asset('vendor/DataTables-1.13.8/js/jquery.dataTables.js') }}"></script> <!-- DataTables js -->
 <link href="{{ asset('vendor/DataTables-1.13.8/css/dataTables.bootstrap4.css') }}" rel="stylesheet"> <!-- DataTables bootstrap css -->
 <script src="{{ asset('vendor/DataTables-1.13.8/js/dataTables.bootstrap4.js') }}"></script> <!-- DataTables bootstrap js -->
@@ -24,7 +26,7 @@
 
     <div class="filter-section">
     <label for="programFilter">Select Program:</label>
-    <select id="programFilter">
+    <select id="programFilter" multiple>
         <option value="">All Programs</option>
         @foreach ($programOptions as $programOption)
             <option value="{{ $programOption }}">{{ $programOption }}</option>
@@ -32,15 +34,14 @@
     </select>
 
     <label for="statusFilter">Select Status:</label>
-    <select id="statusFilter">
+    <select id="statusFilter" multiple>
         <option value="">All Status</option>
         @foreach ($statusOptions as $statusOption)
             <option value="{{ $statusOption }}">{{ $statusOption }}</option>
         @endforeach
     </select>
-</div>
-
-
+    </div>
+    
     <table class="table">
         <thead>
             <tr>
@@ -74,11 +75,13 @@
         var table = $('.table').DataTable();
 
         $('#programFilter, #statusFilter').on('change', function () {
-            var programFilter = $('#programFilter').val();
-            var statusFilter = $('#statusFilter').val();
+            var programFilter = $('#programFilter').val() || [];
+            var statusFilter = $('#statusFilter').val() || [];
 
-            table.columns(1).search(programFilter).columns(5).search(statusFilter).draw();
+            table.columns(1).search(programFilter.join('|'), true, false).columns(5).search(statusFilter.join('|'), true, false).draw();
         });
+
+        $('#programFilter, #statusFilter').select2();
     });
 </script>
 
