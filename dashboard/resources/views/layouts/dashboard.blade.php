@@ -47,14 +47,14 @@
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="px-4" style="position: relative;">
                     <div id="user-name" style="cursor: pointer; color: white;">{{ Auth::user()->name }}</div>
-                    <div class="mt-3 space-y-1" id="dropdown-menu" style="z-index: 5; display: none; position: absolute; background-color: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
-                        <a href="{{ route('profile.edit') }}">
+                    <div class="mt-3 space-y-1" id="dropdown-menu">
+                        <a href="{{ route('profile.edit') }}" class="profile-text">
                             {{ __('Profiel') }}
                         </a>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="profile-text">
                                 {{ __('Log Uit') }}
                             </a>
                         </form>
@@ -104,5 +104,14 @@
             item.classList.add('active');
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var userName = document.getElementById('user-name');
+    var dropdownMenu = document.getElementById('dropdown-menu');
+
+    userName.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('active');
+    });
+});
 </script>
 </main>
