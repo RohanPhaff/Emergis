@@ -12,18 +12,57 @@ use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $projects = Project::all();
-        $programOptions = Project::distinct()->pluck('program')->toArray();
-        $statusOptions = Project::distinct()->pluck('project_status')->toArray();
-    
-        return view('projects.index', compact('projects', 'programOptions', 'statusOptions'));
-    }
-    
+/**
+ * Display a listing of the resource.
+ */
+public function index()
+{
+    $projects = Project::all();
+    $programOptions = Project::distinct()->pluck('program')->toArray();
+    $statusOptions = Project::distinct()->pluck('project_status')->toArray();
+    $departmentOptions = Project::distinct()->pluck('department')->toArray();
+    $budgetOptions = Project::distinct()->pluck('budget')->toArray();
+    $rvbOptions = Project::distinct()->pluck('check_discussion_RvB')->toArray();
+    $manHoursCategories = $this->getManHoursCategories(); // Custom method to calculate man hours categories
+
+    return view('projects.index', compact(
+        'projects',
+        'programOptions',
+        'statusOptions',
+        'departmentOptions',
+        'budgetOptions',
+        'rvbOptions',
+        'manHoursCategories'
+    ));
+}
+
+/**
+ * Custom method to calculate man hours categories.
+ */
+private function getManHoursCategories()
+{
+    $projects = Project::all();
+
+    // Calculate man hours category for each project
+    $manHoursCategories = $projects->map(function ($project) {
+        $manHours = $project->man_hours;
+        $entries = explode(';', $manHours);
+        $sum = 0;
+
+        foreach ($entries as $entry) {
+            $parts = explode(':', $entry);
+            if (count($parts) === 2 && is_numeric($parts[1])) {
+                $sum += intval($parts[1]);
+            }
+        }
+
+        // Determine category
+        return ($sum >= 0 && $sum <= 1000) ? 'Laag' : (($sum > 1000 && $sum <= 3000) ? 'Middel' : 'Hoog');
+    })->unique()->sort()->toArray();
+
+    return $manHoursCategories;
+}
+
     /**
      * Show the form for creating a new resource.
      */

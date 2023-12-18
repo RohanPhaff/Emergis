@@ -40,8 +40,40 @@
             <option value="{{ $statusOption }}">{{ $statusOption }}</option>
         @endforeach
     </select>
-    </div>
     
+    <label for="departmentFilter">Select Afdeling:</label>
+<select id="departmentFilter" multiple>
+    <option value="">All Departments</option>
+    @foreach ($departmentOptions as $departmentOption)
+        <option value="{{ $departmentOption }}">{{ $departmentOption }}</option>
+    @endforeach
+</select>
+
+<label for="manHoursFilter">Select Man Hours Category:</label>
+<select id="manHoursFilter" multiple>
+    <option value="">All Categories</option>
+    @foreach ($manHoursCategories as $category)
+        <option value="{{ $category }}">{{ $category }}</option>
+    @endforeach
+</select>
+
+<label for="budgetFilter">Select Budget:</label>
+<select id="budgetFilter" multiple>
+    <option value="">All Budgets</option>
+    @foreach ($budgetOptions as $budgetOption)
+        <option value="{{ $budgetOption }}">{{ $budgetOption }}</option>
+    @endforeach
+</select>
+
+<label for="rvbFilter">Select RvB:</label>
+<select id="rvbFilter" multiple>
+    <option value="">All RvB</option>
+    @foreach ($rvbOptions as $rvbOption)
+        <option value="{{ $rvbOption }}">{{ $rvbOption }}</option>
+    @endforeach
+</select>
+
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -72,16 +104,28 @@
 
 <script>
     $(document).ready(function () {
+        // Initialize Select2 for the new filters
+        $('#programFilter, #statusFilter, #departmentFilter, #manHoursFilter, #budgetFilter, #rvbFilter').select2();
+
+        // DataTables filtering logic
         var table = $('.table').DataTable();
 
-        $('#programFilter, #statusFilter').on('change', function () {
+        $('#programFilter, #statusFilter, #departmentFilter, #manHoursFilter, #budgetFilter, #rvbFilter').on('change', function () {
             var programFilter = $('#programFilter').val() || [];
             var statusFilter = $('#statusFilter').val() || [];
+            var departmentFilter = $('#departmentFilter').val() || [];
+            var manHoursFilter = $('#manHoursFilter').val() || [];
+            var budgetFilter = $('#budgetFilter').val() || [];
+            var rvbFilter = $('#rvbFilter').val() || [];
 
-            table.columns(1).search(programFilter.join('|'), true, false).columns(5).search(statusFilter.join('|'), true, false).draw();
+        table.columns(1).search(programFilter.join('|'), true, false)
+            .columns(5).search(statusFilter.join('|'), true, false)
+            .columns(2).search(departmentFilter.join('|'), true, false)
+            .columns(4).search(manHoursFilter.join('|'), true, false)
+            .columns(3).search(budgetFilter.join('|'), true, false)
+            .columns(6).search(rvbFilter.join('|'), true, false)
+            .draw();
         });
-
-        $('#programFilter, #statusFilter').select2();
     });
 </script>
 
