@@ -8,7 +8,7 @@ use App\Models\Roles;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\users>
  */
-class UsersFactory extends Factory
+class UserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class UsersFactory extends Factory
     public function definition(): array
     {
         return [
-                 
+
         ];
     }
 }
