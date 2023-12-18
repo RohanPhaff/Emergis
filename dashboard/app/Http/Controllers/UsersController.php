@@ -27,14 +27,19 @@ class UsersController extends Controller
 
     public function invite()
     {
-        return view('profile.invite');
+        return view('users.invite');
     }
 
     public function sendInvite()
     {
-        print("test");
+        $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate('127.0.0.1:8000/register', [
+            'name' => request()->name,
+            'email' => request()->email,
+        ], '+7 days', 1);
+
         
-        return view('profile.sendInvite');
+
+        return Redirect::route('users.invite')->with('success', 'User invited successfully!');
     }
 
     /**
