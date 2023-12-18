@@ -39,3 +39,6 @@ jobs:
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
       working-directory: dashboard
+    - name: Notify on failure
+      if: failure()
+      run: echo "Build failed! Check the workflow run for details."
