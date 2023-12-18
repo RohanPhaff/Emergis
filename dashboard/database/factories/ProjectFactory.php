@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\users;
+use App\Models\User;
 use App\Models\Program;
 use Faker\Generator as Faker;
 
@@ -46,10 +46,10 @@ class ProjectFactory extends Factory
             'start_date' => $this->faker->date,
             'end_date' => $this->faker->date,
 
-            'projectleader' => users::all()->random()->name,
-            'second_projectleader' => users::all()->random()->name,
-            'initiator' => users::all()->random()->name,
-            'actor' => users::all()->random()->name,
+            'projectleader' => User::all()->random()->name,
+            'second_projectleader' => User::all()->random()->name,
+            'initiator' => User::all()->random()->name,
+            'actor' => User::all()->random()->name,
 
             'reasoning' => $this->getFictitiousProjectReasoning(),
             'uploaded_document_start' => $this->faker->optional()->text, // Assuming binary data is stored as text

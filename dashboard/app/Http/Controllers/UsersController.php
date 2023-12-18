@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\users;
+use App\Models\User;
 use App\Models\Roles;
-use App\Http\Requests\StoreusersRequest;
-use App\Http\Requests\UpdateusersRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Gate;
@@ -19,7 +19,7 @@ class UsersController extends Controller
     {
         $this->authorize('access-admin');
 
-        $users = users::all();
+        $users = User::all();
         $roles = Roles::all();
         
         return view('admin.index', compact('users', 'roles'));
@@ -36,7 +36,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreusersRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -44,7 +44,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(users $users)
+    public function show(User $user)
     {
         //
     }
@@ -52,7 +52,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(users $users)
+    public function edit(User $user)
     {
         //
     }
@@ -60,13 +60,13 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateusersRequest $request, users $users)
+    public function update(UpdateUserRequest $request, User $user)
     {              
-        $users->update([
+        $user->update([
             "role" => $request->role,
         ]);
 
-        $users = users::all();
+        $user = User::all();
 
         return Redirect::route('admin.index')->with('success', 'User updated successfully!');
     }
@@ -74,7 +74,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(users $users)
+    public function destroy(User $user)
     {
         //
     }

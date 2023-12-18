@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\users;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\program>
@@ -20,7 +20,7 @@ class ProgramFactory extends Factory
         return [
             'name' => $this->getFictitiousProgram(),
             'description' => $this->getFictitiousProgramDescription(),
-            'portfolio_holder' => users::all()->random()->name,
+            'portfolio_holder' => User::all()->random()->name,
         ];
     }
 
