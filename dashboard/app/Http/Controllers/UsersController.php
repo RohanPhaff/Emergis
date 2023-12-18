@@ -25,6 +25,18 @@ class UsersController extends Controller
         return view('admin.index', compact('users', 'roles'));
     }
 
+    public function invite()
+    {
+        return view('profile.invite');
+    }
+
+    public function sendInvite()
+    {
+        print("test");
+        
+        return view('profile.sendInvite');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
