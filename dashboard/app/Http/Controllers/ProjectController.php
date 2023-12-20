@@ -44,9 +44,10 @@ class ProjectController extends Controller
             'code' => 'required|unique:projects|max:50',
             'description' => 'required|max:255',
             'department' => 'string|nullable',
-            'man_hours' => 'array|nullable',
+            'department_man_hours' => 'array|nullable',
             'departments' => 'array|nullable',
             'budget' => 'numeric|nullable',
+            'category_budget' => 'string|nullable',
             'spent_costs' => 'numeric|nullable',
             'start_date' => 'date|nullable',
             'end_date' => 'date|nullable',
@@ -68,11 +69,24 @@ class ProjectController extends Controller
         $leftDepartment = "";
         $manHours = $request->input('man_hours');
 
-        // Combine departments and man_hours into a string format
+        if (empty($validatedData['budget'])) {
+            $validatedData['budget'] = 0;
+        }
+        $budget = $validatedData['budget'];
+
+
+        // Combine departments and department_man_hours into a string format
         $combinedData = [];
         foreach ($departments as $key => $department) {
             if ($department != "") {
-                $combinedData[] = $department . ':' . $manHours[$key];
+                if ($manHours[$key] >= 0 && $manHours[$key] < 500) {
+                    $categoryHour = 'Laag';
+                } else if ($manHours[$key] >= 500 && $manHours[$key] < 1000) {
+                    $categoryHour = 'Middel';
+                } else {
+                    $categoryHour = 'Hoog';
+                }
+                $combinedData[] = $department . ':' . $manHours[$key] . ':' . $categoryHour;
                 $leftDepartment = $department;
             }
         }
@@ -80,9 +94,22 @@ class ProjectController extends Controller
         // Convert the array to a string separated by ';'
         $formattedString = implode(';', $combinedData);
 
-        $validatedData['man_hours'] = $formattedString;
+        $validatedData['department_man_hours'] = $formattedString;
+
+        if ($budget >= 0 && $budget < 10000) {
+            $validatedData['category_budget'] = 'Laag';
+        } else if ($budget >= 10000 && $budget < 50000) {
+            $validatedData['category_budget'] = 'Middel';
+        } else {
+            $validatedData['category_budget'] = 'Hoog';
+        }
+
         $validatedData['department'] = $leftDepartment;
         unset($validatedData['departments']);
+
+        if (empty($validatedData['spent_costs'])) {
+            $validatedData['spent_costs'] = 0;
+        }
 
         if (empty($validatedData['project_status'])) {
             $validatedData['project_status'] = 'Op schema';
@@ -142,9 +169,10 @@ class ProjectController extends Controller
             'code' => 'required|unique:projects,code,' . $project->id . '|max:50',
             'description' => 'required|max:255',
             'department' => 'string|nullable',
-            'man_hours' => 'array|nullable',
+            'department_man_hours' => 'array|nullable',
             'departments' => 'array|nullable',
             'budget' => 'nullable|numeric',
+            'category_budget' => 'string|nullable',
             'spent_costs' => 'nullable|numeric',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
@@ -165,12 +193,24 @@ class ProjectController extends Controller
         $departments = $request->input('departments');
         $leftDepartment = "";
         $manHours = $request->input('man_hours');
+        
+        if (empty($validatedData['budget'])) {
+            $validatedData['budget'] = 0;
+        }
+        $budget = $validatedData['budget'];
 
-        // Combine departments and man_hours into a string format
+        // Combine departments and department_man_hours into a string format
         $combinedData = [];
         foreach ($departments as $key => $department) {
             if ($department != "") {
-                $combinedData[] = $department . ':' . $manHours[$key];
+                if ($manHours[$key] >= 0 && $manHours[$key] < 500) {
+                    $categoryHour = 'Laag';
+                } else if ($manHours[$key] >= 500 && $manHours[$key] < 1000) {
+                    $categoryHour = 'Middel';
+                } else {
+                    $categoryHour = 'Hoog';
+                }
+                $combinedData[] = $department . ':' . $manHours[$key] . ':' . $categoryHour;
                 $leftDepartment = $department;
             }
         }
@@ -178,9 +218,22 @@ class ProjectController extends Controller
         // Convert the array to a string separated by ';'
         $formattedString = implode(';', $combinedData);
 
-        $validatedData['man_hours'] = $formattedString;
+        $validatedData['department_man_hours'] = $formattedString;
+
+        if ($budget >= 0 && $budget < 10000) {
+            $validatedData['category_budget'] = 'Laag';
+        } else if ($budget >= 10000 && $budget < 50000) {
+            $validatedData['category_budget'] = 'Middel';
+        } else {
+            $validatedData['category_budget'] = 'Hoog';
+        }
+
         $validatedData['department'] = $leftDepartment;
         unset($validatedData['departments']);
+
+        if (empty($validatedData['spent_costs'])) {
+            $validatedData['spent_costs'] = 0;
+        }
 
         // Check if 'uploaded_document_start' file was uploaded
         if ($request->hasFile('uploaded_document_start')) {
