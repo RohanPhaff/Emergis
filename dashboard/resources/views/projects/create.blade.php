@@ -30,6 +30,7 @@
             <span class="required">*</span>
             <span class="label">Project code:</span>
             <input type="text" class="form-control" id="code" name="code" placeholder="12345" value="{{ old('code') }}" required>
+            <span class="label" id="projectCode_help"></span>
         </div>
 
         <div class="item">
@@ -155,6 +156,7 @@
             <span class="label">Check discussie RvB:</span>
             <input type="hidden" name="check_discussion_RvB" value="0">
             <input type="checkbox" class="form-control" id="check_discussion_RvB" name="check_discussion_RvB" value="1" {{ old('check_discussion_RvB') ? 'checked' : '' }}>
+            <span class="label" id="rvb_help"></span>
         </div>
 
         <div class="form-actions">
@@ -164,4 +166,25 @@
     </form>
 
 </div>
+
+<script>
+function showTooltip(nummer) {
+    let tooltip = document.getElementById('tooltip' + nummer);
+    tooltip.style.display = 'block';
+}
+
+// Function to hide tooltip when not hovering
+function hideTooltip(nummer) {
+    let tooltip = document.getElementById('tooltip' + nummer);
+    tooltip.style.display = 'none';
+}
+
+document.getElementById("rvb_help").innerHTML = "<div class='tooltip-container'>" +
+    "<span class='question-mark' onmouseover='showTooltip(2)' onmouseout='hideTooltip(2)'> &#128712;</span>" +
+    "<div class='tooltip-content' id='tooltip2' style='display: none;'><p class='tooltip-text'>RvB uitleg:<br>" + "Is er gesprek geweest met het Raad van Bestuur (RvB)?" + "</p></div></div>";
+
+document.getElementById("projectCode_help").innerHTML = "<div class='tooltip-container'>" +
+    "<span class='question-mark' onmouseover='showTooltip(3)' onmouseout='hideTooltip(3)'> &#128712;</span>" +
+    "<div class='tooltip-content' id='tooltip3' style='display: none;'><p class='tooltip-text'>Projectcode uitleg:<br>" + "Deze komt overeen met de projectcode van het project bij Emergis" + "</p></div></div>";
+</script>
 @endsection

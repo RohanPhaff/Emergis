@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Program;
 use App\Models\Department;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -28,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $users = Users::all();
+        $users = User::all();
         $programs = Program::all();
         $departments = Department::all();
         return view('projects.create', compact('users', 'programs', 'departments'));
@@ -88,7 +88,7 @@ class ProjectController extends Controller
             $validatedData['project_status'] = 'Op schema';
         }
         if (empty($validatedData['progress'])) {
-            $validatedData['progress'] = '0';
+            $validatedData['progress'] = '1';
         }
 
         $project = new Project($validatedData);
@@ -125,7 +125,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {    
-        $users = Users::all();
+        $users = User::all();
         $programs = Program::all();
         $projects = Project::all();
         $departments = Department::all();
@@ -158,7 +158,7 @@ class ProjectController extends Controller
             'program' => 'required|string',
             'community_link' => 'nullable|url',
             'project_status' => 'nullable|string',
-            'progress' => 'nullable|numeric',
+            'progress' => 'numeric|min:1|max:5',
             'check_discussion_RvB' => 'boolean',
         ]);
 

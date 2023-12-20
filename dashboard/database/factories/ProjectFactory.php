@@ -57,7 +57,7 @@ class ProjectFactory extends Factory
             'program' => Program::all()->random()->name,
             'community_link' => $this->faker->url,
             'project_status' => $this->faker->randomElement($array = array ('Op schema','Vertraagd','Afgewezen')),
-            'progress' => $this->faker->numberBetween($min = 20, $max = 100),
+            'progress' => $this->faker->numberBetween($min = 1, $max = 5),
             'check_discussion_RvB' => $this->faker->boolean,
         ];
     }
