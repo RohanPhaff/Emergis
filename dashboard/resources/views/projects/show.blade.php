@@ -5,7 +5,7 @@
 
 @if ($updatedProject = Session::get('updatedProject'))
 <div class="alert alert-success">
-  <p class="successUpdate">Project: "{{ $updatedProject->name }}" has successfully been updated!</p>
+  <p class="successUpdate">Project: "{{ $updatedProject->name }}" is succesvol aangepast!</p>
 </div>
 @endif
 
@@ -33,7 +33,7 @@
 <div class="showDetails">
   <div class="showManHours">
     <h1 id="man_hours_help">Mens uren</h1>
-    <p id="man_hours">{{ $project->man_hours }}</p>
+    <p id="man_hours">{{ $project->department_man_hours }}</p>
   </div>
   <div class="showBudget">
     <h1>Budget</h1>
@@ -41,11 +41,11 @@
   </div>
   <div class="showExpectedCosts">
     <h1>Gemaakte kosten</h1>
-    <p>€{{ $project->spent_costs }}</p>
+    <p id="spend_costs">€{{ $project->spent_costs }}</p>
   </div>
   <div class="showDuration">
     <h1>Verwachte looptijd</h1>
-    <p>{{ $project->start_date }} tot {{ $project->end_date }}</p>
+    <p id="duration">{{ $project->start_date }} tot {{ $project->end_date }}</p>
   </div>
 </div>
 <h1>Voortgang</h1>
@@ -143,8 +143,14 @@
 </script>
 
 <script>
-  let manHours = <?php echo json_encode($project->man_hours); ?>;
+  let manHours = <?php echo json_encode($project->department_man_hours); ?>;
+  let totalManHours = <?php echo json_encode($project->total_man_hours); ?>;
+  let categoryManHours = <?php echo json_encode($project->category_man_hours); ?>;
   let budget = <?php echo json_encode($project->budget); ?>;
+  let categoryBudget = <?php echo json_encode($project->category_budget); ?>;
+  let spendCosts = <?php echo json_encode($project->spent_costs); ?>;
+  let startDate = <?php echo json_encode($project->start_date); ?>;
+  let endDate = <?php echo json_encode($project->end_date); ?>;
 </script>
 <script src="\js\categoryHoursBudget.js"></script>
 

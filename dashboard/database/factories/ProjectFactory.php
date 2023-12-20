@@ -21,17 +21,43 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         $departments = \App\Models\Department::all();
-        $randomIndex = $this->faker->numberBetween(0, $departments->count() - 1);
+        $randomIndex = $this->faker->numberBetween($min = 1, $max = ($departments->count() - 1));
         $finalManHours = "";
-        for ($i = 0; $i < $randomIndex; $i++) { 
-            $department = \App\Models\Department::all()->random()->name;
-            $manHours = $this->faker->numberBetween(40, 1000);
+
+        $budget = ($this->faker->numberBetween($min = 5, $max = 100) * 1000);
+        if ($budget >= 0 && $budget < 10000) {
+            $categoryBudget = 'Laag';
+        } else if ($budget >= 10000 && $budget < 50000) {
+            $categoryBudget = 'Middel';
+        } else {
+            $categoryBudget = 'Hoog';
+        }
+
+
+        $departmentNames = [];
+        for ($i = 0; $i < $randomIndex; $i++) {
+            $randomDepartment = \App\Models\Department::all()->random();
+            
+            while (in_array($randomDepartment->name, $departmentNames)) {
+                $randomDepartment = \App\Models\Department::all()->random();
+            }
+            $departmentNames[] = $randomDepartment->name;
+
+            $department = $randomDepartment->name;
+            $manHours = $this->faker->numberBetween($min = 100, $max = 2000);
 
             if (strlen($finalManHours) > 0) {
                 $finalManHours .= ";";
             }
 
-            $finalManHours .= ($department . ':' . $manHours);
+            if ($manHours >= 0 && $manHours < 500) {
+                $categoryManHours = 'Laag';
+            } else if ($manHours >= 500 && $manHours < 1000) {
+                $categoryManHours = 'Middel';
+            } else {
+                $categoryManHours = 'Hoog';
+            }
+            $finalManHours .= ($department . ':' . $manHours . ':' . $categoryManHours);
         }
 
         return [
@@ -39,8 +65,9 @@ class ProjectFactory extends Factory
             'code' => $this->faker->bothify('##??#?'),
             'description' => $this->getFictitiousProjectDescription(),
             'department' => \App\Models\Department::all()->random()->name,
-            'man_hours' => $finalManHours,
-            'budget' => $this->faker->numberBetween($min = 8000, $max = 20000),
+            'department_man_hours' => $finalManHours,
+            'budget' => $budget,
+            'category_budget' => $categoryBudget,
             'spent_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),
 
             'start_date' => $this->faker->date,
