@@ -17,64 +17,108 @@
     <div class="alert alert-success">
         <p class="successAdd">Project: "{{ $newProject->name }}" has successfully been created!</p>
     </div>
-    @endif
+    @endif 
 
     <div class="header">
         <h1>Lijst van Projecten</h1>
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
     </div>
 
-    <div class="filter-section">
-    <label for="programFilter">Select Program:</label>
-    <select id="programFilter" multiple>
-        <option value="">All Programs</option>
-        @foreach ($programOptions as $programOption)
-            <option value="{{ $programOption }}">{{ $programOption }}</option>
-        @endforeach
-    </select>
+    <div class="dropdown">
+            <button id="programFilterBtn" class="dropbtn">
+                Filter Programs
+            </button>
+            <div id="programFilterOptions" class="dropdown-content">
+                <div class="selectAllOption">
+                    <input
+                        type="checkbox"
+                        id="selectAllPrograms"
+                        class="selectAllCheckbox"
+                        checked
+                    />
+                    <label for="selectAllPrograms">Select All</label>
+                </div>
 
-    <label for="statusFilter">Select Status:</label>
-    <select id="statusFilter" multiple>
-        <option value="">All Status</option>
-        @foreach ($statusOptions as $statusOption)
-            <option value="{{ $statusOption }}">{{ $statusOption }}</option>
-        @endforeach
-    </select>
+                @php
+                    // Collect unique programs from $projects to eliminate duplicates
+                    $uniquePrograms = $projects->unique('program');
+                @endphp
+                @foreach ($uniquePrograms as $project)
+                    <label
+                        ><input
+                            type="checkbox"
+                            class="programCheckbox"
+                            value="{{ $project->program }}"
+                            checked
+                        />
+                        {{ $project->program }}</label
+                    >
+                @endforeach
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button id="statusFilterBtn" class="dropbtn">Filter Status</button>
+            <div id="statusFilterOptions" class="dropdown-content">
+                <div class="selectAllOption">
+                    <input
+                        type="checkbox"
+                        id="selectAllStatus"
+                        class="selectAllCheckbox"
+                        checked
+                    />
+                    <label for="selectAllStatus">Select All</label>
+                </div>
+                    <label
+                        ><input
+                            type="checkbox"
+                            class="statusCheckbox"
+                            value="Op schema"
+                            checked
+                        />
+                        Op schema</label
+                    >
+                    <label
+                        ><input
+                            type="checkbox"
+                            class="statusCheckbox"
+                            value="Vertraagd"
+                            checked
+                        />
+                        Vertraagd</label
+                    >
+                    <label
+                        ><input
+                            type="checkbox"
+                            class="statusCheckbox"
+                            value="Afgewezen"
+                            checked
+                        />
+                        Afgewezen</label
+                    >
+            </div>
+        </div>
+
+        <button id="clearFiltersBtn">Clear Filters</button>
+
+        <table id="projectsTable">
+            <thead>
+                <tr>
+                <th>Programma</th>
+                <th>Project Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($projects as $project)
+            <tr data-href="{{ route('projects.show', $project) }}" onclick="window.location.href = this.getAttribute('data-href');">
+                <td>{{ $project->program }}</td>
+                <td>{{ $project->project_status }}</td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
     
-    <label for="departmentFilter">Select Afdeling:</label>
-<select id="departmentFilter" multiple>
-    <option value="">All Departments</option>
-    @foreach ($departmentOptions as $departmentOption)
-        <option value="{{ $departmentOption }}">{{ $departmentOption }}</option>
-    @endforeach
-</select>
-
-<label for="manHoursFilter">Select Man Hours Category:</label>
-<select id="manHoursFilter" multiple>
-    <option value="">All Categories</option>
-    @foreach ($manHoursCategories as $category)
-        <option value="{{ $category }}">{{ $category }}</option>
-    @endforeach
-</select>
-
-<label for="budgetFilter">Select Budget:</label>
-<select id="budgetFilter" multiple>
-    <option value="">All Budgets</option>
-    @foreach ($budgetOptions as $budgetOption)
-        <option value="{{ $budgetOption }}">{{ $budgetOption }}</option>
-    @endforeach
-</select>
-
-<label for="rvbFilter">Select RvB:</label>
-<select id="rvbFilter" multiple>
-    <option value="">All RvB</option>
-    @foreach ($rvbOptions as $rvbOption)
-        <option value="{{ $rvbOption }}">{{ $rvbOption }}</option>
-    @endforeach
-</select>
-
-    </div>
-    <table class="table">
+    <!-- <table class="table" id="projectsTable">
         <thead>
             <tr>
                 <th>Naam</th>
@@ -99,34 +143,152 @@
             </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> -->
 </div>
 
 <script>
     $(document).ready(function () {
-        // Initialize Select2 for the new filters
-        $('#programFilter, #statusFilter, #departmentFilter, #manHoursFilter, #budgetFilter, #rvbFilter').select2();
-
-        // DataTables filtering logic
         var table = $('.table').DataTable();
 
-        $('#programFilter, #statusFilter, #departmentFilter, #manHoursFilter, #budgetFilter, #rvbFilter').on('change', function () {
+        $('#programFilter, #statusFilter').on('change', function () {
             var programFilter = $('#programFilter').val() || [];
             var statusFilter = $('#statusFilter').val() || [];
-            var departmentFilter = $('#departmentFilter').val() || [];
-            var manHoursFilter = $('#manHoursFilter').val() || [];
-            var budgetFilter = $('#budgetFilter').val() || [];
-            var rvbFilter = $('#rvbFilter').val() || [];
 
-        table.columns(1).search(programFilter.join('|'), true, false)
-            .columns(5).search(statusFilter.join('|'), true, false)
-            .columns(2).search(departmentFilter.join('|'), true, false)
-            .columns(4).search(manHoursFilter.join('|'), true, false)
-            .columns(3).search(budgetFilter.join('|'), true, false)
-            .columns(6).search(rvbFilter.join('|'), true, false)
-            .draw();
+            table.columns(1).search(programFilter.join('|'), true, false).columns(5).search(statusFilter.join('|'), true, false).draw();
         });
+
+        $('#programFilter, #statusFilter').select2();
     });
+
+    // Convert PHP $projects variable to JSON
+    var projects = @json($projects);
+
+    function renderProjectsAsTable(filteredProjects) {
+                const projectsTable = document
+                    .getElementById("projectsTable")
+                    .getElementsByTagName("tbody")[0];
+                projectsTable.innerHTML = ""; // Clear previous content
+
+                filteredProjects.forEach((project) => {
+                    const row = projectsTable.insertRow(-1);
+                    const cellProgram = row.insertCell(0);
+                    const cellStatus = row.insertCell(1);
+
+                    cellProgram.textContent = project.program;
+                    cellStatus.textContent = project.project_status;
+                });
+            }
+
+            function toggleSelectAll(selectAllCheckbox, checkboxes) {
+                selectAllCheckbox.addEventListener("change", function () {
+                    checkboxes.forEach((checkbox) => {
+                        checkbox.checked = selectAllCheckbox.checked;
+                    });
+                    selectAllCheckbox.nextElementSibling.textContent =
+                        selectAllCheckbox.checked
+                            ? "Deselect All"
+                            : "Select All";
+                    applyFilters();
+                });
+            }
+
+            // Select All/Deselect All functionality for brands
+            const programCheckboxes =
+                document.querySelectorAll(".programCheckbox");
+            const selectAllProgramsCheckbox =
+                document.getElementById("selectAllPrograms");
+            toggleSelectAll(selectAllProgramsCheckbox, programCheckboxes);
+
+            // Select All/Deselect All functionality for statuses
+            const statusCheckboxes =
+                document.querySelectorAll(".statusCheckbox");
+            const selectAllStatusCheckbox =
+                document.getElementById("selectAllStatus");
+            toggleSelectAll(selectAllStatusCheckbox, statusCheckboxes);
+
+            function applyFilters() {
+                const selectedPrograms = Array.from(
+                    document.querySelectorAll(".programCheckbox:checked")
+                ).map((checkbox) => checkbox.value);
+                const selectedStatuses = Array.from(
+                    document.querySelectorAll(".statusCheckbox:checked")
+                ).map((checkbox) => checkbox.value);
+
+                let filteredProjects = projects;
+
+                if (selectedPrograms.length > 0) {
+                    filteredProjects = filteredProjects.filter((project) =>
+                        selectedPrograms.includes(project.program)
+                    );
+                }
+
+                if (selectedStatuses.length > 0) {
+                    filteredProjects = filteredProjects.filter((project) =>
+                        selectedStatuses.includes(project.project_status)
+                    );
+                }
+
+                renderProjectsAsTable(filteredProjects);
+            }
+
+            function clearAllFilters() {
+                document
+                    .querySelectorAll(
+                        ".programCheckbox:checked, .statusCheckbox:checked, .selectAllCheckbox:checked"
+                    )
+                    .forEach((checkbox) => {
+                        checkbox.checked = false;
+                    });
+
+                applyFilters(); // Apply filters after resetting checkboxes
+
+                // Update "Deselect All" / "Select All" text
+                const selectAllProgramsCheckbox =
+                    document.getElementById("selectAllPrograms");
+                const selectAllStatusCheckbox =
+                    document.getElementById("selectAllStatus");
+
+                if (selectAllProgramsCheckbox && selectAllStatusCheckbox) {
+                    selectAllProgramsCheckbox.nextElementSibling.textContent =
+                        "Select All";
+                    selectAllStatusCheckbox.nextElementSibling.textContent =
+                        "Select All";
+                }
+            }
+
+            // Event listeners for filter checkboxes change
+            document
+                .querySelectorAll(".programCheckbox")
+                .forEach((checkbox) => {
+                    checkbox.addEventListener("change", applyFilters);
+                });
+
+            document.querySelectorAll(".statusCheckbox").forEach((checkbox) => {
+                checkbox.addEventListener("change", applyFilters);
+            });
+
+            // Initial render with all projects
+            renderProjectsAsTable(projects);
+
+            // Check all checkboxes by default and apply filters
+            function checkAllCheckboxes() {
+                document
+                    .querySelectorAll(
+                        ".programCheckbox, .statusCheckbox, .selectAllCheckbox"
+                    )
+                    .forEach((checkbox) => {
+                        checkbox.checked = false;
+                    });
+                applyFilters();
+            }
+
+            // Event listener for the Clear Filters button
+            document
+                .getElementById("clearFiltersBtn")
+                .addEventListener("click", clearAllFilters);
+
+            // Call the function to uncheck all checkboxes by default and apply filters
+            checkAllCheckboxes();
 </script>
 
 @endsection
