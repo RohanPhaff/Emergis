@@ -60,7 +60,7 @@
         <script>
             let departments = <?php echo json_encode($departments); ?>;
             let editPage = true;
-            let manHoursString = <?php echo json_encode($project->man_hours); ?>;
+            let manHoursString = <?php echo json_encode($project->department_man_hours); ?>;
         </script>
         <script src="\js\manHoursMenu.js"></script>
 

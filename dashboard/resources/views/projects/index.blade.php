@@ -13,7 +13,7 @@
 <div class="content1">
     @if ($newProject = Session::get('newProject'))
     <div class="alert alert-success">
-        <p class="successAdd">Project: "{{ $newProject->name }}" has successfully been created!</p>
+        <p class="successAdd">Project: "{{ $newProject->name }}" is succesvol aangemaakt!</p>
     </div>
     @endif
 
