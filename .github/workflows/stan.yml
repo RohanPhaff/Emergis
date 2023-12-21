@@ -13,5 +13,4 @@ jobs:
         with:
           level: 5
           args: --no-progress
-          path: resources/views && public/css
-        working-directory: dashboard
+          path: dashboard/resources/views && dashboard/public/css
