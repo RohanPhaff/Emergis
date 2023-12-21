@@ -33,6 +33,8 @@ jobs:
         mkdir -p database
         touch database/database.sqlite
       working-directory: dashboard
+    - name: Clear Laravel Configuration Cache
+      run: php artisan config:clear
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
