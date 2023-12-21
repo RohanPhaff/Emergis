@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ "user-table-refactoring" ]
+    branches: [ "login-unit-testing" ]
   pull_request:
-    branches: [ "user-table-refactoring" ]
+    branches: [ "login-unit-testing" ]
 
 jobs:
   laravel-tests:
