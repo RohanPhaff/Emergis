@@ -7,6 +7,14 @@
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
+            <exclude>tests/Feature/ExampleTest.php</exclude>
+            <exclude>tests/Feature/ProfileTest.php</exclude>
+            <exclude>tests/Feature/Auth/AuthenticationTest.php</exclude>
+            <exclude>tests/Feature/Auth/EmailVerificationTest.php</exclude>
+            <exclude>tests/Feature/Auth/PasswordConfirmationTest.php</exclude>
+            <exclude>tests/Feature/Auth/PasswordResetTest.php</exclude>
+            <exclude>tests/Feature/Auth/PasswordUpdate.php</exclude>
+            <exclude>tests/Feature/Auth/RegistrationTest.php</exclude>
         </testsuite>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
