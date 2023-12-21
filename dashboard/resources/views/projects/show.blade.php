@@ -20,7 +20,7 @@
   </div>
   <div class="right-box">
     <p class="showRoles"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-    <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
+    <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->second_projectleader }}</p>
     <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
     <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
   </div>
