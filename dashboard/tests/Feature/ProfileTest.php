@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-$this->markTestSkipped('test is broken');
+static::markTestSkipped('test is broken');
 
 class ProfileTest extends TestCase
 {
