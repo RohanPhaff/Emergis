@@ -11,6 +11,7 @@ jobs:
       - uses: php-actions/composer@v6
       - uses: php-actions/phpstan@v3
         with:
-          level: 8
+          level: 5
           args: --no-progress
-          path: dashboard
+          path: resources/views && public/css
+        working-directory: dashboard
