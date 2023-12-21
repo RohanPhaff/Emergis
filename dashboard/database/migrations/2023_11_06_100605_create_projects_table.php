@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('project_id')->unique();
             $table->string('name');
             $table->string('code')->nullable()->unique();
             $table->string('description');
             $table->string('department')->nullable();
-            $table->string('man_hours')->nullable();
+            $table->string('department_man_hours')->nullable();
             $table->integer('budget')->nullable();
+            $table->string('category_budget')->nullable();
             $table->integer('spent_costs')->nullable();
 
             $table->date('start_date')->nullable();

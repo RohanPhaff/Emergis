@@ -5,7 +5,7 @@
 
 @if ($updatedProject = Session::get('updatedProject'))
 <div class="alert alert-success">
-  <p class="successUpdate">Project: "{{ $updatedProject->name }}" has successfully been updated!</p>
+  <p class="successUpdate">Project: "{{ $updatedProject->name }}" is succesvol aangepast!</p>
 </div>
 @endif
 
@@ -20,7 +20,7 @@
   </div>
   <div class="right-box">
     <p class="showRoles"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-    <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
+    <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->second_projectleader }}</p>
     <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
     <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
   </div>
@@ -33,7 +33,7 @@
 <div class="showDetails">
   <div class="showManHours">
     <h1 id="man_hours_help">Mens uren</h1>
-    <p id="man_hours">{{ $project->man_hours }}</p>
+    <p id="man_hours">{{ $project->department_man_hours }}</p>
   </div>
   <div class="showBudget">
     <h1>Budget</h1>
@@ -41,11 +41,11 @@
   </div>
   <div class="showExpectedCosts">
     <h1>Gemaakte kosten</h1>
-    <p>€{{ $project->spent_costs }}</p>
+    <p id="spend_costs">€{{ $project->spent_costs }}</p>
   </div>
   <div class="showDuration">
     <h1>Verwachte looptijd</h1>
-    <p>{{ $project->start_date }} tot {{ $project->end_date }}</p>
+    <p id="duration">{{ $project->start_date }} tot {{ $project->end_date }}</p>
   </div>
 </div>
 <h1>Voortgang</h1>
@@ -53,11 +53,26 @@
 <div class="container">
   <div class="progress-container">
     <div class="progress" id="progress"> </div>
-    <div class="circle">1</div>
-    <div class="circle">2</div>
-    <div class="circle">3</div>
-    <div class="circle">4</div>
-    <div class="circle">5</div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">1</div>
+      <p>Aanvraag</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">2</div>
+      <p>Lopend</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">3</div>
+      <p>Halverwege</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">4</div>
+      <p>Afronding</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">5</div>
+      <p>Evaluatie</p>
+    </div>
   </div>
 </div>
 <p id="projectStatus">{{ $project->project_status }}</p>
@@ -110,9 +125,7 @@
 
   let currentActive = 1;
 
-  const updateValue = Math.floor(progressValue / 20);
-
-  update(updateValue);
+  update(progressValue);
 
   function update(currentActive) {
     stepCircles.forEach((circle, i) => {
@@ -143,8 +156,14 @@
 </script>
 
 <script>
-  let manHours = <?php echo json_encode($project->man_hours); ?>;
+  let manHours = <?php echo json_encode($project->department_man_hours); ?>;
+  let totalManHours = <?php echo json_encode($project->total_man_hours); ?>;
+  let categoryManHours = <?php echo json_encode($project->category_man_hours); ?>;
   let budget = <?php echo json_encode($project->budget); ?>;
+  let categoryBudget = <?php echo json_encode($project->category_budget); ?>;
+  let spendCosts = <?php echo json_encode($project->spent_costs); ?>;
+  let startDate = <?php echo json_encode($project->start_date); ?>;
+  let endDate = <?php echo json_encode($project->end_date); ?>;
 </script>
 <script src="\js\categoryHoursBudget.js"></script>
 

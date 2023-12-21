@@ -28,7 +28,7 @@ Route::get('/admin', [UsersController::class, 'index'])
     ->middleware(['auth', 'verified', 'can:access-admin'])
     ->name('admin.index');
 
-Route::put('/admin/{users}', [UsersController::class, 'update'])
+Route::put('/admin/{user}', [UsersController::class, 'update'])
     ->middleware(['auth', 'verified', 'can:access-admin'])
     ->name('admin.update');
 

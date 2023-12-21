@@ -23,7 +23,7 @@
     <tbody>
         @foreach ($users as $user)
         <tr>
-            <form method="POST" action="{{ route('admin.update', ['users' => $user->id]) }}">
+            <form method="POST" action="{{ route('admin.update', ['user' => $user]) }}">
                 @csrf
                 @method('PUT')
                 <td><strong>{{$user->name}}</strong></td>

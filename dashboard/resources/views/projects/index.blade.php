@@ -10,10 +10,20 @@
 <script src="{{ asset('vendor/DataTables-1.13.8/js/dataTables.bootstrap4.js') }}"></script> <!-- DataTables bootstrap js -->
 <script src="{{ asset('js/dataTables.js') }}"></script> <!-- DataTables custom js -->
 
+<?php
+    $projectPhases = [
+        "Aanvraag",
+        "Lopend",
+        "Halverwege",
+        "Afronding",
+        "Evaluatie"
+    ];
+?>
+
 <div class="content1">
     @if ($newProject = Session::get('newProject'))
     <div class="alert alert-success">
-        <p class="successAdd">Project: "{{ $newProject->name }}" has successfully been created!</p>
+        <p class="successAdd">Project: "{{ $newProject->name }}" is succesvol aangemaakt!</p>
     </div>
     @endif
 
@@ -21,7 +31,7 @@
         <h1>Lijst van Projecten</h1>
         <a href="{{ route('projects.create') }}" class="light-blue-button">Nieuw project</a>
     </div>
-
+    
     <table class="table">
         <thead>
             <tr>
@@ -41,7 +51,11 @@
                 <td>{{ $project->program }}</td>
                 <td>{{ $project->start_date }}</td>
                 <td>{{ $project->end_date }}</td>
-                <td>{{ $project->progress }}%</td>
+                @for($i = 1; $i <= 5; $i++)
+                    @if ($project->progress == $i)
+                        <td>{{$projectPhases[$i - 1]}}</td>
+                    @endif
+                @endfor
                 <td>{{ $project->project_status }}</td>
                 <td>{{ $project->projectleader }}</td>
             </tr>
