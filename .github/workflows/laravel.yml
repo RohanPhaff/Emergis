@@ -35,6 +35,7 @@ jobs:
       working-directory: dashboard
     - name: Clear Laravel Configuration Cache
       run: php artisan config:clear
+      working-directory: dashboard
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
