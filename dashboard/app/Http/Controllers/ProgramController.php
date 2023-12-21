@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\program;
-use App\Models\Users;
+use App\Models\User;
 use App\Http\Requests\StoreprogramsRequest;
 use App\Http\Requests\UpdateprogramsRequest;
 
@@ -25,7 +25,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        $users = Users::all();
+        $users = User::all();
         return view('programs.create', [
             'users' => $users
         ]);
@@ -65,7 +65,7 @@ class ProgramController extends Controller
      */
     public function edit(program $program)
     {
-        $users = Users::all();
+        $users = User::all();
         return view('programs.edit', compact('program', 'users'));
     }
 

@@ -31,6 +31,7 @@
             <span class="required">*</span>
             <span class="label">Project code:</span>
             <input type="text" class="form-control" id="code" name="code" value="{{ old('code', $project->code) }}" required>
+            <span class="label" id="projectCode_help"></span>
         </div>
 
         <div class="item">
@@ -169,14 +170,17 @@
         </div>
 
         <div class="item">
+            <span class="required">*</span>
             <span class="label">Voortgang:</span>
-            <input type="number" class="form-control" id="progress" name="progress" value="{{ old('progress', $project->progress) }}">
+            <input type="number" class="form-control" id="progress" name="progress" value="{{ old('progress', $project->progress) }}" min="1" max="5" required>
+            <span class="label" id="progress_help"></span>
         </div>
 
         <div class="item">
             <span class="label">Check discussie RvB:</span>
             <input type="hidden" name="check_discussion_RvB" value="0">
             <input type="checkbox" class="form-control" id="check_discussion_RvB" name="check_discussion_RvB" value="1" {{ old('check_discussion_RvB', $project->check_discussion_RvB) ? 'checked' : '' }}>
+            <span class="label" id="rvb_help"></span>
         </div>
 
         <div class="form-actions">
@@ -185,5 +189,30 @@
         </div>
     </form>
 </div>
+
+<script>
+function showTooltip(nummer) {
+    let tooltip = document.getElementById('tooltip' + nummer);
+    tooltip.style.display = 'block';
+}
+
+// Function to hide tooltip when not hovering
+function hideTooltip(nummer) {
+    let tooltip = document.getElementById('tooltip' + nummer);
+    tooltip.style.display = 'none';
+}
+
+document.getElementById("progress_help").innerHTML = "<div class='tooltip-container'>" +
+    "<span class='question-mark' onmouseover='showTooltip(1)' onmouseout='hideTooltip(1)'> &#128712;</span>" +
+    "<div class='tooltip-content' id='tooltip1' style='display: none;'><p class='tooltip-text'>Voortgang uitleg:<br>" + "1: Aanvraag<br> 2: Lopend<br> 3: Halverwege<br> 4: Afronding<br> 5: Evaluatie" + "</p></div></div>";
+
+document.getElementById("rvb_help").innerHTML = "<div class='tooltip-container'>" +
+    "<span class='question-mark' onmouseover='showTooltip(2)' onmouseout='hideTooltip(2)'> &#128712;</span>" +
+    "<div class='tooltip-content' id='tooltip2' style='display: none;'><p class='tooltip-text'>RvB uitleg:<br>" + "Is er gesprek geweest met het Raad van Bestuur (RvB)?" + "</p></div></div>";
+
+document.getElementById("projectCode_help").innerHTML = "<div class='tooltip-container'>" +
+    "<span class='question-mark' onmouseover='showTooltip(3)' onmouseout='hideTooltip(3)'> &#128712;</span>" +
+    "<div class='tooltip-content' id='tooltip3' style='display: none;'><p class='tooltip-text'>Projectcode uitleg:<br>" + "Deze komt overeen met de projectcode van het project bij Emergis" + "</p></div></div>";
+</script>
 
 @endsection

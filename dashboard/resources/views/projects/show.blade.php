@@ -20,7 +20,7 @@
   </div>
   <div class="right-box">
     <p class="showRoles"><strong>Projectleider:</strong> {{ $project->projectleader }}</p>
-    <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->alt_projectleader }}</p>
+    <p class="showRoles"><strong>2e projectleider:</strong> {{ $project->second_projectleader }}</p>
     <p class="showRoles"><strong>Initiator:</strong> {{ $project->initiator }}</p>
     <p class="showRoles"><strong>Actor:</strong> {{ $project->actor }}</p>
   </div>
@@ -53,11 +53,26 @@
 <div class="container">
   <div class="progress-container">
     <div class="progress" id="progress"> </div>
-    <div class="circle">1</div>
-    <div class="circle">2</div>
-    <div class="circle">3</div>
-    <div class="circle">4</div>
-    <div class="circle">5</div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">1</div>
+      <p>Aanvraag</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">2</div>
+      <p>Lopend</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">3</div>
+      <p>Halverwege</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">4</div>
+      <p>Afronding</p>
+    </div>
+    <div class="container" style="margin-top: 3.5em;">
+      <div class="circle">5</div>
+      <p>Evaluatie</p>
+    </div>
   </div>
 </div>
 <p id="projectStatus">{{ $project->project_status }}</p>
@@ -110,9 +125,7 @@
 
   let currentActive = 1;
 
-  const updateValue = Math.floor(progressValue / 20);
-
-  update(updateValue);
+  update(progressValue);
 
   function update(currentActive) {
     stepCircles.forEach((circle, i) => {

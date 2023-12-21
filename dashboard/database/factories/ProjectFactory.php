@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\users;
+use App\Models\User;
 use App\Models\Program;
 use Faker\Generator as Faker;
 
@@ -73,10 +73,10 @@ class ProjectFactory extends Factory
             'start_date' => $this->faker->date,
             'end_date' => $this->faker->date,
 
-            'projectleader' => users::all()->random()->name,
-            'second_projectleader' => users::all()->random()->name,
-            'initiator' => users::all()->random()->name,
-            'actor' => users::all()->random()->name,
+            'projectleader' => User::all()->random()->name,
+            'second_projectleader' => User::all()->random()->name,
+            'initiator' => User::all()->random()->name,
+            'actor' => User::all()->random()->name,
 
             'reasoning' => $this->getFictitiousProjectReasoning(),
             'uploaded_document_start' => $this->faker->optional()->text, // Assuming binary data is stored as text
@@ -84,7 +84,7 @@ class ProjectFactory extends Factory
             'program' => Program::all()->random()->name,
             'community_link' => $this->faker->url,
             'project_status' => $this->faker->randomElement($array = array ('Op schema','Vertraagd','Afgewezen')),
-            'progress' => $this->faker->numberBetween($min = 20, $max = 100),
+            'progress' => $this->faker->numberBetween($min = 1, $max = 5),
             'check_discussion_RvB' => $this->faker->boolean,
         ];
     }

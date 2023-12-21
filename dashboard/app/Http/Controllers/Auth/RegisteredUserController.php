@@ -40,9 +40,10 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone_number' => '+316 12345678',
+            'role' => 'Admin'
         ]);
-
-        $user->role = 'Admin';
+        
         $user->save();
 
         event(new Registered($user));

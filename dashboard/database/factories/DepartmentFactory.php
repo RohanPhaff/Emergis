@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\users;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Department>
@@ -19,7 +19,7 @@ class DepartmentFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            'employees' => users::pluck('name')->random(5)->toArray(),
+            'employees' => User::pluck('name')->random(5)->toArray(),
         ];
     }
 }
