@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ "user-table-refactoring" ]
+    branches: [ "login-unit-testing" ]
   pull_request:
-    branches: [ "user-table-refactoring" ]
+    branches: [ "login-unit-testing" ]
 
 jobs:
   laravel-tests:
@@ -32,6 +32,9 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+      working-directory: dashboard
+    - name: Clear Laravel Configuration Cache
+      run: php artisan config:clear
       working-directory: dashboard
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
