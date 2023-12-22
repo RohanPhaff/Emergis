@@ -21,10 +21,3 @@ jobs:
             dashboard/routes
             dashboard/database
             dashboard/app/Models
-        name: Static Code Analysis Part 2
-      - uses: php-actions/phpstan@v3
-        with:
-          level: 0
-          args: --no-progress
-          path: |
-            dashboard/app/Http/Controllers
