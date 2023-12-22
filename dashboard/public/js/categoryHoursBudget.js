@@ -10,7 +10,7 @@ function hideTooltip() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    manHours = manHours.split(";")
+    let manHours = manHours.split(";")
     htmlManHoursDetails = "";
     totalManHours = 0;
     if (manHours != "") {
