@@ -5,3 +5,7 @@ function delimiterSplit(str, delimiter) {
 function delimiterJoin(arr, delimiter) {
     return arr.join(delimiter);
 }
+
+function test(arr) {
+    return arr;
+}
