@@ -13,4 +13,4 @@ jobs:
         with:
           level: 5
           args: --no-progress
-          path: dashboard/resources/views dashboard/public/css dashboard/routes dashboard/app
+          path: dashboard/resources/views dashboard/public/css dashboard/routes dashboard/app/http/controllers dashboard/database/factories
