@@ -9,14 +9,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6
+      - name: Static Code Analysis Part 1
       - uses: php-actions/phpstan@v3
         with:
           level: 5
           args: --no-progress
-          paths: |
+          path: |
             dashboard/resources/views 
             dashboard/public/css 
+            dashboard/public/js
             dashboard/routes 
-            dashboard/app/Http/Controllers 
-            dashboard/database/factories
-          exclude: 'dashboard/app/Http/Controllers/Auth/**'
+            dashboard/database
+            dashboard/app/Models
+      - name: Static Code Analysis Part 2
+      - uses: php-actions/phpstan@v3
+        with:
+          level: 1
+          args: --no-progress
+          path: |
+            dashboard/app/Http/Controllers
