@@ -1,4 +1,4 @@
-name: Static Code Analysis
+name: PHPStan
 
 on: [push]
 
@@ -20,4 +20,7 @@ jobs:
             dashboard/public/js
             dashboard/routes
             dashboard/database
-            dashboard/app/Models
+            dashboard/app/Models     
+      - name: Notify on failure
+        if: failure()
+        run: echo "Build failed! Check the workflow run for details."
