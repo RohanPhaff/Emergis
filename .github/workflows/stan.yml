@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6
-        name: Static Code Analysis Part 1
+        name: Static Code Analysis
       - uses: php-actions/phpstan@v3
         with:
           level: 5
