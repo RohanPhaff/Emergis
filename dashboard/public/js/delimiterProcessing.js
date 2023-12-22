@@ -7,5 +7,5 @@ function delimiterJoin(arr, delimiter) {
 }
 
 function test(arr) {
-    return arr;
+    return arr + 1;
 }
