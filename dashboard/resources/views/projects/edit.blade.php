@@ -59,9 +59,15 @@
         </div>
 
         <script>
-            let departments = <?php echo json_encode($departments); ?>;
+            <?php if(isset($departments)) { ?>
+                let departments = <?php echo json_encode($departments); ?>;
+            <?php } ?>
+
             let editPage = true;
-            let manHoursString = <?php echo json_encode($project->department_man_hours); ?>;
+
+            <?php if(isset($project)) { ?>
+                let manHoursString = <?php echo json_encode($project->department_man_hours); ?>;
+            <?php } ?>
         </script>
         <script src="\js\manHoursMenu.js"></script>
 
