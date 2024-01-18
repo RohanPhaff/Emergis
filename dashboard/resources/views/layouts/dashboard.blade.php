@@ -30,6 +30,12 @@
                         <span class="menu-text">Programma's</span>
                     </li>
                 </a>
+                <a class="custom-menu-link" href="/timeline">
+                    <li class="custom-menu-item">
+                        <img src="{{ asset('images/calendar.svg') }}" alt="Timeline" class="icon">
+                        <span class="menu-text">Tijdlijn</span>
+                    </li>
+                </a>
                 @if (Auth::user()->role == 'Admin')
                 <a class="custom-menu-link" href="/admin">
                     <li class="custom-menu-item">

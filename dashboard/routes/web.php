@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::get('/', [DashboardController::class, 'index'])
 
 Route::resource('/projects', App\Http\Controllers\ProjectController::class)->middleware(['auth', 'verified']);
 Route::resource('/programs', App\Http\Controllers\ProgramController::class)->middleware(['auth', 'verified']);
+
+Route::get('/timeline', [TimelineController::class, 'index']);
 
 Route::get('/admin', [UsersController::class, 'index'])
     ->middleware(['auth', 'verified', 'can:access-admin'])
