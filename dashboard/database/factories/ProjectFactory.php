@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Program;
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\project>
@@ -60,6 +61,10 @@ class ProjectFactory extends Factory
             $finalManHours .= ($department . ':' . $manHours . ':' . $categoryManHours);
         }
 
+        $startDate = $this->faker->dateTimeBetween('2022-01-01', '2025-12-31');
+        $maxEndDate = Carbon::instance($startDate)->addMonths(9);
+        $endDate = $this->faker->dateTimeBetween($startDate, $maxEndDate);
+
         return [
             'name' => $this->getFictitiousProjectName(),
             'code' => $this->faker->bothify('##??#?'),
@@ -70,8 +75,8 @@ class ProjectFactory extends Factory
             'category_budget' => $categoryBudget,
             'spent_costs' => $this->faker->numberBetween($min = 1000, $max = 7999),
 
-            'start_date' => $this->faker->date,
-            'end_date' => $this->faker->date,
+            'start_date' => $startDate->format('Y-m-d'),
+            'end_date' => $endDate->format('Y-m-d'),
 
             'projectleader' => User::all()->random()->name,
             'second_projectleader' => User::all()->random()->name,
