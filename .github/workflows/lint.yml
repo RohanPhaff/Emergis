@@ -7,17 +7,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci # or yarn install
-        working-directory: dashboard
-      - uses: sibiraj-s/action-eslint@v3
-        with:
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
-      - name: Notify on failure
-        if: failure()
-        run: echo "Build failed! Check the workflow run for details."
+        - name: Checkout code
+          uses: actions/checkout@v2
+  
+        - name: Install Node.js and npm
+          uses: actions/setup-node@v3
+          with:
+            node-version: '14'
+  
+        - name: Install dependencies
+          run: npm install
+  
+        - name: Run ESLint
+          run: npx eslint
