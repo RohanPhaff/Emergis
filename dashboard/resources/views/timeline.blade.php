@@ -37,7 +37,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         if (isset($projects) && !empty($projects)){
-            //@phpstan-ignore-next-line
+            // @phpstan-ignore-next-line
             var projects = <?php echo json_encode($projects); ?>;
         } else {
             var projects = [];
