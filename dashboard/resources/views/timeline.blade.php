@@ -36,7 +36,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        var projects = <?php echo json_encode($projects) ?>; // @phpstan-ignore-line
+        // var projects = <?php echo json_encode($projects); ?>;
+        $projects = [];
 
         originalData = projects.map(function(project) {
             return {
