@@ -36,7 +36,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        if ($projects){
+        if ($projects != undefined){
             var projects = <?php echo json_encode($projects); ?>;
         } else {
             var projects = [];
