@@ -16,7 +16,6 @@
 
 <div id="chart"></div>
 
-
 <script>
     var originalData;
     var chart;
