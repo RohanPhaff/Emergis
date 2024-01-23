@@ -155,16 +155,18 @@
   }
 </script>
 
-<script>
-  let manHours = <?php echo json_encode($project->department_man_hours); ?>;
-  let totalManHours = <?php echo json_encode($project->total_man_hours); ?>;
-  let categoryManHours = <?php echo json_encode($project->category_man_hours); ?>;
-  let budget = <?php echo json_encode($project->budget); ?>;
-  let categoryBudget = <?php echo json_encode($project->category_budget); ?>;
-  let spendCosts = <?php echo json_encode($project->spent_costs); ?>;
-  let startDate = <?php echo json_encode($project->start_date); ?>;
-  let endDate = <?php echo json_encode($project->end_date); ?>;
-</script>
-<script src="\js\categoryHoursBudget.js"></script>
+  <script>
+    <?php if (isset($project)) { ?> // If project is set, then encode the data
+      let manHours = <?php echo json_encode($project->department_man_hours); ?>;
+      let totalManHours = <?php echo json_encode($project->total_man_hours); ?>;
+      let categoryManHours = <?php echo json_encode($project->category_man_hours); ?>;
+      let budget = <?php echo json_encode($project->budget); ?>;
+      let categoryBudget = <?php echo json_encode($project->category_budget); ?>;
+      let spendCosts = <?php echo json_encode($project->spent_costs); ?>;
+      let startDate = <?php echo json_encode($project->start_date); ?>;
+      let endDate = <?php echo json_encode($project->end_date); ?>;
+    <?php } ?>
+  </script>
+  <script src="\js\categoryHoursBudget.js"></script>
 
 @endsection

@@ -1,44 +1,42 @@
 name: Laravel
 
-on:
-  push:
-    branches: [ "user-table-refactoring" ]
-  pull_request:
-    branches: [ "user-table-refactoring" ]
+on: [push]
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-    - uses: actions/checkout@v3
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      working-directory: dashboard
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      working-directory: dashboard
-    - name: Generate key
-      run: php artisan key:generate
-      working-directory: dashboard
-    - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
-      working-directory: dashboard
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
-      working-directory: dashboard
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
-      working-directory: dashboard
-    - name: Notify on failure
-      if: failure()
-      run: echo "Build failed! Check the workflow run for details."
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+      - uses: actions/checkout@v3
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        working-directory: dashboard
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: dashboard
+      - name: Generate key
+        run: php artisan key:generate
+        working-directory: dashboard
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+        working-directory: dashboard
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+        working-directory: dashboard
+      - name: Clear Laravel Configuration Cache
+        run: php artisan config:clear
+        working-directory: dashboard
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: vendor/bin/phpunit
+        working-directory: dashboard
+      - name: Notify on failure
+        if: failure()
+        run: echo "Build failed! Check the workflow run for details."

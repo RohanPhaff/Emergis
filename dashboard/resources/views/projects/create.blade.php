@@ -56,11 +56,12 @@
 
             <button type="button" id="add-department-btn" class="grey-button">Extra afdeling toevoegen</button>
         </div>
-
-        <script>
-            let departments = <?php echo json_encode($departments); ?>;
-            let editPage = false;
-        </script>
+            <script>
+                <?php if (isset($departments)) { ?>
+                    let departments = <?php echo json_encode($departments); ?>;
+                <?php } ?>
+                let editPage = false;
+            </script>
         <script src="\js\manHoursMenu.js"></script>
 
         <div class="item">

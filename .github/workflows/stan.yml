@@ -1,0 +1,26 @@
+name: PHPStan
+
+on: [push]
+
+jobs:
+  Run-Static-Code-Analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: php-actions/composer@v6
+        name: Static Code Analysis Part 1
+      - uses: php-actions/phpstan@v3
+        with:
+          level: 5
+          args: --no-progress
+          path: |
+            dashboard/resources/views
+            dashboard/public/css
+            dashboard/public/js
+            dashboard/routes
+            dashboard/database
+            dashboard/app/Models
+      - name: Notify on failure
+        if: failure()
+        run: echo "Build failed! Check the workflow run for details."

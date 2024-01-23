@@ -25,6 +25,23 @@ class UsersController extends Controller
         return view('admin.index', compact('users', 'roles'));
     }
 
+    public function invite()
+    {
+        return view('users.invite');
+    }
+
+    public function sendInvite()
+    {
+        $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate('127.0.0.1:8000/register', [
+            'name' => request()->name,
+            'email' => request()->email,
+        ], '+7 days', 1);
+
+        
+
+        return Redirect::route('users.invite')->with('success', 'User invited successfully!');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

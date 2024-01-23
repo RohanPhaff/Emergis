@@ -35,6 +35,13 @@ Route::put('/admin/{user}', [UsersController::class, 'update'])
     ->middleware(['auth', 'verified', 'can:access-admin'])
     ->name('admin.update');
 
+Route::get('/invite', [UsersController::class, 'invite'])
+    ->middleware(['auth', 'verified', 'can:access-admin'])
+    ->name('users.invite');
+
+Route::post('/invite', [UsersController::class, 'sendInvite'])
+    ->middleware(['auth', 'verified', 'can:access-admin'])
+    ->name('users.sendInvite');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.edit');

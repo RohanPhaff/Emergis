@@ -50,6 +50,13 @@
         </nav>
 
         <nav class="custom-top-menu">
+            <div style="margin-right: 1em;">
+                <a class="custom-menu-link" href="/invite">
+                    <li class="custom-menu-item">
+                        <img src="{{ asset('images/invite.png') }}" alt="Invite" class="icon">
+                    </li>
+                </a>
+            </div>
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="px-4" style="position: relative;">
                     <div id="user-name" style="cursor: pointer; color: white;">{{ Auth::user()->name }}</div>
