@@ -36,6 +36,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        if (!<?php echo json_encode($projects); ?>) {
+            return;
+        }
+
         var projects = <?php echo json_encode($projects); ?>;
 
         originalData = projects.map(function(project) {
