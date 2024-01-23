@@ -36,12 +36,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        if ($projects != undefined){
+        if (isset($projects) && !empty($projects)){
             var projects = <?php echo json_encode($projects); ?>;
         } else {
             var projects = [];
-        }
-        
+        }  
+
         originalData = projects.map(function(project) {
             return {
                 x: project.name,
