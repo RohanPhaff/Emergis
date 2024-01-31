@@ -15,7 +15,7 @@
         });
     }
 
-    console.log("test");
+    console.log("aaaa");
 
     window.onload = function() {
         showGraphs('projecten');
