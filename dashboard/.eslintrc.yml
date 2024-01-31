@@ -4,4 +4,15 @@ env:
 extends: eslint:recommended
 parserOptions:
   ecmaVersion: latest
-rules: {}
+rules: {
+  'indent': ['error', 2],                      // Use 2 spaces for indentation
+  'semi': ['error', 'always'],                 // Require semicolons at the end of statements
+  'quotes': ['error', 'double'],               // Enforce single quotes for strings
+  'comma-dangle': ['error', 'always-multiline'],// Require a trailing comma in multiline object literals and arrays
+  'arrow-parens': ['error', 'always'],         // Require parentheses around arrow function parameters
+  'no-unused-vars': 'error',                   // Disallow unused variables
+  'no-console': 'error',                       // Disallow the use of console.log and other console methods
+  'no-alert': 'error',                         // Disallow the use of alert, confirm, and prompt
+  'object-shorthand': 'error',                 // Enforce the use of shorthand object literal syntax
+  'keyword-spacing': 'error',                  // Require a space after certain keywords (if, else, for, while, do, switch)
+}

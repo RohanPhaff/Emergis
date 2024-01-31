@@ -10,10 +10,12 @@
             chart.style.display = 'none';
         });
 
-        document.querySelectorAll(`.small-chart.${category}`).forEach(chart => {
+        document.querySelectorAll('.small-chart.${category}').forEach(chart => {
             chart.style.display = 'flex';
         });
     }
+
+    console.log("test");
 
     window.onload = function() {
         showGraphs('projecten');

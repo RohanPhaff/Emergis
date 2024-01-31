@@ -17,6 +17,10 @@ jobs:
   
         - name: Install dependencies
           run: npm install
+          working-directory: dashboard
   
         - name: Run ESLint
-          run: npx eslint
+          run: |
+            npm install eslint eslint-plugin-prefer-const --save-dev
+            npx eslint --fix .
+          working-directory: dashboard
