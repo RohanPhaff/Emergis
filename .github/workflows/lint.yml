@@ -20,5 +20,5 @@ jobs:
           working-directory: dashboard
   
         - name: Run ESLint
-          run: npx eslint
+          run: npx eslint --config .eslintrc.yml .
           working-directory: dashboard
