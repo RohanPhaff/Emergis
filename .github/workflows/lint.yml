@@ -20,7 +20,5 @@ jobs:
           working-directory: dashboard
   
         - name: Run ESLint
-          run: |
-            npm install eslint eslint-plugin-prefer-const --save-dev
-            npx eslint --fix .
+          run: npx eslint
           working-directory: dashboard
