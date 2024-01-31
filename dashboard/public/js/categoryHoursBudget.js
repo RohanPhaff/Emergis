@@ -1,23 +1,10 @@
-function showTooltip() {
-    let tooltip = document.getElementById('tooltip');
-    tooltip.style.display = 'block';
-}
-
-// Function to hide tooltip when not hovering
-function hideTooltip() {
-    let tooltip = document.getElementById('tooltip');
-    tooltip.style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    let manHours = manHours.split(";")
-    htmlManHoursDetails = "";
-    totalManHours = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    let manHours = manHours.split(";");
+    let htmlManHoursDetails = "";
     if (manHours != "") {
         for (const key in manHours) {
             if (Object.hasOwnProperty.call(manHours, key)) {
                 const manHour = manHours[key];
-                totalManHours += Number(manHour.split(":")[1]);
                 htmlManHoursDetails += (manHour.split(":")[0] + ": " + Number(manHour.split(":")[1]) + " uur <i>(" + manHour.split(":")[2] + ")</i><br>");
             }
         }
@@ -29,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("man_hours").innerHTML = "<div class='tooltip-container'><i>Niet ingevuld</i>";
     }
 
+    /* eslint-disable */
     if (budget != 0) {
         document.getElementById("budget").innerHTML = "€" + Math.round(budget / 1000) + "K " + "<i>(" + categoryBudget + ")</i>";
     } else {
@@ -48,4 +36,5 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         document.getElementById("duration").innerHTML =  "<i>Niet ingevuld</i>";
     }
+    /* eslint-enable */
 });

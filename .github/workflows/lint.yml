@@ -19,6 +19,6 @@ jobs:
           run: npm install
           working-directory: dashboard
   
-        - name: Run ESLint with auto-fix
-          run: npx eslint --fix --config .eslintrc.yml .
+        - name: Run ESLint
+          run: npx eslint --config .eslintrc.yml .
           working-directory: dashboard
