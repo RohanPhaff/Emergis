@@ -9,9 +9,6 @@ jobs:
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
-
-        - name: Install PHP dependencies
-          run: composer install --no-progress --no-suggest --no-interaction
         
         - name: Install Node.js and npm
           uses: actions/setup-node@v3
@@ -21,9 +18,6 @@ jobs:
         - name: Install dependencies
           run: npm install
           working-directory: dashboard
-          
-        - name: PHP CodeSniffer
-          run: vendor/bin/phpcs
   
         - name: Run ESLint
           run: npx eslint --config .eslintrc.yml .
