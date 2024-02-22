@@ -3,8 +3,9 @@ name: Codacy
 on:
   push:
     paths-ignore:
-      - '/vendor/**'
-      - '/dashboard/node_modules/**'
+      - "/vendor/**"
+      - "/dashboard/vendor/**"
+      - "/dashboard/node_modules/**"
 
 jobs:
   codacy:
@@ -16,10 +17,9 @@ jobs:
 
       - name: Install Codacy Coverage Reporter
         run: curl -Ls -o codacy-coverage-reporter https://coverage.codacy.com/codacy-coverage-reporter-LATEST-linux
-      
+
       - name: Make Codacy Coverage Reporter executable
         run: chmod +x codacy-coverage-reporter
-      
+
       - name: Run Codacy Coverage Reporter
         run: ./codacy-coverage-reporter report -l PHP -r coverage.xml
-```
