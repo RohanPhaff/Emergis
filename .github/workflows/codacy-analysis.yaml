@@ -1,26 +1,30 @@
-name: Codacy Analysis CLI
+name: Codacy Security Scan
 
-on: ["push"]
+on:["push"]
 
 jobs:
-  codacy-analysis-cli:
-    name: Codacy Analysis CLI
+  codacy-security-scan:
+    name: Codacy Security Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@main
 
       - name: Run Codacy Analysis CLI
-        run: |
-          # Install Codacy Analysis CLI
-          npm install -g @codacy/codacy-analysis-cli
-
-          # Run analysis
-          codacy-analysis-cli analyze --format=sarif --output=results.sarif
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: upload SARIF results file
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          directory: dashboard
+          verbose: true
+          output: results.sarif
+          format: sarif
+          # Adjust severity of non-security issues
+          gh-code-scanning-compat: true
+          # Force 0 exit code to allow SARIF file generation
+          # This will hand over control about PR rejection to the GitHub side
+          max-allowed-issues: 2147483647
+      
+      # Upload the SARIF file generated in the previous step
+      - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@main
         with:
           sarif_file: results.sarif
