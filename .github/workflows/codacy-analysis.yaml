@@ -11,12 +11,14 @@ jobs:
         uses: actions/checkout@main
 
       - name: Run Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@master
-        with:
-          output: results.sarif
-          format: sarif
-          gh-code-scanning-compat: true
-          max-allowed-issues: 2147483647
+        run: |
+          # Install Codacy Analysis CLI
+          npm install -g @codacy/codacy-analysis-cli
+
+          # Run analysis
+          codacy-analysis-cli analyze --format=sarif --output=results.sarif
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: upload SARIF results file
         uses: github/codeql-action/upload-sarif@main
